@@ -1,0 +1,75 @@
+.container-nav {
+  z-index: 100000;
+  height: 100vh;
+  position: fixed;
+  padding-top: 2rem;
+  background-color: #f8f9fa;
+  padding-bottom: 2rem;
+  left: 0px;
+  transition: all 0.3s ease-in-out;
+  .second-container-nav {
+    position: relative;
+    border-right: 1px solid rgba(225, 228, 231, 1);
+    height: 90vh;
+    & .container-touchID {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+      align-items: center;
+      & a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 56px;
+        height: 56px;
+        &:hover {
+          background-color: rgba(225, 228, 231, 1);
+          transition: 0.3s ease-in-out;
+          border-radius: 8px;
+        }
+        &.active {
+          border-radius: 8px;
+          width: 56px;
+          height: 56px;
+          color: rgba(62, 72, 82, 1);
+          background-color: rgba(225, 228, 231, 1);
+        }
+      }
+      & .nav-profile {
+        margin-top: 2rem;
+      }
+    }
+  }
+  .button-toogle {
+    display: none;
+  }
+  @media only screen and (max-width: 65em) {
+    & {
+      left: -75px;
+      transition: all 0.3s ease-in-out;
+      .second-container-nav {
+        .button-toogle {
+          cursor: pointer;
+          position: absolute;
+          display: unset;
+
+          background-color: rgb(225, 228, 231);
+          right: -30px;
+          top: 3.5rem;
+          padding: 10px;
+          border-radius: 10px;
+        }
+      }
+    }
+    &.active {
+      left: 0px;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}

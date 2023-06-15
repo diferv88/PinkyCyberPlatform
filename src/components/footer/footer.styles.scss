@@ -1,0 +1,14 @@
+footer {
+  & span {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  & span.footer-secondary {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(62, 72, 82, 1);
+  }
+}

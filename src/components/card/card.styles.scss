@@ -1,0 +1,94 @@
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+  .card-div-container {
+    background: #ffffff;
+    border: 1px solid #e1e4e7;
+    border-radius: 16px;
+    padding: 16px;
+    .card-container-text {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h3 {
+        font-weight: 700;
+        font-size: 16px;
+        margin: 0;
+        span {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 24px;
+          color: #a4aeb8;
+        }
+      }
+    }
+    .card-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      a {
+        text-decoration-line: underline;
+        color: #3892f3;
+      }
+    }
+    p {
+      margin-top: 16px;
+      margin-bottom: 16px;
+      font-weight: 800;
+      font-size: 48px;
+      color: #3e4852;
+    }
+    .card-links {
+      p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: #a4aeb8;
+        span {
+          font-weight: 800;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 65em) {
+    & {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      .card-div-container {
+        .card-container-text {
+          h3 {
+            font-size: 14px;
+            margin: 0;
+            span {
+              font-weight: 400;
+              font-size: 14px;
+            }
+          }
+        }
+        .card-links {
+          a {
+            font-size: 12px;
+          }
+        }
+        p {
+          margin-top: 10px;
+          margin-bottom: 10px;
+          font-size: 30px;
+        }
+        .card-links {
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 40em) {
+    & {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.5rem;
+    }
+  }
+}

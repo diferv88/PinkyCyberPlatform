@@ -1,0 +1,34 @@
+.button-container {
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 1);
+  border: none;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+  &.btn-success {
+    background-color: rgba(15, 181, 174, 1);
+    &:hover,
+    &:focus {
+      transition: all 0.3s ease-in-out;
+      background-color: #139366;
+    }
+  }
+
+  &.btn-large {
+    justify-content: space-between;
+    width: 360px;
+  }
+  @media only screen and (max-width: 55em) {
+    &.btn-large {
+      display: flex;
+      gap: 1rem;
+      width: fit-content;
+    }
+  }
+}
