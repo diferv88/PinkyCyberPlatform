@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+import * as React from "react";
+import { Provider } from "react-redux";
 import HeaderComponent from "../../header/header.component";
 import Button from "../../button/button.component";
 import Card from "../../card/card.component";
@@ -9,8 +11,11 @@ import shiledSearchSVG from "../../../assets/images/shiledSearch.svg";
 import tickCircle from "../../../assets/images/tickCircle.svg";
 import ticketSVG from "../../../assets/images/ticket.svg";
 import ServerStatus from "./serverStatus/serverStatus.component";
+import { useNotification } from "../notification/useNotification";
 import { Link } from "react-router-dom";
 import "./dashBoard.styles.scss";
+import { Notification } from "../notification/notification";
+import { store } from "../notification/store";
 
 const DashBoard = () => {
   const links = {
@@ -121,12 +126,24 @@ const DashBoard = () => {
     },
   ];
 
+  const { displayNotification } = useNotification();
+
+  React.useEffect(() => {
+    displayNotification({
+      message: "This notification displays when the app first renders!"
+    });
+  }, [displayNotification]);
+
 
   return (
     <>
       <HeaderComponent links={""}>Aggregated risk score</HeaderComponent>
 
       <section className="container-information">
+
+      <Provider store={store}>
+        <Notification />
+      </Provider>
         
         <div className="container-general-overview">
           <div>
