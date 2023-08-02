@@ -1,4 +1,4 @@
-import "./../PartnerAccount.styles.scss";
+import "./../partnerAccount.styles.scss";
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
