@@ -1,0 +1,25 @@
+.orange-div {
+    
+    background-color: #F68511
+    
+  }
+
+  .red-div {
+    background-color: #EA3829;
+  }
+
+  .green-div{
+    background-color: #0FB5AE;
+  }
+
+  .orange-div,.red-div,.green-div{
+    color: white;
+    font-size: 20px;
+    width: 70px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: grid;
+    place-items: center;
+    height: 38px;
+  }

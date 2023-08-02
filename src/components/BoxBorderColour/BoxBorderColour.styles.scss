@@ -1,0 +1,30 @@
+.Red-box , .Suspended-box {
+
+    border: 2px solid #EA3829;
+    color: #EA3829;;
+  }
+.Yellow-box {
+
+    border: 2px solid #F8D904;
+    color: #F8D904;
+
+}
+.Green-box, .Active-box {
+
+    border: 2px solid #0FB5AE;
+    color: #0FB5AE;
+    
+}
+.Not-active-box{
+    border: 2px solid #C3C9CF;
+    color: #C3C9CF;
+}
+.Green-box ,.Red-box ,.Yellow-box, .Suspended-box, .Not-active-box, .Active-box {
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    height: 38px;
+    display: grid;
+    place-items: center;
+   
+}
