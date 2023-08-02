@@ -2,7 +2,7 @@ import HeaderComponent from "../../header/header.component";
 import Card from "../../card/card.component";
 import calendarSVG from "../../../assets/images/arrowLeft.svg";
 import { Title } from "./title/Title";
-import "./PartnerAccount.styles.scss";
+import "./partnerAccount.styles.scss";
 import * as React from 'react';
 import TablePartnerAccounts from "./TablePartnerAccounts/TablePartnerAccounts"
 import TableUserAccounts from "./TableUserAccounts/TableUserAccounts";
