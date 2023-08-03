@@ -1,0 +1,19 @@
+
+
+.container {
+    background-color: #F8F9FA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    height: 100%;
+
+    .pinky-logo{
+        margin-top: 80px;
+        width: 250px;
+        height: 60px;
+    }
+    label{
+        color: black !important;
+    }
+}

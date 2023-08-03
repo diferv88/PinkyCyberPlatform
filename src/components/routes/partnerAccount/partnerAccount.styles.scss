@@ -31,14 +31,20 @@
         border-radius: 5px;
         border: 1px solid #C3C9CF;
         height: 38px;
+        font-size: small;
+        padding: 10px;
   
         &::placeholder {
           color: #C3C9CF;
           font-size: x-small;
         }
+        //verificar por que en el focus no funciona
         &:focus{
             border-color: #2680EB !important;
         }
+      //   &:hover{
+      //     border-color: #2680EB !important;
+      // }
     
       }
     }
@@ -117,7 +123,6 @@
 
 .search-bar input[type="text"] {
   flex-grow: 1;
- 
 }
 
 .search-bar i.fa {

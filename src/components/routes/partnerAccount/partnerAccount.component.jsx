@@ -1,6 +1,9 @@
 import HeaderComponent from "../../header/header.component";
 import Card from "../../card/card.component";
 import calendarSVG from "../../../assets/images/arrowLeft.svg";
+import ConectionYellowSvg from '../../../assets/images/conectionYellow.svg'
+import ConectionRedSvg from '../../../assets/images/conectionRed.svg'
+import Ticket from '../../../assets/images/ticket.svg';
 import { Title } from "./title/Title";
 import "./partnerAccount.styles.scss";
 import * as React from 'react';
@@ -12,7 +15,7 @@ const cards = [
     title: "Reported issues with accounts",
     priority: false,
     quantity: 8,
-    icon: calendarSVG,
+    icon: Ticket,
     total: 120,
     status: null,
     link: "/",
@@ -30,18 +33,18 @@ const cards = [
     title: "Network status: Red",
     priority: false,
     quantity: 3,
-    icon: calendarSVG,
+    icon: ConectionYellowSvg,
     total: 256,
-    status: "GREEN",
+    status: null,
     link: "/",
   },
   {
     title: "Network status: Yellow",
     priority: false,
     quantity: 1,
-    icon: null,
+    icon: ConectionRedSvg,
     total: 256,
-    status: "RED",
+    status: null,
     link: "/",
   },
   
