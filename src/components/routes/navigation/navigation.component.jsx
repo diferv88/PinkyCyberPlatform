@@ -105,7 +105,7 @@ const Navigation = () => {
             </NavLink>
             <NavLink
               className="nav-profile"
-              to="/profile"
+              to="/login"
               title="Link to go to the Profile page"
             >
               <StyledBadge
