@@ -5,6 +5,7 @@ import PartnerAccountIndex from "./routes/partnerAccount/partnerAccount.componen
 import AddPartnerAccount from "./routes/partnerAccount/PartnerAccouts/PartenrAccountsTest.component";
 import Onboarding from "./routes/onboarding/Onboarding";
 import { Login } from "./routes/login/Login";
+import { RecoveryPasswordLogin } from "./routes/RecoveryPasswordLogin/RecoveryPasswordLogin";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       </Route>
       <Route path="onboarding" element={<Onboarding/>}/>
       <Route path="login" element={<Login/>}/>
+      <Route path="recovery-password" element={<RecoveryPasswordLogin/>}/>
     </Routes>
   );
 }

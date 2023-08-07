@@ -4,11 +4,9 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import FormGroup from '../formGroup/FormGroup';
 import FormRow from '../formRow/FormRow';
 import Button from '../../../button/button.component';
-
+import FormGroup from '../formGroup/FormGroup.jsx';
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />

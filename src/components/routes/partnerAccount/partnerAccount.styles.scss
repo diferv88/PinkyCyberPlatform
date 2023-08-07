@@ -5,6 +5,10 @@
   
     .form-group {
       flex: 1;
+
+      &.login{
+        margin: 7px 7%;
+      }
   
       &:not(:last-child) {
         margin-right: 10px;
@@ -33,6 +37,8 @@
         height: 38px;
         font-size: small;
         padding: 10px;
+
+        
   
         &::placeholder {
           color: #C3C9CF;
@@ -42,16 +48,24 @@
         &:focus{
             border-color: #2680EB !important;
         }
-      //   &:hover{
-      //     border-color: #2680EB !important;
-      // }
+        &:hover{
+          border-color: #2680EB !important;
+       }
     
       }
-    }
-    
-    
-  }
 
+      .input-error {
+        border-color: #ea3829 !important;
+        box-shadow: 
+          0 0 5px #ffcccb, 
+          0 0 5px #f08080,
+          0 0 5px #ffcccb,
+          0 0 5px #f08080;
+  
+        transition: box-shadow 0.3s ease;
+      }    
+    }     
+  }
 
 .hr-title{
     margin-bottom: 25px;
@@ -143,5 +157,20 @@
 }
 
 
-  
-  
+.input-password {
+  position: relative !important;
+}
+.eye-button {
+  position: absolute !important;
+  right: -5px;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  border: none !important;
+  background: none !important;
+  margin: 0 !important;
+}
+
+.eye-button img {
+  width: 20px;
+  height: 20px;
+}
