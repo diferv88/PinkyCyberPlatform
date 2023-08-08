@@ -1,0 +1,26 @@
+.verification-p{
+    text-align: center;
+    font-size: 12px;
+}
+.p-verification{
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 9%;
+    margin-top: 0px;
+
+    .link-to-send{
+        color: #3892f3;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+        cursor: pointer;
+        text-align: center;
+        margin-left: 4px;  
+
+        &:hover {
+            color: #2680EB;
+        }
+    }
+}
+
+

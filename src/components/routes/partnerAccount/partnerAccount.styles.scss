@@ -47,7 +47,15 @@
         //verificar por que en el focus no funciona
         &:focus{
             border-color: #2680EB !important;
+            box-shadow: 
+              0 0 2px #3892f3,
+              0 0 2px #3892f3,
+              0 0 2px #3892f3,
+              0 0 2px #3892f3;
         }
+        &:focus-visible {
+          outline: none;
+      }
         &:hover{
           border-color: #2680EB !important;
        }
