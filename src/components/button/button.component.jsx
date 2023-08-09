@@ -9,6 +9,8 @@ const BUTTON_TYPE_CLASSES = {
   dangerOutline: "btn-danger-outline",
   warning: "btn-warning",
   warningOutline: "btn-warning-outline",
+  discard: "btn-discard",
+  discardOutline: "btn-discard-outline",
 };
 const BUTTON_SIZE_CLASSES = {
   small: "btn-small",
@@ -18,6 +20,7 @@ const BUTTON_SIZE_CLASSES = {
 };
 
 const Button = ({ children, type, size, icons, position, ...otherProps }) => {
+  console.log(otherProps)
   return (
     <button
       className={`button-container ${BUTTON_TYPE_CLASSES[type]} ${BUTTON_SIZE_CLASSES[size]}  `}

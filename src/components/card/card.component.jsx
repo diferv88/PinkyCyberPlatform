@@ -2,9 +2,9 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import "./card.styles.scss";
-const Card = ({ quantity, link, total, title, icon, status, priority }) => {
+const Card = ({ quantity, link, total, title, icon, status, priority, imagen, homeCard }) => {
   return (
-    <div className="card-div-container">
+    <div className={homeCard ? "card-div-container-x4" : "card-div-container"}>
       <div className="card-container-text">
         {title && !priority && <h3>{title}</h3>}
         {title && priority && (
@@ -16,11 +16,19 @@ const Card = ({ quantity, link, total, title, icon, status, priority }) => {
         {status && <span className={`server-status ${status}`}></span>}
       </div>
       <p>{quantity}</p>
+      {imagen ? (
+        <img src={imagen} alt="" />
+      ):""}
       <div className="card-links">
-        <p>
+        {total ? (<p>
           Total :<span>{total}</span>
-        </p>
-        <Link to={link}>Overview</Link>
+        </p>) : ""
+        }
+        {
+          link ? 
+        (<Link to={link}>Overview</Link>
+        ) : ""
+        }
         {
           // todo <Link to={link}>Overview</Link>
         }

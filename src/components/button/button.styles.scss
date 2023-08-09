@@ -13,16 +13,69 @@
   cursor: pointer;
   &.btn-success {
     background-color: rgba(15, 181, 174, 1);
+    &:hover{
+      transition: all 0.3s ease-in-out;
+      background-color: #1B959A;
+    }
+    &:focus {
+      transition: all 0.3s ease-in-out;
+      background-color: #16878C;
+    }
+  }
+  &.btn-success-outline {
+    background-color: rgba(159, 225, 223, 1);
     &:hover,
     &:focus {
       transition: all 0.3s ease-in-out;
-      background-color: #139366;
+      background-color: #9FE1DF;
+    }
+  }
+  &.btn-danger {
+    background-color: #DE3D82;
+    &:hover{
+      transition: all 0.3s ease-in-out;
+      background-color: #CE2783;
+    }
+    &:focus {
+      transition: all 0.3s ease-in-out;
+      background-color: #BC1C74;
+    }
+  }
+  &.btn-danger-outline {
+    background-color: #F2B1CD;
+    &:hover,
+    &:focus {
+      transition: all 0.3s ease-in-out;
+      background-color: #F2B1CD;
+    }
+  }
+  &.btn-discard{
+    background-color: #687888;
+    &:hover{
+      transition: all 0.3s ease-in-out;
+      background-color: #53606D;
+    }
+    &:focus {
+      transition: all 0.3s ease-in-out;
+      background-color: #3E4852;
+    }
+  }
+  &.btn-discard-outline{
+    background-color: #C3C9CF;
+    &:hover,
+    &:focus {
+      transition: all 0.3s ease-in-out;
+      background-color: #C3C9CF;
     }
   }
 
   &.btn-large {
     justify-content: space-between;
     width: 360px;
+  }
+  &.btn-medium {
+    justify-content: space-between;
+    border-radius: 12px;
   }
   @media only screen and (max-width: 55em) {
     &.btn-large {
