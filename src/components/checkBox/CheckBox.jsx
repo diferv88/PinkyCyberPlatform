@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import './CheckBox.styles.scss';
 
-const Checkbox = ({ label,secondLable, checked, onChange }) => {
+const Checkbox = ({ label, secondLable, checked, onChange }) => {
   return (
     <div className={`checkbox-container ${checked}`}>
         <label >
@@ -14,4 +16,4 @@ const Checkbox = ({ label,secondLable, checked, onChange }) => {
   );
 };
 
-export default Checkbox;
+export default Checkbox

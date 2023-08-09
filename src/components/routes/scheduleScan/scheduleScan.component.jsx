@@ -3,7 +3,7 @@ import * as React from "react";
 import { Provider } from "react-redux";
 import HeaderComponent from "../../header/header.component";
 import Button from "../../button/button.component";
-import CheckBox from "../../checkBox/checkBox";
+import CheckBox from "../../checkBox/CheckBox";
 import Card from "../../card/card.component";
 import calendarSVG from "../../../assets/images/calendar.svg";
 import flagSVG from "../../../assets/images/flag.svg";
