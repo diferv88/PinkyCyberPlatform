@@ -10,6 +10,7 @@ import AddPartnerAccount from "./routes/partnerAccount/PartnerAccouts/PartenrAcc
 import Onboarding from "./routes/onboarding/Onboarding";
 import { Login } from "./routes/login/Login";
 import { RecoveryPasswordLogin } from "./routes/RecoveryPasswordLogin/RecoveryPasswordLogin";
+import EmailScanVulnerability from "./routes/emailScanVulnerability/emailScanVulnerability.component";
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
         <Route path="add-partner-account/:id" element={<AddPartnerAccount />} />
         <Route path="Schedule-Scan" element={<ScheduleScan />} />
         <Route path="Assets-Discovery" element={<AssetsDiscovery />} />
-        <Route path="Email-Scan" element={<EmailScan />} />
       </Route>
+      <Route path="Email-Scan" element={<EmailScan />} />
+      <Route path="Email-Scan-Vulnerability" element={<EmailScanVulnerability />} />
       <Route path="onboarding" element={<Onboarding/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="recovery-password" element={<RecoveryPasswordLogin/>}/>

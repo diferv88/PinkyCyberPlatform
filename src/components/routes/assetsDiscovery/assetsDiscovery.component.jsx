@@ -1,21 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import * as React from "react";
-import { Provider } from "react-redux";
 import HeaderComponent from "../../header/header.component";
-import EmailScan from "../../routes/emailScan/emailScan.component";
-import Button from "../../button/button.component";
-import tickCircle from "../../../assets/images/tickCircle.svg";
 import scanFinal from "../../../assets/images/ScanLoadingFinal.svg";
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { useNotification } from "../notification/useNotification";
-import { Link } from "react-router-dom";
 import "./assetsDiscovery.styles.scss";
-import { Notification } from "../notification/notification";
-import { store } from "../notification/store";
-import { backdropClasses } from "@mui/material";
+import { Navigate } from "react-router-dom/dist";
 
 function CircularProgressWithLabel(props) {
   return (
@@ -51,11 +43,15 @@ const DashBoard = () => {
   React.useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 5));
-    }, 800);
+    }, 900);
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [progress]);
+
+  if (progress >= 100) {
+    return <Navigate to="/Email-Scan" />
+  }
 
   return (
     <>

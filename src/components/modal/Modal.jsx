@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import './Modal.styles.scss'
 import FormGroup from '../routes/partnerAccount/formGroup/FormGroup';
 import FormRow from '../routes/partnerAccount/formRow/FormRow';

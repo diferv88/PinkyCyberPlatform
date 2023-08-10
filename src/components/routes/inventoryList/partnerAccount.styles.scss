@@ -1,0 +1,184 @@
+.form-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  
+    .form-group {
+      flex: 1;
+
+      &.login{
+        margin: 7px 7%;
+      }
+  
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+  
+      &.half-width {
+        flex: 0.5;
+      }
+  
+      &.quarter-width {
+        flex: 0.25;
+      }
+  
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: x-small;
+        color: #C3C9CF;
+        font-family: 'Sora', sans-serif;
+      }
+  
+      input {
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid #C3C9CF;
+        height: 38px;
+        font-size: small;
+        padding: 10px;
+
+        
+  
+        &::placeholder {
+          color: #C3C9CF;
+          font-size: x-small;
+        }
+        //verificar por que en el focus no funciona
+        &:focus{
+            border-color: #2680EB !important;
+            box-shadow: 
+              0 0 2px #3892f3,
+              0 0 2px #3892f3,
+              0 0 2px #3892f3,
+              0 0 2px #3892f3;
+        }
+        &:focus-visible {
+          outline: none;
+      }
+        &:hover{
+          border-color: #2680EB !important;
+       }
+    
+      }
+
+      .input-error {
+        border-color: #ea3829 !important;
+        box-shadow: 
+          0 0 5px #ffcccb, 
+          0 0 5px #f08080,
+          0 0 5px #ffcccb,
+          0 0 5px #f08080;
+  
+        transition: box-shadow 0.3s ease;
+      }    
+    }     
+  }
+
+.hr-title{
+    margin-bottom: 25px;
+    border-color: #C3C9CF;
+}
+.title-partner{
+    margin-bottom: 10px;
+}
+
+.span-acordeon{
+    font-size: x-small;
+}
+.div-vulnerability{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.check-box-div {
+  height: 43px;
+  width: 100%;
+  background-color: #e1e5e8;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.check-box {
+  margin-left: 12px;
+  margin-right: 7px;
+}
+
+.div-add{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.button-add{
+  border-color: #0FB5AE;
+  background-color: #0FB5AE;
+  border-radius: 5px;
+  margin: 20px;
+  color: white;
+  padding: 10px;
+}
+
+.checkBoxs-div{
+  display: flex;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.label-checkbox{
+  font-size: small;
+  font-weight: bold;
+}
+
+.tableSortLabel{
+  font-size: medium;
+  font-weight: bold;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+ 
+}
+
+.search-bar input[type="text"] {
+  flex-grow: 1;
+}
+
+.search-bar i.fa {
+  font-size: 1.25rem;
+}
+
+.gear-button{
+
+  border: none;
+  background-color: rgb(208, 208, 208);
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.input-search{
+  border-radius: 5px !important;
+  border-color:  rgb(208, 208, 208) !important;
+}
+
+
+.input-password {
+  position: relative !important;
+}
+.eye-button {
+  position: absolute !important;
+  right: -5px;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  border: none !important;
+  background: none !important;
+  margin: 0 !important;
+}
+
+.eye-button img {
+  width: 20px;
+  height: 20px;
+}
