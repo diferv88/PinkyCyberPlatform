@@ -8,10 +8,6 @@ import calendarSVG from "../../../assets/images/calendar.svg";
 import flashCirleSVG from "../../../assets/images/flashCircle.svg";
 import shiledSearchSVG from "../../../assets/images/shiledSearch.svg";
 import tickCircle from "../../../assets/images/tickCircle.svg";
-import mitigateyouriks4 from "../../../assets/images/Mitigateyouriks.svg";
-import mitigateyouriks4Ac from "../../../assets/images/Mitigate4Activate.svg";
-import learMoreAprove5 from "../../../assets/images/LearMoreAprove.svg";
-import learMoreAprove5AC from "../../../assets/images/LearMore5Activate.svg";
 import inventoriList from "../../../assets/images/iList.svg";
 import vulnerabilityScan from "../../../assets/images/VulnerabilitiScan.svg";
 import mitigationPlan from "../../../assets/images/mPlan.svg";
@@ -138,11 +134,11 @@ const Home = () => {
     },
   ];
   const [steps, setSteps] = useState([
-    { key: 'firstStep', label: 'Proceed to know your enverioment', isDone: true, component: firstComponent, image: learMoreAprove5AC, btn:"Scan", testNavigation: "/Schedule-Scan"},
-    { key: 'secondStep', label: 'Classify your assets', isDone: false, component: secondComponent,image: learMoreAprove5, btn:"Clasify", testNavigation: "/"},
-    { key: 'thirdStep', label: 'Know your vulnerabilities', isDone: false, component: thirdComponent, image: mitigateyouriks4, btn:"Discover", testNavigation: "/"},
-    { key: 'finalStep', label: 'Mitigrate your risks', isDone: false, component: finalComponent, image: mitigateyouriks4Ac, btn:"Mitigate", testNavigation: "/"},
-    { key: 'LearnMore', label: 'Learn more and improve', isDone: false, component: learnMore, image: mitigationPlan, btn:"Learn", testNavigation: "/"},
+    { key: 'firstStep', label: 'Proceed to know your enverioment', isDone: true, component: firstComponent, btn:"Scan", testNavigation: "/Schedule-Scan"},
+    { key: 'secondStep', label: 'Classify your assets', isDone: false, component: secondComponent, btn:"Clasify", testNavigation: "/"},
+    { key: 'thirdStep', label: 'Know your vulnerabilities', isDone: false, component: thirdComponent, btn:"Discover", testNavigation: "/"},
+    { key: 'finalStep', label: 'Mitigrate your risks', isDone: false, component: finalComponent, btn:"Mitigate", testNavigation: "/"},
+    { key: 'LearnMore', label: 'Learn more and improve', isDone: false, component: learnMore, btn:"Learn", testNavigation: "/"},
   ]);
 
   const [activeStep, setActiveStep] = useState(steps[0]);
