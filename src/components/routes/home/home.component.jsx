@@ -213,9 +213,7 @@ const Home = () => {
       <Provider store={store}>
         <Notification />
       </Provider>
-        <ul>
-          <li className="resources">
-          <div>
+          <div className="resources">
             <div className="App">
               <div className="box">
                 <div className="steps">
@@ -249,9 +247,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-
-          </li>
-        </ul>
       </section>
       <section className="section-style">
         <ul className="card-container">
