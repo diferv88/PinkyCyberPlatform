@@ -72,7 +72,7 @@ const Navigation = () => {
             >
               <img src={profileSVG} alt="Clients account image" />
             </NavLink>
-            <NavLink to="/network" title="Link to go to the Network page">
+            <NavLink to="/Schedule-Scan" title="Link to go to the Network page">
               <img src={dataSVG} alt="Network image" />
             </NavLink>
             <NavLink
