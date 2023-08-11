@@ -1,9 +1,11 @@
 .container-information {
-  background: #ffffff;
-  border: 1px solid #e1e4e7;
-  border-radius: 16px;
+  background: transparent !important;
+  border-right: 0px !important;
+  border-left: 0px !important;
+  margin: 20px auto;
+  border-radius: 0px !important;
   display: flex !important;
-  padding: 16px 8px 8px;
+  padding: 40px 8px !important;
   & .container-general-overview {
     display: flex;
     flex-direction: column;
@@ -85,50 +87,89 @@
       gap: initial;
     }
 
-    .box .steps .nav li:first-child {
-      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzMyIiBoZWlnaHQ9IjIxNiIgdmlld0JveD0iMCAwIDMzMiAyMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wIDE2QzAgNy4xNjM0NSA3LjE2MzQ0IDAgMTYgMEwyODAuODY0IDBDMjg3LjU1NyAwIDI5My41NDMgNC4xNjYzMiAyOTUuODY4IDEwLjQ0M0wzMzIgMTA4TDI5NS44NjggMjA1LjU1N0MyOTMuNTQzIDIxMS44MzQgMjg3LjU1NyAyMTYgMjgwLjg2NCAyMTZIMTZDNy4xNjM0NSAyMTYgMCAyMDguODM3IDAgMjAwVjE2WiIgZmlsbD0iIzBGQjVBRSIvPgo8L3N2Zz4K");
-      margin-right: -55px;
-      > div {
-        padding: 16px 60px 16px 24px;
-      }
-    }
-
     .box .steps .nav li {
       width: 100%;
-      height: auto;
-      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUzIiBoZWlnaHQ9IjIxNiIgdmlld0JveD0iMCAwIDM1MyAyMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0zNy40Njg5IDEwOC4xNzRMMzcuNTMzMiAxMDhMMzcuNDY4OSAxMDcuODI2TDEuNDYwOTIgMTAuNjA0OUMtMC4zNTMzMTYgNS43MDY0MyAzLjI3MDQzIDAuNSA4LjQ5NDAzIDAuNUgzMDEuODY0QzMwOC4zNDggMC41IDMxNC4xNDcgNC41MzYxMiAzMTYuMzk5IDEwLjYxNjZMMzUyLjQ2NyAxMDhMMzE2LjM5OSAyMDUuMzgzQzMxNC4xNDcgMjExLjQ2NCAzMDguMzQ4IDIxNS41IDMwMS44NjQgMjE1LjVIOC40OTQwMkMzLjI3MDQyIDIxNS41IC0wLjM1MzMxNiAyMTAuMjk0IDEuNDYwOTIgMjA1LjM5NUwzNy40Njg5IDEwOC4xNzRaIiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjRTFFNEU3Ii8+Cjwvc3ZnPgo=");
-      background-size: cover;
-      background-repeat: no-repeat;
-      margin-right: -35px;
-      padding-bottom: 5px;
-    }
-
-    .box .steps .nav li:first-child.active, .box .steps .nav li:first-child.done {
-      background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMzU2IDIxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMTZDMCA3LjE2MzQ1IDcuMTYzNDQgMCAxNiAwTDI4MC44NjQgMEMyODcuNTU3IDAgMjkzLjU0MyA0LjE2NjMyIDI5NS44NjggMTAuNDQzTDMzMiAxMDhMMjk1Ljg2OCAyMDUuNTU3QzI5My41NDMgMjExLjgzNCAyODcuNTU3IDIxNiAyODAuODY0IDIxNkgxNkM3LjE2MzQ1IDIxNiAwIDIwOC44MzcgMCAyMDBWMTZaIiBmaWxsPSIjMEZCNUFFIi8+Cjwvc3ZnPgo=");
-    }
-
-    .box .steps .nav li.active, .box .steps .nav li.done {
-      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUzIiBoZWlnaHQ9IjIxNiIgdmlld0JveD0iMCAwIDM1MyAyMTYiIGZpbGw9IiMwRkI1QUUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0zNy40Njg5IDEwOC4xNzRMMzcuNTMzMiAxMDhMMzcuNDY4OSAxMDcuODI2TDEuNDYwOTIgMTAuNjA0OUMtMC4zNTMzMTYgNS43MDY0MyAzLjI3MDQzIDAuNSA4LjQ5NDAzIDAuNUgzMDEuODY0QzMwOC4zNDggMC41IDMxNC4xNDcgNC41MzYxMiAzMTYuMzk5IDEwLjYxNjZMMzUyLjQ2NyAxMDhMMzE2LjM5OSAyMDUuMzgzQzMxNC4xNDcgMjExLjQ2NCAzMDguMzQ4IDIxNS41IDMwMS44NjQgMjE1LjVIOC40OTQwMkMzLjI3MDQyIDIxNS41IC0wLjM1MzMxNiAyMTAuMjk0IDEuNDYwOTIgMjA1LjM5NUwzNy40Njg5IDEwOC4xNzRaIiBmaWxsPSIjMEZCNUFFIiBzdHJva2U9IiMwRkI1QUUiLz4KPC9zdmc+Cg==");
-      div {
-        color: #fff;
+      margin-right: -2%;
+      & .bg {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUzIiBoZWlnaHQ9IjIxNiIgdmlld0JveD0iMCAwIDM1MyAyMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0zNy40Njg5IDEwOC4xNzRMMzcuNTMzMiAxMDhMMzcuNDY4OSAxMDcuODI2TDEuNDYwOTIgMTAuNjA0OUMtMC4zNTMzMTYgNS43MDY0MyAzLjI3MDQzIDAuNSA4LjQ5NDAzIDAuNUgzMDEuODY0QzMwOC4zNDggMC41IDMxNC4xNDcgNC41MzYxMiAzMTYuMzk5IDEwLjYxNjZMMzUyLjQ2NyAxMDhMMzE2LjM5OSAyMDUuMzgzQzMxNC4xNDcgMjExLjQ2NCAzMDguMzQ4IDIxNS41IDMwMS44NjQgMjE1LjVIOC40OTQwMkMzLjI3MDQyIDIxNS41IC0wLjM1MzMxNiAyMTAuMjk0IDEuNDYwOTIgMjA1LjM5NUwzNy40Njg5IDEwOC4xNzRaIiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjRTFFNEU3Ii8+Cjwvc3ZnPgo=");
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: flex;
+        color: #3E4852;
+        position: relative;
+        font-family: Sora;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 32px;
+        height: 100%;
+        padding-top: 62%;
+        & .bgContent {
+          position: absolute;
+          display: flex;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          padding: 5% 12% 5% 14%;
+          & .cstep {
+            padding: 0 10px 0 20px;
+            color: #3E4852;
+            text-align: right;
+            font-variant-numeric: lining-nums tabular-nums;
+            font-family: Sora;
+            font-size: 1.65em;
+            font-style: normal;
+            font-weight: 800;
+            line-height: 1.2em;
+          }
+          & .ctext {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+        }
       }
-      & .button-container.btn-danger {
-        background-color: #fff;
-        color: #0FB5AE;
-      }
-    }
 
-    .box .steps .nav li div {
-      color: #3E4852;
-      padding: 16px 40px 16px 60px;
-      position: relative;
-      font-family: Sora;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 32px;
-      height: 100%;
+      &:first-child {
+        margin-right: -3.5%;
+        & .bgContent {
+          padding: 5% 18% 5% 7%;
+        }
+      }
+
+      &:first-child.done.active .bg {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMzU2IDIxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAuNSAxNkMwLjUgNy40Mzk1OSA3LjQzOTU5IDAuNSAxNiAwLjVIMjgwLjg2NEMyODcuMzQ4IDAuNSAyOTMuMTQ3IDQuNTM2MTIgMjk1LjM5OSAxMC42MTY2TDMzMS40NjcgMTA4TDI5NS4zOTkgMjA1LjM4M0MyOTMuMTQ3IDIxMS40NjQgMjg3LjM0OCAyMTUuNSAyODAuODY0IDIxNS41SDE2QzcuNDM5NTkgMjE1LjUgMC41IDIwOC41NiAwLjUgMjAwVjE2WiIgZmlsbD0id2hpdGUiIHN0cm9rZT0iI0UxRTRFNyIvPgo8L3N2Zz4K");
+      }
+
+      &.active:not(.done) {
+        & .button-container.btn-danger {
+          background-color: #fff;
+          color: #0FB5AE;
+        }
+      }
+
+      & .button-container {
+        width: 150px;
+      }
+
+      &:first-child.done:not(.active) .bg {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMzU2IDIxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMTZDMCA3LjE2MzQ1IDcuMTYzNDQgMCAxNiAwTDI4MC44NjQgMEMyODcuNTU3IDAgMjkzLjU0MyA0LjE2NjMyIDI5NS44NjggMTAuNDQzTDMzMiAxMDhMMjk1Ljg2OCAyMDUuNTU3QzI5My41NDMgMjExLjgzNCAyODcuNTU3IDIxNiAyODAuODY0IDIxNkgxNkM3LjE2MzQ1IDIxNiAwIDIwOC44MzcgMCAyMDBWMTZaIiBmaWxsPSIjMEZCNUFFIi8+Cjwvc3ZnPgo=");
+      }
+
+      &.done:not(.active) .bg {
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUzIiBoZWlnaHQ9IjIxNiIgdmlld0JveD0iMCAwIDM1MyAyMTYiIGZpbGw9IiMwRkI1QUUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0zNy40Njg5IDEwOC4xNzRMMzcuNTMzMiAxMDhMMzcuNDY4OSAxMDcuODI2TDEuNDYwOTIgMTAuNjA0OUMtMC4zNTMzMTYgNS43MDY0MyAzLjI3MDQzIDAuNSA4LjQ5NDAzIDAuNUgzMDEuODY0QzMwOC4zNDggMC41IDMxNC4xNDcgNC41MzYxMiAzMTYuMzk5IDEwLjYxNjZMMzUyLjQ2NyAxMDhMMzE2LjM5OSAyMDUuMzgzQzMxNC4xNDcgMjExLjQ2NCAzMDguMzQ4IDIxNS41IDMwMS44NjQgMjE1LjVIOC40OTQwMkMzLjI3MDQyIDIxNS41IC0wLjM1MzMxNiAyMTAuMjk0IDEuNDYwOTIgMjA1LjM5NUwzNy40Njg5IDEwOC4xNzRaIiBmaWxsPSIjMEZCNUFFIiBzdHJva2U9IiMwRkI1QUUiLz4KPC9zdmc+Cg==");
+        div {
+          color: #fff;
+        }
+        & .button-container.btn-danger {
+          background-color: #fff;
+          color: #0FB5AE;
+        }
+      }
+
     }
+    
     .box .steps .nav li div span {
       font-size: 1em;
     }
@@ -237,6 +278,40 @@
           color: #3892f3;
         }
       }
+    }
+  }
+}
+
+.section-style {
+  ul {
+    margin: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-right: -15px;
+    margin-left: -15px;
+
+    & li {
+      -ms-flex: 0 0 33%;
+      flex: 0 0 33%;
+      max-width: 33%;
+      position: relative;
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-bottom: 15px;
+    }
+  }
+
+  & .card-container {
+    gap: 0;
+    & .card-div-container {
+      background-color: transparent;
+      border: 0px !important;
+      border-radius: 0px !important;
+      padding: 0px;
     }
   }
 }

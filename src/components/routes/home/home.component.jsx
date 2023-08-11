@@ -262,20 +262,23 @@ const Home = () => {
                   <ul className="nav">
                     {steps.map((step, i) => {
                       return <li key={i} className={`${activeStep.key === step.key ? 'active' : ''} ${step.isDone ? 'done' : ''}`}>
-                        <div onClick={step.isDone ? handleNext : ()=>{}}>Step {i + 1}<br /><span>{step.label} </span>
-                        <br />
-                        <br />
-                        <Link to={step.testNavigation} style={{textDecoration: "none"}}>
-                          <Button
-                            onClick={routeChange(step.testNavigation)}
-                            type={`${step.isDone ? 'danger' : 'dangerOutline'}`}
-                            size="medium"
-                            position={"left"}
-                            icons={<img src={tickCircle} alt="calendar" />}
-                          >
-                            {step.btn}
-                          </Button>
-                        </Link>
+                        
+                        <div onClick={step.isDone ? handleNext : ()=>{}} className="bg">
+                          <div className="bgContent">
+                            <div className="ctext">
+                              <span>{step.label} </span>
+                              <Button
+                                onClick={routeChange(step.testNavigation)}
+                                type={`${step.isDone ? 'danger' : 'dangerOutline'}`}
+                                size="medium"
+                                position={"left"}
+                                icons={<img src={tickCircle} alt="calendar" />}
+                              >
+                                {step.btn}
+                              </Button>
+                            </div>
+                            <div className="cstep">{i + 1}</div>
+                          </div>
                         </div>
                       </li>
                     })}
