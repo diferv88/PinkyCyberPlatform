@@ -152,7 +152,6 @@
           padding: 5% 12% 5% 14%;
           & .cstep {
             padding: 0 10px 0 20px;
-            color: #3E4852;
             text-align: right;
             font-variant-numeric: lining-nums tabular-nums;
             font-family: Sora;
@@ -187,8 +186,14 @@
       }
 
       & .button-container {
-        width: 143px;
+        width: 8em;
         font-size: 0.75em;
+        padding: 0.9em;
+        gap: 10px;
+        justify-content: center;
+        & svg {
+          width: 1.4em;
+        }
       }
 
       &:first-child.done:not(.active) .bg {
@@ -197,12 +202,15 @@
 
       &.done:not(.active) .bg {
         background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUzIiBoZWlnaHQ9IjIxNiIgdmlld0JveD0iMCAwIDM1MyAyMTYiIGZpbGw9IiMwRkI1QUUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0zNy40Njg5IDEwOC4xNzRMMzcuNTMzMiAxMDhMMzcuNDY4OSAxMDcuODI2TDEuNDYwOTIgMTAuNjA0OUMtMC4zNTMzMTYgNS43MDY0MyAzLjI3MDQzIDAuNSA4LjQ5NDAzIDAuNUgzMDEuODY0QzMwOC4zNDggMC41IDMxNC4xNDcgNC41MzYxMiAzMTYuMzk5IDEwLjYxNjZMMzUyLjQ2NyAxMDhMMzE2LjM5OSAyMDUuMzgzQzMxNC4xNDcgMjExLjQ2NCAzMDguMzQ4IDIxNS41IDMwMS44NjQgMjE1LjVIOC40OTQwMkMzLjI3MDQyIDIxNS41IC0wLjM1MzMxNiAyMTAuMjk0IDEuNDYwOTIgMjA1LjM5NUwzNy40Njg5IDEwOC4xNzRaIiBmaWxsPSIjMEZCNUFFIiBzdHJva2U9IiMwRkI1QUUiLz4KPC9zdmc+Cg==");
-        div {
-          color: #fff;
-        }
-        & .button-container.btn-danger {
-          background-color: #fff;
-          color: #0FB5AE;
+        color: #fff;
+        & .button-container {
+          &.btn-danger {
+            background-color: #fff;
+            color: #0FB5AE;
+          }
+          & svg path {
+            stroke: #0FB5AE;
+          }
         }
       }
 
@@ -210,6 +218,7 @@
     
     .box .steps .nav li div span {
       font-size: 1em;
+      line-height: 1.37em;
     }
     /*.box .steps .nav li div::before {
       content: " ";
