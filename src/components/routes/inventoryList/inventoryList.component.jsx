@@ -70,7 +70,7 @@ const InventoryList =  () => {
 
     {/* Cards secction */}
     <HeaderComponent links={""}>Inventory list</HeaderComponent>
-    <section className="section-style">
+    <section className="section-style cards">
       <ul className="card-container">
         {cards.map((card, index) => (
           <li key={index}>
@@ -87,7 +87,7 @@ const InventoryList =  () => {
         ))}
       </ul>
     </section>
-    <section className="section-style">
+    <section className="section-style graph">
       <ul className="card-container">
         {imageCards.map((card, index) => (
           <>
