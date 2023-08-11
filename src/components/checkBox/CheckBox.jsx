@@ -2,18 +2,18 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import './CheckBox.styles.scss';
+import Checkbox from '@mui/material/Checkbox';
 
-const Checkbox = ({ label, secondLable, checked, onChange }) => {
+const CheckboxM = ({ label, secondLable, checked, onChange }) => {
   return (
-    <div className={`checkbox-container ${checked}`}>
+    <div className={`checkbox-container ${checked}`} style={checked ? {backgroundColor:'#EBF4FE', display:"flex", alignItems:"center" } : {backgroundColor:"#F0F2F3", display:"flex", alignItems:"center"}}>
         <label >
         <p className='checkbox-placeholder-info'>{label}</p>
         <p className='checkbox-placeholder-data'>{secondLable}</p>
         <input type="checkbox" checked={checked} onChange={onChange} />
-        <span className="checkmark"></span>
         </label>
     </div>
   );
 };
 
-export default Checkbox
+export default CheckboxM

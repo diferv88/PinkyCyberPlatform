@@ -15,12 +15,19 @@ import operationRisk from "../../../assets/images/opRisk.svg";
 import reputationalRisk from "../../../assets/images/ReputationalRisk.svg";
 import legalRisk from "../../../assets/images/lCrisk.svg";
 import ServerStatus from "./serverStatus/serverStatus.component";
+import { styled } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { useNotification } from "../notification/useNotification";
 // import { NavLink, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./home.styles.scss";
 import { Notification } from "../notification/notification";
 import { store } from "../notification/store";
+import { Link } from "react-router-dom/dist";
 
 const firstComponent = () => {
   return <div>First Component</div>
@@ -37,6 +44,32 @@ const finalComponent = () => {
 const learnMore = () => {
   return <div>learnMore</div>
 }
+
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
+    top: 10,
+    left: 'calc(-50% + 16px)',
+    right: 'calc(50% + 16px)',
+  },
+  [`&.${stepConnectorClasses.active}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: '#0FB5AE',
+    },
+  },
+  [`&.${stepConnectorClasses.completed}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: '#0FB5AE',
+    },
+  },
+  [`& .${stepConnectorClasses.line}`]: {
+    borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[100] : '#eaeaf0',
+    borderTopWidth: 3,
+    borderRadius: 1,
+  },
+}));
+
+
+const stepsLabel = ['', '', '','',''];
 
 const Home = () => {
   const links = {
@@ -134,7 +167,7 @@ const Home = () => {
     },
   ];
   const [steps, setSteps] = useState([
-    { key: 'firstStep', label: 'Proceed to know your enverioment', isDone: true, component: firstComponent, btn:"Scan", testNavigation: "/Schedule-Scan"},
+    { key: 'firstStep', label: 'Proceed to know your enverioment', isDone: true, component: firstComponent, btn:"Scan", testNavigation: "/Schedule-Scan-Assets"},
     { key: 'secondStep', label: 'Classify your assets', isDone: false, component: secondComponent, btn:"Clasify", testNavigation: "/"},
     { key: 'thirdStep', label: 'Know your vulnerabilities', isDone: false, component: thirdComponent, btn:"Discover", testNavigation: "/"},
     { key: 'finalStep', label: 'Mitigrate your risks', isDone: false, component: finalComponent, btn:"Mitigate", testNavigation: "/"},
@@ -208,6 +241,15 @@ const Home = () => {
     <>
       <HeaderComponent links={""}>Aggregated risk scores</HeaderComponent>
 
+      <Stack sx={{ width: '100%' }} spacing={4}>
+        <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
+          {stepsLabel.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Stack>
       <section className="container-information">
 
       <Provider store={store}>
@@ -223,15 +265,17 @@ const Home = () => {
                         <div onClick={step.isDone ? handleNext : ()=>{}}>Step {i + 1}<br /><span>{step.label} </span>
                         <br />
                         <br />
-                        <Button
-                          onClick={routeChange(step.testNavigation)}
-                          type={`${step.isDone ? 'danger' : 'dangerOutline'}`}
-                          size="medium"
-                          position={"left"}
-                          icons={<img src={tickCircle} alt="calendar" />}
-                        >
-                          {step.btn}
-                        </Button>
+                        <Link to={step.testNavigation} style={{textDecoration: "none"}}>
+                          <Button
+                            onClick={routeChange(step.testNavigation)}
+                            type={`${step.isDone ? 'danger' : 'dangerOutline'}`}
+                            size="medium"
+                            position={"left"}
+                            icons={<img src={tickCircle} alt="calendar" />}
+                          >
+                            {step.btn}
+                          </Button>
+                        </Link>
                         </div>
                       </li>
                     })}

@@ -1,22 +1,23 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import * as React from "react";
-import { Provider } from "react-redux";
-import HeaderComponent from "../../header/header.component";
-import Button from "../../button/button.component";
-import CheckBox from "../../checkBox/CheckBox";
-import tickCircle from "../../../assets/images/tickCircle.svg";
-import { useNotification } from "../notification/useNotification";
+// import { Provider } from "react-redux";
+import HeaderComponent from "../header/header.component";
+import Button from "../button/button.component";
+import CheckBox from "../checkBox/CheckBox";
+import tickCircle from "../../assets/images/tickCircle.svg";
+import { useNotification } from "../routes/notification/useNotification";
 import { Link } from "react-router-dom";
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import Link1 from '@mui/material/Link';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import "./scheduleScan.styles.scss";
+import "./ScheduleScan.styles.scss";
 import { Stack } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 
-const ScheduleScan = () => {
+const ScheduleScan = ({title, disclaimer, condiocionalChecked1, condiocionalChecked2}) => {
 
 
   const { displayNotification } = useNotification();
@@ -51,7 +52,7 @@ const ScheduleScan = () => {
         
         <div>
           <div style={{display: "flex", justifyContent:"center", marginTop: "3rem"}}>
-            <p>Assets discovery / inventory</p>
+            <p>{title}</p>
           </div>
           <div style={{marginTop: "3rem", marginBottom:"3rem"}}>
             <p>Schedule scan</p>
@@ -77,17 +78,18 @@ const ScheduleScan = () => {
           </div>
           <div style={{marginTop: "3rem", marginBottom:"3rem", paddingRight:"1rem"}}>
             <p>Disclaimer</p>
-            <p style={{fontWeight:"400", textAlign: "justify"}}>Please accept permission request to map the network and make sure all your devices are working and are connected to the network. It will take up 24h to complete the scan. Meanwhile, please read more on Assets Inventory. Thank you for patience!</p>
+            {/* <p style={{fontWeight:"400", textAlign: "justify"}}>Please accept permission request to map the network and make sure all your devices are working and are connected to the network. It will take up 24h to complete the scan. Meanwhile, please read more on <Link1 >Assets Inventory</Link1>. Thank you for patience!</p> */}
+            <p style={{fontWeight:"400", textAlign: "justify"}}>{disclaimer}</p>
           </div>
           <div style={{marginTop: "3rem", marginBottom:"3rem"}}>
             
             <p>Consent</p>
             <br />
-            <CheckBox label={"I accept the request to map the network."} onChange={checkedOptions1} />
-            <CheckBox label={"I confirm that all devices are working and connected to the network."} onChange={checkedOptions2} />
+            <CheckBox label={condiocionalChecked1} onChange={checkedOptions1} checked={optionChecked1}/>
+            <CheckBox label={condiocionalChecked2} onChange={checkedOptions2} checked={optionChecked2}/>
           </div>
           <div style={{display: "flex", justifyContent: "space-around", marginTop: "3rem"}}>
-            <Link to={"/Assets-Discovery"}>
+            <Link to={title === "Assets discovery / inventory" ? "/Assets-Discovery" : "/Vulnerability-Assessment"}>
               <Button 
                 type={(optionChecked1 && optionChecked2) ? "succes" : "sucessOutline"}
                 size="medium"
@@ -116,3 +118,4 @@ const ScheduleScan = () => {
 };
 
 export default ScheduleScan;
+

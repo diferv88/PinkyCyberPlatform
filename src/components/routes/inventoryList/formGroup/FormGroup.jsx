@@ -1,4 +1,6 @@
-import '../partnerAccount.styles.scss'
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import '../inventoryList.styles.scss'
 import ShowPasswordIcon from '../../../../assets/images/showPasswordIcon.svg'
 import { useState } from 'react';
 const FormGroup = ({ label, placeholder, width, type, value, onChange, login, inputClassName  }) => {

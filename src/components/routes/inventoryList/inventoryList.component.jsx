@@ -1,60 +1,75 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import HeaderComponent from "../../header/header.component";
 import Card from "../../card/card.component";
 import calendarSVG from "../../../assets/images/arrowLeft.svg";
 import ConectionYellowSvg from '../../../assets/images/conectionYellow.svg'
 import ConectionRedSvg from '../../../assets/images/conectionRed.svg'
 import Ticket from '../../../assets/images/ticket.svg';
+import LegalCimplianceRisk from '../../../assets/images/legalComplianceRisk.svg';
+import OperationalRisk from '../../../assets/images/operationalRisk.svg';
+import ReputationalRisk from '../../../assets/images/reputationalRisk1.svg';
 import { Title } from "./title/Title";
-import "./partnerAccount.styles.scss";
+import "./inventoryList.styles.scss";
 import * as React from 'react';
 import TablePartnerAccounts from "./TablePartnerAccounts/TablePartnerAccounts"
 import TableUserAccounts from "./TableUserAccounts/TableUserAccounts";
 
 const cards = [
   {
-    title: "Reported issues with accounts",
+    title: "Last scan performed",
+    icon: Ticket,
+    status: null,
+    link: "/",
+  },
+  {
+    title: "New devices",
     priority: false,
-    quantity: 8,
+    quantity: 16,
     icon: Ticket,
     total: 120,
     status: null,
     link: "/",
   },
   {
-    title: "Online Partners",
+    title: "Unassigned risk type",
     priority: false,
-    quantity: 24,
+    quantity: 16,
     icon: null,
-    total: 256,
-    status: "GREEN",
+    total: 48,
+    status: null,
     link: "/",
   },
   {
-    title: "Network status: Red",
+    title: "Unassigned risk impact",
     priority: false,
-    quantity: 3,
+    quantity: 16,
     icon: ConectionYellowSvg,
-    total: 256,
+    total: 48,
     status: null,
     link: "/",
   },
   {
-    title: "Network status: Yellow",
+    title: "Unassigned risk level",
     priority: false,
-    quantity: 1,
+    quantity: 16,
     icon: ConectionRedSvg,
-    total: 256,
+    total: 48,
     status: null,
     link: "/",
-  },
-  
+  }
 ];
-const PartnerAccountsIndex =  () => {
+const imageCards=[
+  {imageUrl:OperationalRisk},
+  {imageUrl:ReputationalRisk},
+  {imageUrl:LegalCimplianceRisk}
+]
+const InventoryList =  () => {
   
   return<>
 
     {/* Cards secction */}
-    <HeaderComponent links={""}>Clients accounts</HeaderComponent>
+    <HeaderComponent links={""}>Inventory list</HeaderComponent>
     <section className="section-style">
       <ul className="card-container">
         {cards.map((card, index) => (
@@ -72,16 +87,24 @@ const PartnerAccountsIndex =  () => {
         ))}
       </ul>
     </section>
-        
-    {/* Table Partner accounts management seccion */}
-    <section>
-      <Title title="Partner accounts management" />
-      <TablePartnerAccounts/>
+    <section className="section-style">
+      <ul className="card-container">
+        {imageCards.map((card, index) => (
+          <>
+          <li>
+            <Card
+              key={index}
+              imagen={card.imageUrl}
+            />
+          </li>
+        </>
+        ))}
+      </ul>
     </section>
 
     {/* Table user accounts management secction*/}
     <section>
-      <Title title="User accounts management" />
+      <Title title="Devices management" />
       <TableUserAccounts/>
 
     </section>
@@ -90,4 +113,4 @@ const PartnerAccountsIndex =  () => {
 
 }
 
-export default PartnerAccountsIndex;
+export default InventoryList;

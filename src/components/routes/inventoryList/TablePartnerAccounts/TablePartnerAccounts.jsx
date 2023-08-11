@@ -1,4 +1,6 @@
-import "./../partnerAccount.styles.scss";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import "./../inventoryList.styles.scss";
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
