@@ -104,6 +104,44 @@
         line-height: 32px;
         height: 100%;
         padding-top: 62%;
+
+        @media (min-width:576px){ 
+          & {
+            font-size: 12px;
+          }
+        }
+
+        @media (min-width:768px){ 
+          & {
+            font-size: 12px;
+          }
+        }
+
+        @media (min-width:992px){ 
+          & {
+            font-size: 12px;
+          }
+        }
+
+
+        @media (min-width:1200px){ 
+          & {
+            font-size: 12px;
+          }
+        }
+
+        @media (min-width:1400px){ 
+          & {
+            font-size: 18px;
+          }
+        }
+
+        @media (min-width:1600px){ 
+          & {
+            font-size: 24px;
+          }
+        }
+        
         & .bgContent {
           position: absolute;
           display: flex;
@@ -143,14 +181,14 @@
       }
 
       &.active:not(.done) {
-        & .button-container.btn-danger {
-          background-color: #fff;
-          color: #0FB5AE;
+        & .button-container.btn-danger-outline {
+          background-color: #E20074;
         }
       }
 
       & .button-container {
-        width: 150px;
+        width: 143px;
+        font-size: 0.75em;
       }
 
       &:first-child.done:not(.active) .bg {
