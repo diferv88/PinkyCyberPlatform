@@ -302,7 +302,7 @@ const Home = () => {
             </div>
           </div>
       </section>
-      <section className="section-style">
+      <section className="section-style-home">
         <ul className="card-container">
           {cards.map((card, index) => (
             <>
