@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unknown-property */
 import React, {useState, useEffect} from "react";
 import { Provider } from "react-redux";
 import HeaderComponent from "../../header/header.component";
@@ -22,12 +24,11 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { useNotification } from "../notification/useNotification";
-// import { NavLink, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./home.styles.scss";
 import { Notification } from "../notification/notification";
 import { store } from "../notification/store";
-import { Link } from "react-router-dom/dist";
+import { Link } from "react-router-dom";
 
 const firstComponent = () => {
   return <div>First Component</div>
@@ -173,33 +174,79 @@ const Home = () => {
   let iconMitigate = <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.5902 10.5501V7.12006C20.5902 5.89006 19.6502 4.53006 18.5002 4.10006L13.5102 2.23006C12.6802 1.92006 11.3202 1.92006 10.4902 2.23006L5.50016 4.11006C4.35016 4.54006 3.41016 5.90006 3.41016 7.12006V14.5501C3.41016 15.7301 4.19016 17.2801 5.14016 17.9901L9.44016 21.2001C10.1402 21.7401 11.0702 22.0001 12.0002 22.0001" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 20C18.2091 20 20 18.2091 20 16C20 13.7909 18.2091 12 16 12C13.7909 12 12 13.7909 12 16C12 18.2091 13.7909 20 16 20Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.9955 21H21.0045" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>;
   let iconLearn = <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.9099 11.1198C20.9099 16.0098 17.3599 20.5898 12.5099 21.9298C12.1799 22.0198 11.8198 22.0198 11.4898 21.9298C6.63984 20.5898 3.08984 16.0098 3.08984 11.1198V6.72979C3.08984 5.90979 3.70986 4.97979 4.47986 4.66979L10.0498 2.38982C11.2998 1.87982 12.7098 1.87982 13.9598 2.38982L19.5298 4.66979C20.2898 4.97979 20.9199 5.90979 20.9199 6.72979L20.9099 11.1198Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12.5C13.1046 12.5 14 11.6046 14 10.5C14 9.39543 13.1046 8.5 12 8.5C10.8954 8.5 10 9.39543 10 10.5C10 11.6046 10.8954 12.5 12 12.5Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12.5V15.5" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/></svg>;
   
-  const [steps, setSteps] = useState([
-    { key: 'firstStep', label: 'Proceed to know your enverioment', isDone: true, component: firstComponent, btn:"Scan", testNavigation: "/Schedule-Scan-Assets", icon: iconScan},
-    { key: 'secondStep', label: 'Classify your assets', isDone: false, component: secondComponent, btn:"Clasify", testNavigation: "/", icon: iconClasify},
-    { key: 'thirdStep', label: 'Know your vulnerabilities', isDone: false, component: thirdComponent, btn:"Discover", testNavigation: "/", icon:iconDiscover},
-    { key: 'finalStep', label: 'Mitigrate your risks', isDone: false, component: finalComponent, btn:"Mitigate", testNavigation: "/", icon: iconMitigate},
-    { key: 'LearnMore', label: 'Learn more and improve', isDone: false, component: learnMore, btn:"Learn", testNavigation: "/", icon:iconLearn},
-  ]);
+  const [activeStepPKE, setActiveStepPKE] = useState(() => {
+      const activePKE = window.localStorage.getItem("MEmailScan");
+      if (activePKE) {
+        return JSON.parse(activePKE);
+      } else {
+        return false;
+      }
+    }
+  )
+  const [activeStepCYA, setActiveStepCYA] = useState(() => {
+      const activePKE = window.localStorage.getItem("ClassifyYAssest");
+      if (activePKE) {
+        return JSON.parse(activePKE);
+      } else {
+        return false;
+      }
+    }
+  )
+  const [activeStepKYV, setActiveStepKYV] = useState(() => {
+      const activePKE = window.localStorage.getItem("KnowYourVulnerabilities");
+      if (activePKE) {
+        return JSON.parse(activePKE);
+      } else {
+        return false;
+      }
+    }
+  )
+  const [activeStepMYR, setActiveStepMYR] = useState(() => {
+      const activePKE = window.localStorage.getItem("MitigateYourRisk");
+      if (activePKE) {
+        return JSON.parse(activePKE);
+      } else {
+        return false;
+      }
+    }
+  )
+  const [activeStepLMI, setActiveStepLMI] = useState(() => {
+      const activePKE = window.localStorage.getItem("LearnMore");
+      if (activePKE) {
+        return JSON.parse(activePKE);
+      } else {
+        return false;
+      }
+    }
+  )
+  const [isActiveStep, setIsActiveStep] = useState(() => {
+      const activePKE = window.localStorage.getItem("activeStep");
+      if (activePKE) {
+        return JSON.parse(activePKE);
+      } else {
+        return "firstStep";
+      }
+    }
+  )
 
+  const [steps, setSteps] = useState([
+    { key: 'firstStep', isActive: isActiveStep, label: 'Proceed to know your enverioment', isDone: activeStepPKE, component: firstComponent, btn:"Scan", testNavigation: "/Schedule-Scan-Assets", icon: iconScan,},
+    { key: 'secondStep', isActive: isActiveStep, label: 'Classify your assets', isDone: activeStepCYA, component: secondComponent, btn:"Clasify", testNavigation: "/Inventory", icon: iconClasify, },
+    { key: 'thirdStep', isActive: isActiveStep, label: 'Know your vulnerabilities', isDone: activeStepKYV, component: thirdComponent, btn:"Discover", testNavigation: "/Schedule-Scan-Vulnerability", icon:iconDiscover, },
+    { key: 'finalStep', isActive: isActiveStep, label: 'Mitigrate your risks', isDone: activeStepMYR, component: finalComponent, btn:"Mitigate", testNavigation: "/", icon: iconMitigate, },
+    { key: 'LearnMore', isActive: isActiveStep, label: 'Learn more and improve', isDone: activeStepLMI, component: learnMore, btn:"Learn", testNavigation: "/", icon:iconLearn, },
+  ]);
   const [activeStep, setActiveStep] = useState(steps[0]);
+  const { displayNotification } = useNotification();
+
+  React.useEffect(() => {
+    displayNotification({
+      message: "This notification displays when the app first renders!"
+    });
+  }, [displayNotification]);
 
   const handleNext = () => {
-    if (steps[steps.length - 1].key === activeStep.key) {
-      console.log('====================================');
-      console.log("steps key ==== ",steps[steps.length - 1].key);
-      console.log("activeStep key ==== ", activeStep.key);
-      console.log('====================================');
-      // setSteps(steps[3].isDone);
-      return;
-    }
-    if (steps[steps.length - 1].key !== activeStep.key) {
-      console.log('====================================');
-      console.log("steps key ==== ",steps[steps.length - 1].key);
-      console.log("activeStep key ==== ", activeStep.key);
-      console.log('====================================');
-      // setSteps(steps[3].isDone);
-    }
-
+    console.log(activeStepPKE);
     const index = steps.findIndex(x => x.key === activeStep.key);
     setSteps(prevStep => prevStep.map(x => {
       if (x.key === activeStep.key || steps[steps.length - 1].key === activeStep.key) x.isDone = true;
@@ -208,41 +255,11 @@ const Home = () => {
     setActiveStep(steps[index + 1]);
   }
 
-  const handleBack = () => {
-    const index = steps.findIndex(x => x.key === activeStep.key);
-    if (index === 0) return;
-
-    setSteps(prevStep => prevStep.map(x => {
-      if (x.key === activeStep.key) x.isDone = false;
-      return x;
-    }))
-    setActiveStep(steps[index - 1]);
-  }
-
-  const handleNext1 = (test) => {
-    console.log(test)
-  }
-  
-  const { displayNotification } = useNotification();
-
-  const [step, setStep] = React.useState(0);
-
-  const changeToLink = (test) => {
-    console.log(test);
-  }
-
-  let navigate = useNavigate();
   const routeChange= (i) => {
     let path = i;
     console.log(path);
 
   }
-
-  React.useEffect(() => {
-    displayNotification({
-      message: "This notification displays when the app first renders!"
-    });
-  }, [displayNotification]);
 
   return (
     <>
@@ -268,21 +285,26 @@ const Home = () => {
                 <div className="steps">
                   <ul className="nav">
                     {steps.map((step, i) => {
-                      return <li key={i} className={`${activeStep.key === step.key ? 'active' : ''} ${step.isDone ? 'done' : ''}`}>
+                      return <li key={i} className={`${isActiveStep === step.key ? 'active' : ''} ${step.isDone ? 'done' : ''}`}>
+                        {console.log("steps isdone ==== ",step.isDone)}
+                        {console.log("activeStep.key ==== ",activeStep.key)}
+                        {console.log("step.key ======= ",step.key)}
                         
-                        <div onClick={step.isDone ? handleNext : ()=>{}} className="bg">
+                        <div className="bg">
                           <div className="bgContent">
                             <div className="ctext">
                               <span>{step.label} </span>
-                              <Button
-                                onClick={routeChange(step.testNavigation)}
-                                type={`${step.isDone ? 'danger' : 'dangerOutline'}`}
-                                size="medium"
-                                position={"left"}
-                                icons={step.icon}
-                              >
-                                {step.btn}
-                              </Button>
+                              <Link to={step.testNavigation} style={{ textDecoration: 'none', color: 'white',  }}>
+                                <Button
+                                  onClick={handleNext}
+                                  type={`${step.isDone ? 'danger' : 'dangerOutline'}`}
+                                  size="medium"
+                                  position={"left"}
+                                  icons={step.icon}
+                                >
+                                  {step.btn}
+                                </Button>
+                              </Link>
                             </div>
                             <div className="cstep">{i + 1}</div>
                           </div>

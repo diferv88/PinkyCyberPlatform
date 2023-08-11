@@ -35,6 +35,20 @@ const ModalEmailScan = ({ title, bodyText, buttonText }) => {
     "/",
     "website",
   ]
+  const RedirectClick = e => {
+    console.log(e)
+    if (title === "Inventory scan completed!") {
+      window.localStorage.setItem("MEmailScan", JSON.stringify(true));
+      window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
+      window.localStorage.setItem("activeStep", JSON.stringify("secondStep"));     
+    }else{
+      window.localStorage.setItem("MEmailScan", JSON.stringify(true));
+      window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
+      window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));
+      window.localStorage.setItem("MitigateYourRisk", JSON.stringify(true));
+      window.localStorage.setItem("activeStep", JSON.stringify("finalStep"));         
+    }
+  }
   
   return (
     <>
@@ -48,9 +62,10 @@ const ModalEmailScan = ({ title, bodyText, buttonText }) => {
           <form>            
             
             <div className="links">
-              <Link to={"/"} >
+              <Link to={"/"} style={{ textDecoration: 'none', color: 'white' }} >
                 <button
                   className={`sing-in`}
+                  onClick={RedirectClick}
                 >
                   {formState.buttonText}
                 </button>

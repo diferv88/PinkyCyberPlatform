@@ -56,7 +56,11 @@ const ScanLoading = ({title, titleScan, bodyText, styleText,redirectNavigate}) =
   return (
     <>
       <HeaderComponent links={""}>{title}</HeaderComponent>
-      <section style={{backgroundImage: `url(${scanFinal})`}} className="container-information-assets">
+      <section className="container-information-assets">
+        <div id="imageRotate">
+          <img src={scanFinal} alt=""  />
+          {/* <img src={scanFinal} alt="" className="imgr" id="imgr2" /> */}
+        </div>
         {/* <Provider store={store}>
           <Notification />
         </Provider> */}
@@ -64,7 +68,7 @@ const ScanLoading = ({title, titleScan, bodyText, styleText,redirectNavigate}) =
           <div style={{display:"inline-block"}}>
             <p><h2>{titleScan}</h2></p>
             <CircularProgressWithLabel value={progress} />
-            <div style={{borderColor: "black solid", borderRadius: "16px", width:"360px", height:`${styleText == 1 ? "80px" : "128px"}`, textAlign:"center", display:"flex", alignItems:"center"}} className="box-text-help">
+            <div style={{borderColor: "black solid", borderRadius: "16px", width:"360px", height:`${styleText == 1 ? "80px" : "128px"}`, textAlign:"center", display:"flex", alignItems:"center",position:"relative", zIndex:10}} className="box-text-help">
               <p style={{fontWeight: 400, fontSize: "16px",}}>{bodyText}</p>
             </div>
           </div>

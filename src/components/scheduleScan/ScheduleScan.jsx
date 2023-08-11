@@ -6,10 +6,11 @@ import HeaderComponent from "../header/header.component";
 import Button from "../button/button.component";
 import CheckBox from "../checkBox/CheckBox";
 import tickCircle from "../../assets/images/tickCircle.svg";
+import checkIcon from "../../assets/Icons/Check-Icon.svg";
+import clouseIcon from "../../assets/Icons/Clouse-Icon.svg";
 import { useNotification } from "../routes/notification/useNotification";
 import { Link } from "react-router-dom";
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import Link1 from '@mui/material/Link';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
@@ -94,7 +95,7 @@ const ScheduleScan = ({title, disclaimer, condiocionalChecked1, condiocionalChec
                 type={(optionChecked1 && optionChecked2) ? "succes" : "sucessOutline"}
                 size="medium"
                 position={"left"}
-                icons={<img src={tickCircle} alt="calendar" />}
+                icons={<img style={{marginRight:"5px"}} src={checkIcon} alt="check" />}
               >
                 Schedule and continue
               </Button>
@@ -105,7 +106,7 @@ const ScheduleScan = ({title, disclaimer, condiocionalChecked1, condiocionalChec
                 type={"discard"}
                 size="medium"
                 position={"left"}
-                icons={<img src={tickCircle} alt="calendar" />}
+                icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
               >
                 Discard
               </Button>

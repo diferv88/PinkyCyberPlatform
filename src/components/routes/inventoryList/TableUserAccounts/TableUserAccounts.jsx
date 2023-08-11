@@ -11,16 +11,22 @@ import Paper from '@mui/material/Paper';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import DotStatus from '../../../dotStatus/DotStatus';
 import './TableUserAccounts.styles.scss'
-function createData(user, connectivity,status, role, email, issues,created,createdBy) {
-  return { user, connectivity, status, role, email,issues ,created,createdBy};
+function createData(user, connectivity,status, role, email, issues,created,createdBy,rImpact,rLevel) {
+  return { user, connectivity, status, role, email,issues ,created,createdBy,rImpact,rLevel};
 }
 
 const rows = [
-  createData('Sherlock Holmes', 'Online', "Active", "Administrador", "sherlock.holmes@pinky.ai","Review issues", "2022-02-20", "Andrew Doe"),
-  createData('Mrgarethe Holmes', 'Online', "Active", "Administrador", "margarethe.holmes@pinky.ai","Review issues", "2022-02-20", "Andrew Doe"),
-  createData('Jhon Doe', 'Offline', "Deleted", "Partner user", "jhon.doe@partner.ai","Review issues", "2022-02-20", "Andrew Doe"),
-  createData('Jane', 'Online', "Active", "Partner user", "jane.doe@partner.ai","Review issues", "2022-02-20", "Andrew Doe"),
-  
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
 ];
 
  const TableUserAccounts = ()=> {
@@ -32,14 +38,16 @@ const rows = [
         <TableHead> 
               
           <TableRow className='user-table-row'>
-            <TableCell align="left" className='user-table-row'>User</TableCell>
-            <TableCell align="left" className='user-table-row'>Status</TableCell>
-            <TableCell align="left" className='user-table-row'>Connectivity</TableCell>
-            <TableCell align="left" className='user-table-row'>Role</TableCell>
-            <TableCell align="left" className='user-table-row'>Email</TableCell>
-            <TableCell align="left" className='user-table-row'>Reported issues</TableCell>
-            <TableCell align="left" className='user-table-row'>Created</TableCell>
-            <TableCell align="left" className='user-table-row'>Created by</TableCell>
+            <TableCell align="left" className='user-table-row'>Action</TableCell>
+            <TableCell align="left" className='user-table-row'>Device name</TableCell>
+            <TableCell align="left" className='user-table-row'>Physical</TableCell>
+            <TableCell align="left" className='user-table-row'>Type</TableCell>
+            <TableCell align="left" className='user-table-row'>OS</TableCell>
+            <TableCell align="left" className='user-table-row'>Ip Address</TableCell>
+            <TableCell align="left" className='user-table-row'>MAC address</TableCell>
+            <TableCell align="left" className='user-table-row'>Risk type</TableCell>
+            <TableCell align="left" className='user-table-row'>Risk impact</TableCell>
+            <TableCell align="left" className='user-table-row'>Risk level</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -59,6 +67,8 @@ const rows = [
               <TableCell align="left"><span className='span-link'>{row.issues}</span></TableCell>
               <TableCell align="left">{row.created}</TableCell>
               <TableCell align="left"><span className='span-link'>{row.createdBy}</span></TableCell>
+              <TableCell align="left"><span className='span-link'>{row.rImpact}</span></TableCell>
+              <TableCell align="left"><span className='span-link'>{row.rLevel}</span></TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import * as React from 'react';
 import HeaderComponent from "../../header/header.component";
 import Card from "../../card/card.component";
+import { Link } from 'react-router-dom/dist'; 
 import calendarSVG from "../../../assets/images/arrowLeft.svg";
 import ConectionYellowSvg from '../../../assets/images/conectionYellow.svg'
 import ConectionRedSvg from '../../../assets/images/conectionRed.svg'
@@ -11,7 +13,6 @@ import OperationalRisk from '../../../assets/images/operationalRisk.svg';
 import ReputationalRisk from '../../../assets/images/reputationalRisk1.svg';
 import { Title } from "./title/Title";
 import "./inventoryList.styles.scss";
-import * as React from 'react';
 import TablePartnerAccounts from "./TablePartnerAccounts/TablePartnerAccounts"
 import TableUserAccounts from "./TableUserAccounts/TableUserAccounts";
 
@@ -66,11 +67,22 @@ const imageCards=[
 ]
 const InventoryList =  () => {
   
-  return<>
+  const RedirectClick = e => {
+    console.log(e)
+    window.localStorage.setItem("MEmailScan", JSON.stringify(true));
+    window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
+    window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));
+    window.localStorage.setItem("activeStep", JSON.stringify("thirdStep"));
+  }
 
+
+  return<>
     {/* Cards secction */}
     <HeaderComponent links={""}>Inventory list</HeaderComponent>
     <section className="section-style cards">
+    <Link to={"/"} > 
+      <button onClick={RedirectClick}>test</button>
+    </Link>
       <ul className="card-container">
         {cards.map((card, index) => (
           <li key={index}>
