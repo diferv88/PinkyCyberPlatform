@@ -70,7 +70,7 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
 }));
 
 
-const stepsLabel = ['', '', '','',''];
+const stepsLabel = ['Let’s get started', 'Environment Mapping', 'Assets risk classified','', 'Penetration tests', '', 'Mitigation plan in progress', '', 'Continuous learning', ''];
 
 const Home = () => {
   const links = {
@@ -264,16 +264,17 @@ const Home = () => {
   return (
     <>
       <HeaderComponent links={""}>Aggregated risk scores</HeaderComponent>
-
-      <Stack sx={{ width: '100%' }} spacing={4}>
-        <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
-          {stepsLabel.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-      </Stack>
+      <section className="steps1">
+        <Stack sx={{ width: '100%' }} spacing={4}>
+          <Stepper alternativeLabel activeStep={0} connector={<QontoConnector />}>
+            {stepsLabel.map((label, index) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+        </Stack>
+      </section>
       <section className="container-information">
 
       <Provider store={store}>
