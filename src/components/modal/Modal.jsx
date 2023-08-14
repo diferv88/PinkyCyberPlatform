@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+/* eslint-disable no-useless-escape */
 import './Modal.styles.scss'
+import  React,{useState} from 'react';
 import FormGroup from '../routes/partnerAccount/formGroup/FormGroup';
 import FormRow from '../routes/partnerAccount/formRow/FormRow';
 import { Link , useNavigate} from "react-router-dom";

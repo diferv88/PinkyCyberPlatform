@@ -266,7 +266,7 @@ const Home = () => {
       <HeaderComponent links={""}>Aggregated risk scores</HeaderComponent>
       <section className="steps1">
         <Stack sx={{ width: '100%' }} spacing={4}>
-          <Stepper alternativeLabel activeStep={0} connector={<QontoConnector />}>
+          <Stepper alternativeLabel activeStep={3} connector={<QontoConnector />}>
             {stepsLabel.map((label, index) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>

@@ -1,0 +1,81 @@
+.container-schedule {
+  background: #ffffff;
+  border: 1px solid #e1e4e7;
+  border-radius: 16px;
+  display: flex;
+  padding: 16px 8px 8px;
+  width: 784px;
+  height: 852px;
+  // @media only screen and (max-width: 55em) {
+  //   & {
+  //     display: flex;
+  //     flex-direction: column;
+  //     .container-general-overview {
+  //       margin: 0;
+  //       div {
+  //         padding-left: 0;
+  //       }
+  //     }
+  //     ul {
+  //       padding-right: 0;
+  //       .resources {
+  //         div {
+  //           p {
+  //             font-size: 12px;
+  //             line-height: 10px;
+  //           }
+  //         }
+  //         p {
+  //           font-style: normal;
+  //           font-weight: 800;
+  //           font-size: 20px;
+  //           font-feature-settings: "tnum" on, "lnum" on;
+  //           color: #3e4852;
+  //         }
+  //         a {
+  //           font-weight: 400;
+  //           font-size: 12px;
+  //           line-height: 10px;
+  //           text-decoration-line: underline;
+  //           font-feature-settings: "tnum" on, "lnum" on;
+  //           color: #3892f3;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+  .MuiStack-root.css-m69qwo-MuiStack-root {
+    display: flex;
+    padding-left: 0px;
+}
+  .MuiFormControl-root.MuiTextField-root.css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+    display: flex;
+    margin-top: 0px;
+    width: 10rem;
+  }
+  p.MuiTypography-root.MuiTypography-body2.css-e784if-MuiTypography-root {
+    color: #A4AEB8;
+    font-weight: 400;
+    font-size: 14px;
+    padding-left: 9px;
+  }
+  .MuiInputAdornment-root.MuiInputAdornment-positionEnd.MuiInputAdornment-outlined.MuiInputAdornment-sizeMedium.css-1laqsz7-MuiInputAdornment-root{
+    display: flex !important;
+    flex-direction: row-reverse;
+  }
+  .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+    display: inline-flex;
+  }
+  div {
+    display: block;
+    padding-left: 8px;
+    p {
+      color: #3E4852;
+      font-family: Sora;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px; /* 150% */
+    }
+  }
+}
