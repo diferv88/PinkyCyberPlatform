@@ -4,6 +4,8 @@ import DashBoard from "./routes/dashBoard/dashBoard.component";
 import Home from "./routes/home/home.component";
 import ScheduleScanAssetsDiscovery from "./routes/scheduleScanAssetsDiscovery/scheduleScanAssetsDiscovery.component";
 import Onboarding from "./routes/onboardingPage/onboarding.component";
+import OnboardingContact from "./routes/onboardingContact/onboardingContact.component";
+import OnboardingComplete from "./routes/onboardingComplete/onboardingComplete.component"
 import ScheduleScanVulnerability from "./routes/scheduleScanVulnerability/scheduleScanVulnerability.component";
 import AssetsDiscovery from "./routes/assetsDiscovery/assetsDiscovery.component";
 import VulnerabilityAssesment from "./routes/vulnerabilityAssesment/vulnerabilityAssessment.component";
@@ -28,6 +30,8 @@ function App() {
         <Route path="Schedule-Scan-Vulnerability" element={<ScheduleScanVulnerability />} />
         <Route path="Assets-Discovery" element={<AssetsDiscovery />} />
         <Route path="Onboarding" element={<Onboarding />} />
+        <Route path="Onboarding-Contact" element={<OnboardingContact />} />
+        <Route path="Onboarding-Complete" element={<OnboardingComplete />} />
         <Route path="Vulnerability-Assessment" element={<VulnerabilityAssesment />} />
         <Route path="Vulnerability-Assessment" element={<VulnerabilityAssesment />} />
         <Route path="Inventory" element={<InventoryList />} />

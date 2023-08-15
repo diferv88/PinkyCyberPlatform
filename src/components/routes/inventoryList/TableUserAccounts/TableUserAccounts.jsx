@@ -26,17 +26,17 @@ function createData(user, connectivity,status, role, email, issues,created,creat
 
 
 const rows = [
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
-  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "","",""),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Legal & compliance","High","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Reputational","Medium","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Reputational","Low","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Reputational","Medium","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Legal & compliance","Low","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Reputational","Critical","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Medium","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Legal & compliance","High","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Medium","Assign level"),
+  createData('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Low","Assign level"),
 ];
 
 const riskTypeData = [
@@ -159,7 +159,7 @@ const riskLevelData = [
                   // defaultValue={row.createdBy}
                   onChange={(e) => handleChangeRT(e, index)}
                   autoWidth
-                  style={{backgroundColor: "rgba(235, 244, 254, 1)", fontWeight: 700, fontSize: "14px", fontFamily: "Sora"}}
+                  style={{backgroundColor: "rgba(235, 244, 254, 1)", fontWeight: 700, fontSize: "14px", fontFamily: "Sora", maxWidth:"10rem"}}
                 >
                   {riskTypeData.map((rType, i) =>(
                     <MenuItem key={i} value={rType}>{rType}</MenuItem>

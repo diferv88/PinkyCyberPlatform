@@ -1,0 +1,113 @@
+.container-onboarding{
+    div.containerTextField{
+      width: auto !important;
+      margin-bottom: 30px !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      .divTextFieldPrimary{
+        width: 432px !important;
+        padding-left: 0px !important;
+      }
+      .divTextFieldSecundary{
+        width: 208px !important;
+        padding-right: 10px !important;
+        padding-left: 0px !important;
+      }
+    }
+    
+    .textOnboardingComplete{
+      display: block;
+      padding-left: 8px;
+      p.textTitle {
+        color: #3E4852;
+        text-align: center;
+        font-family: Sora;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px; /* 150% */
+      }
+      p.textBody{
+        text-align: center;
+        font-family: Sora;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+      }
+      a{
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .checkbox-container{
+        height: auto;
+    }
+    .MuiFormControl-root{
+      border: 0;
+      .MuiOutlinedInput-root{
+        .Mui-disabled {
+          border: 0;
+        }
+      }
+    }
+    .button-grup-OnboardingContact{
+      display: flex;
+      align-items: center;
+      button.button-container{
+        margin-right: 22px;
+      }
+    }
+    a.link-previus-modal{
+      text-decoration: revert;
+      color: #3892F3;
+    }
+    nav.list-container{
+      p.link-previus-modal{
+        text-decoration: underline !important;
+        color: #3892F3 !important;
+        font-weight: 400 !important;
+      } 
+      .MuiListItemText-root.MuiListItemText-multiline.text-container1.css-konndc-MuiListItemText-root{
+        font-weight: 400;
+        color: #3E4852;
+        font-size: 12px;
+        font-family: 'Sora';
+        padding: 0;
+        span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-10hburv-MuiTypography-root {
+          font-weight: 400;
+          // color: #3E4852;
+          color: #3E4852;
+          font-size: 14px;
+          font-family: 'Sora';
+        }
+        p.MuiTypography-root.MuiTypography-body2.MuiListItemText-secondary.css-83ijpv-MuiTypography-root{
+          font-weight: 700;
+          // color: #3E4852;
+          color: #3E4852;
+          font-size: 16px;
+          font-family: 'Sora';
+        }
+      }
+      .MuiListItemText-root.MuiListItemText-multiline.text-item1.css-konndc-MuiListItemText-root{
+        span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-10hburv-MuiTypography-root {
+          font-weight: 400;
+          // color: #3E4852;
+          color: #A4AEB8;
+          font-size: 14px;
+          font-family: 'Sora';
+        }
+        p.MuiTypography-root.MuiTypography-body2.MuiListItemText-secondary.css-83ijpv-MuiTypography-root{
+          font-weight: 400;
+          // color: #3E4852;
+          color: #3E4852;
+          font-size: 16px;
+          font-family: 'Sora';
+        }
+
+      }
+
+    }
+
+
+
+}

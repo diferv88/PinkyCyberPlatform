@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+/* eslint-disable react/no-unknown-property*/
 import * as React from "react";
-// import { Provider } from "react-redux";
 import HeaderComponent from "../header/header.component";
 import Button from "../button/button.component";
 import CheckBox from "../checkBox/CheckBox";
-import tickCircle from "../../assets/images/tickCircle.svg";
 import checkIcon from "../../assets/Icons/Check-Icon.svg";
 import clouseIcon from "../../assets/Icons/Clouse-Icon.svg";
 import { useNotification } from "../routes/notification/useNotification";
@@ -18,154 +17,536 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import "./ScheduleScan.styles.scss";
-import { MenuItem, Stack } from "@mui/material";
+import "./Onboarding.styles.scss";
+import { 
+  FormControl,
+  FormLabel, 
+  InputLabel, 
+  MenuItem, 
+  OutlinedInput, 
+  Stack,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Collapse,
+  ListSubheader
+} from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
-// import { makeStyles } from "@mui/styles";
-import Grid from '@mui/material/Grid';
 import Select from "@mui/material/Select";
+import Textarea from '@mui/joy/Textarea';
+import IconCheck from "../../assets/Icons/IconCheck.svg"
+import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
 
-// const useStyles = makeStyles((theme)=> ({
-//   modal:
-//     {
-//       position: 'absolute',
-//       width: 400,
-//       backgroundColor: 'white',
-//       border: '1px solid #000',
-//       boxShadow: theme.shadows[5],
-//       padding: theme.spacing(2,4,3),
-//       top: '50%',
-//       left: '50%',
-//       transform: 'translate(-50%,50%)',
-//     }
+
+const myModal = {
+  position: 'absolute',
+  fontFamily: "Sora",
+  width: "784px",
+  height: "602px",
+  backgroundColor: 'white',
+  borderRadius: "16px",
+  border: '1px solid #E1E4E7',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%,-50%)!important',
+};
+
+const titleModal = {
+  position: "absolute",
+  fontFamily: "Sora",
+  top: "48px",
+  left: "136px",
+}; 
+
+const paragraphModal ={
+  fontFamily: "Sora",
+  width: "528px",
+  height: "48px",
+  position: "absolute",
+  top: "121px",
+  left: "136px",
+  fontWeight: "400",
+  color: "#3E4852",
+  fontZize: "16px",
+};
+
+const selectIssue = {
+  width: "512px",
+  height: "84px",
+  top: "193px",
+  left: "136px",
+}
+
+const textAreaContainer = {
+  position: "absolute",
+  width:"512px !important",
+  height:"140px",
+  top: "301px",
+  left:"136px",
+}
+
+const textAreaInformation = {
+  width:"512px",
+  height:"112px",
+  borderRadius: "8px",
+  border: "1px solid #A4AEB8",
+}
+
+const discardButton = {
+  position:"absolute",
+  top: "506px",
+  left:"285px",
+  borderRadius: "8px",
+}
+const confirmButton = {
+  position:"absolute",
+  top: "506px",
+  left:"136px",
+  borderRadius: "8px",
+}
+
+
+const ScheduleScan = ({
+    titlePage,
+    title, 
+    disclaimer, 
+    condiocionalChecked1, 
+    condiocionalChecked2, 
+    onboarding, 
+    onboardingContact,
+    onboardingComplete
+  }) => {
+
     
-// }))
+    const { displayNotification } = useNotification();
+    const [optionChecked1, setOptionChecked1] = React.useState(false)
+    const [optionChecked2, setOptionChecked2] = React.useState(false)
+    const [optionChecked3, setOptionChecked3] = React.useState(false)
+    const [selectedIssu, setSelectedIssu] = React.useState("Incomplete information")
+    const [open, setOpen] = React.useState(false);
+    const [openList, setOpenList] = React.useState(false);
+    const [openListSL, setOpenListSL] = React.useState(false);
+    const [openListTL, setOpenListTL] = React.useState(false);
 
-
-
-const ScheduleScan = ({titlePage,title, disclaimer, condiocionalChecked1, condiocionalChecked2, onboarding}) => {
-  // const styles= useStyles();
-
-
-
+    
+    React.useEffect(() => {
+      displayNotification({
+        message: "This notification displays when the app first renders!"
+      });
+    }, [displayNotification]);
+    
+    
+    const checkedOptions1 = () => {
+      setOptionChecked1(!optionChecked1);
+    }
+    const checkedOptions2 = () => {
+      setOptionChecked2(!optionChecked2);
+    }
+    const checkedOptions3 = () => {
+      setOptionChecked3(!optionChecked3);
+    }
+    const handleOpenList = () => {
+      setOpenList(!openList);
+    }
+    const handleOpenListSL = () => {
+      setOpenListSL(!openListSL);
+    }
+    const handleOpenListTL = () => {
+      setOpenListTL(!openListTL);
+    }
+    
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const handleChange = (e) => {
+      setSelectedIssu(e.target.value)
+    }
+    const onChageMoreInformation = (e) => {
+      console.log("e ======= ",e.target.value)
+    }
+    
   const bodyModal = (
-    <div style={{
-      position: 'absolute',
-      width: 400,
-      backgroundColor: 'white',
-      border: '1px solid #000',
-      // boxShadow: theme.shadows[5],
-      // padding: theme.spacing(2,4,3),
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%,50%)',
-    }}>
-      <h2>Report an issue</h2>
-      <p >Help us maintain your information up-to-date. If you spot any error or typo please let us know and we’ll fix it for you. </p>
-      <br />
-      <Select
-        value="Test"
-        // onChange={handleChangeRL}
-        autoWidth
-        style={{backgroundColor: "rgba(240, 242, 243, 1)", fontWeight: 700, fontSize: "14px", fontFamily: "Sora"}}
-      >
-        <MenuItem value="Incomplete information">
-          Incomplete information
-        </MenuItem>
-        <MenuItem value="Incomplete information">
-          Wrong information
-        </MenuItem>
-        <MenuItem value="Incomplete information">
+    <Box sx={myModal}>
+    <h2 style={titleModal}>Report an issue</h2>
+    <p style={paragraphModal}>Help us maintain your information up-to-date. If you spot any error or typo please let us know and we’ll fix it for you. </p>
+    <br />
+    <Select
+
+      value={selectedIssu ?? " "}
+      defaultValue={selectedIssu}
+      onChange={e => handleChange(e)}
+      label="Type of issue"
+      autoWidth
+      inputProps={{
+        name: 'selectedIssue',            
+      }}
+      style={{backgroundColor: "rgba(240, 242, 243, 1)", fontWeight: 400, fontSize: "16px", fontFamily: "Sora", width: "512px", height: "56px", top:"193px", left:"136px"}}
+    >
+      <MenuItem value="Incomplete information">
+        Incomplete information
+      </MenuItem>
+      <MenuItem value="Wrong information">
+        Wrong information
+      </MenuItem>
+      <MenuItem value="Needs clarification">
         Needs clarification
-        </MenuItem>
-      </Select>
+      </MenuItem>
+    </Select>
+    <div style={textAreaContainer}>
+      <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+        <FormLabel>Provide more information</FormLabel>
+        <Textarea 
+          placeholder="Provide more information" 
+          minRows={8}
+          sx={textAreaInformation}
+        />
+      </FormControl>
     </div>
+    <div>
+    <>
+      {/* <Link to={title === "Assets discovery / inventory" ? "/Assets-Discovery" : "/Vulnerability-Assessment"}> */}
+        <Button 
+          type={"succes"}
+          size="medium"
+          position={"left"}
+          onClick={handleClose}
+          style={confirmButton}
+          icons={<img style={{marginRight:"5px"}} src={checkIcon} alt="check" />}
+        >
+          Submit
+        </Button>
+      {/* </Link> */}
+      <Button 
+        onClick={handleClose}
+        type={"discard"}
+        size="medium"
+        position={"left"}
+        style={discardButton}
+        icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
+      >
+        Discard
+      </Button>
+    </>
+    </div>
+
+  </Box>
   )
-
-  const { displayNotification } = useNotification();
-
-  React.useEffect(() => {
-    displayNotification({
-      message: "This notification displays when the app first renders!"
-    });
-  }, [displayNotification]);
-
-  const [optionChecked1, setOptionChecked1] = React.useState(false)
-  const [optionChecked2, setOptionChecked2] = React.useState(false)
-  const [optionChecked3, setOptionChecked3] = React.useState(false)
-
-  const checkedOptions1 = () => {
-  setOptionChecked1(!optionChecked1);
-  }
-  const checkedOptions2 = () => {
-    setOptionChecked2(!optionChecked2);
-  }
-  const checkedOptions3 = () => {
-    setOptionChecked3(!optionChecked3);
-  }
-
-  const [open, setOpen] = React.useState(false);
-
   
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+  const DataListOnboardingContact = (
+    <>
+      <List
+        sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom: 2 }}
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        className="list-container"
+      >
+        <ListItemButton onClick={handleOpenList}>
+          <ListItemText className="text-container1" primary="First site location" secondary="Str. 31 August 24, Chișinău" />
+          {openList ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
+        </ListItemButton>
+        <Collapse in={openList} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton sx={{ pl: 2 }}>
+              <ListItemText 
+                className="text-item1"
+                primary="Physical site location" 
+                secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
+              />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 2 }}>
+              <ListItemText
+                className="text-item1"
+                primary="Associated external IPs" 
+                secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
+              />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 2 }}>
+              <ListItemText
+              className="text-item1"
+              primary="Website domain" 
+              secondary="https://www.websitedomain.com"
+              />
+            </ListItemButton>
+          </List>
+        </Collapse>
+      </List>
+      <List
+        sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom: 2 }}
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        className="list-container"
+      >
+        <ListItemButton onClick={handleOpenListSL}>
+          <ListItemText className="text-container1" primary="Second site location" secondary="Bvd. Ștefan cel Mare 32, Chișinău" />
+          {openListSL ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
+        </ListItemButton>
+        <Collapse in={openListSL} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton sx={{ pl: 2 }}>
+              <ListItemText 
+                className="text-item1"
+                primary="Physical site location" 
+                secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
+              />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 2 }}>
+              <ListItemText
+                className="text-item1"
+                primary="Associated external IPs" 
+                secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
+              />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 2 }}>
+              <ListItemText 
+                className="text-item1"
+                primary="Website domain" 
+                secondary="https://www.websitedomain.com"
+              />
+            </ListItemButton>
+          </List>
+        </Collapse>
+      </List>
+      <List
+        sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom:2 }}
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        className="list-container"
+      >
+        <ListItemButton onClick={handleOpenListTL}>
+          <ListItemText className="text-container1" primary="Third site location" secondary="Bvd. Dacia 40, Chișinău" />
+          {openListTL ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
+        </ListItemButton>
+        <Collapse in={openListTL} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton sx={{ pl: 2 }}>
+              <ListItemText 
+                className="text-item1"
+                primary="Physical site location" 
+                secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
+              />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 2 }}>
+              <ListItemText
+                className="text-item1"
+                primary="Associated external IPs" 
+                secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
+              />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 2 }}>
+              <ListItemText 
+                className="text-item1"
+                primary="Website domain" 
+                secondary="https://www.websitedomain.com"
+              />
+            </ListItemButton>
+          </List>
+        </Collapse>
+      </List>
+    </>
+  )
 
   return (
     <>
-    {console.log(optionChecked1)}
-      <HeaderComponent links={""}>{onboarding ? "Onboarding" : "Schedule Scan"}</HeaderComponent>
+      <HeaderComponent links={""}>{onboarding || onboardingContact || onboardingComplete ? "Onboarding" : "Schedule Scan"}</HeaderComponent>
 
-      <section className={onboarding ? "container-onboarding" : "container-schedule"}>
+      <section className={onboarding || onboardingContact || onboardingComplete ? "container-onboarding" : "container-schedule"}>
 
       {/* <Provider store={store}>
         <Notification />
       </Provider> */}
         
         <div>
-          <div style={{display: "flex", justifyContent:"center"}}>
+          <div style={onboardingComplete ? {display: "flex", alignItems:"center", marginTop: "3rem", flexDirection:"column"} : {display: "flex", justifyContent:"center",}}>
+            {onboardingComplete ? (
+                <img src={IconCheck} style={{width:"40px"}} alt="IconCheck" />
+            ) : ""}
             <p>{onboarding ? "Review company details" : title}</p>
           </div>
+            {onboardingComplete ? (
+              <div className="textOnboardingComplete">
+                <p className="textTitle">
+                  You’ve completed the onboarding process.
+                </p>
+                <p className="textBody">
+                  Your account has been updated. You can always review and update your contact details on Manage My Account Page or by requesting assistance from our support team at security@mgrinder.com
+                </p>
+                <Link to={"/"}>
+                  <Button 
+                    type={"succes"}
+                    size="medium"
+                    position={"left"}
+                    icons={<img style={{marginRight:"5px"}} src={checkIcon} alt="check" />}
+                  >
+                    Continue to dashboard
+                  </Button>
+                </Link>
+              </div>
+            ) : (<>
+            </>)}
             {onboarding ? (
               <>
                 <p>Company details</p>
-                  <Box sx={{flexGrow: 1}}>
-                    <Grid container spacing={2}>
-                      <Grid item xs={6} sm={6} md={6}>
-                        <TextField
-                          onClick={handleOpen}
-                          // id="outlined-disabled"
-                          label="Company name"
-                          defaultValue="Pinky Cyber Security LTD"
-                        />
-                      </Grid>
-                      <Grid item xs={6} sm={6} md={6}>
-                          <TextField 
-                            disabled
-                            // id="outlined-disabled"
-                            label="Review company details"
-                            defaultValue="1002003004005"
-                          />
-                      </Grid>
-                      <Grid item xs={6} sm={6} md={6}>
-                        <TextField
-                        disabled
-                        id="outlined-disabled"
-                        label="Bussiness email"
-                        defaultValue="hello@pinky.com"
-                      />
-                      </Grid>
-                      <Grid item xs={6} sm={6} md={6}>
-                        <TextField
-                          disabled
-                          id="outlined-disabled"
-                          label="Bussiness phone humber"
-                          defaultValue="--"
-                        />
-                      </Grid>
-                    </Grid>
-                  </Box>
+                <div className="containerTextField">
+                  <TextField
+                    disabled
+                    // id="outlined-disabled"
+                    className="divTextFieldPrimary"
+                    style={{width: "auto",}}
+                    label="Company name"
+                    defaultValue="Pinky Cyber Security LTD"
+                  />
+                  <TextField 
+                    disabled
+                    className="divTextFieldSecundary"
+                    style={{width: "auto",}}
+                    // id="outlined-disabled"
+                    label="Review company details"
+                    defaultValue="1002003004005"
+                    />
+                </div>
+                <div className="containerTextField">
+                  <TextField
+                    disabled
+                    className="divTextFieldPrimary"
+                    id="outlined-disabled"
+                    label="Bussiness email"
+                    defaultValue="hello@pinky.com"
+                  />
+                  <TextField
+                    disabled
+                    className="divTextFieldSecundary"
+                    id="outlined-disabled"
+                    label="Bussiness phone humber"
+                    defaultValue="--"
+                  />
+                </div>
+
               </>
-            ) : (
+            ) : onboardingContact ? (
+              <>
+                <p style={{marginBottom: "0px",}}>Company primary contact</p>
+                <FormLabel disabled component="legend" sx={{marginBottom: 2}}>Responsible for payment, legal and other questions</FormLabel>
+                <div className="containerTextField">
+                  <FormControl>
+                    <InputLabel htmlFor="component-outlined">First name</InputLabel>
+                    <OutlinedInput
+                      id="component-outlined"
+                      disabled
+                      value="John"
+                      defaultValue="John"
+                      label="First name"
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <InputLabel htmlFor="component-outlined">Middle name</InputLabel>
+                    <OutlinedInput
+                      id="component-outlined"
+                      disabled
+                      startAdornment
+                      value="--"
+                      label="Middle name"
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <InputLabel htmlFor="component-outlined">Last name</InputLabel>
+                    <OutlinedInput
+                      id="component-outlined"
+                      disabled
+                      defaultValue="Doe"
+                      value="Doe"
+                      label="Last name"
+                    />
+                  </FormControl>
+                </div>
+                <div className="containerTextField">
+                  <FormControl>
+                    <InputLabel htmlFor="component-outlined">Email</InputLabel>
+                    <OutlinedInput
+                      className="divTextFieldPrimary"
+                      id="component-outlined"
+                      disabled
+                      defaultValue="john.doe@pinky.com"
+                      value="john.doe@pinky.com"
+                      label="Email"
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <InputLabel htmlFor="component-outlined">Phone number</InputLabel>
+                    <OutlinedInput
+                      className="divTextFieldSecundary"
+                      id="component-outlined"
+                      disabled
+                      defaultValue="+373 23 456 789"
+                      value="+373 23 456 789"
+                      label="Phone number"
+                    />
+                  </FormControl>
+                </div>
+                <p style={{marginBottom: "0px",}}>Company secondary contact</p>
+                <FormLabel disabled component="legend" sx={{marginBottom: 2}}>Responsible for cybersecurity</FormLabel>
+                <div className="containerTextField">
+                  <FormControl>
+                    <InputLabel htmlFor="component-outlined">First name</InputLabel>
+                    <OutlinedInput
+                      id="component-outlined"
+                      disabled
+                      value="Margarethe"
+                      defaultValue="Margarethe"
+                      label="First name"
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <InputLabel htmlFor="component-outlined">Middle name</InputLabel>
+                    <OutlinedInput
+                      id="component-outlined"
+                      disabled
+                      startAdornment
+                      value="--"
+                      label="Middle name"
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <InputLabel htmlFor="component-outlined">Last name</InputLabel>
+                    <OutlinedInput
+                      id="component-outlined"
+                      disabled
+                      defaultValue="Holmes"
+                      value="Holmes"
+                      label="Last name"
+                    />
+                  </FormControl>
+                </div>
+                <div className="containerTextField">
+                  <FormControl>
+                    <InputLabel htmlFor="component-outlined">Email</InputLabel>
+                    <OutlinedInput
+                      className="divTextFieldPrimary"
+                      id="component-outlined"
+                      disabled
+                      defaultValue="margarethe.holmes@pinky.com"
+                      value="margarethe.holmes@pinky.com"
+                      label="Email"
+                    />
+                  </FormControl>
+                  <FormControl>
+                    <InputLabel htmlFor="component-outlined">Phone number</InputLabel>
+                    <OutlinedInput
+                      className="divTextFieldSecundary"
+                      id="component-outlined"
+                      disabled
+                      defaultValue="+373 23 456 789"
+                      value="+373 23 456 789"
+                      label="Phone number"
+                    />
+                  </FormControl>
+                </div>
+                <p style={{marginBottom: "0px",}}>Name and locations of company sites</p>
+                <div>
+                  {DataListOnboardingContact}
+                </div>
+
+              </>
+            ) : onboardingComplete ? (<></>) : (
               <div style={{marginTop: "3rem", marginBottom:"3rem"}}>
                 <p>Schedule scan</p>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -192,139 +573,130 @@ const ScheduleScan = ({titlePage,title, disclaimer, condiocionalChecked1, condio
           {onboarding ? (
             <>
               <p>Company address</p>
-              <Box
-                  // style={{display: "flex", justifyContent:"space-between"}}
-                  component="form"
-                  sx={{
-                    flexGrow: 1,
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                <Grid container spacing={2}>
-                  <Grid item xs={6} sm={6} md={6}>
-                    <TextField
-                      disabled
-                      id="outlined-disabled"
-                      label="Country"
-                      defaultValue="Moldova, Republic of"
-                    />
-                  </Grid>
-                  <Grid item xs={6} sm={6} md={6}>
-                    <TextField 
-                      disabled
-                      id="outlined-disabled"
-                      label="Region"
-                      defaultValue="Mun. Chișinău"
-                    />
-                  </Grid>
-                  <Grid item xs={6} sm={6} md={6}>
-                    <TextField
-                      disabled
-                      id="outlined-disabled"
-                      label="City"
-                      defaultValue="Chișinău"
-                    />
-                  </Grid>
-                  <Grid item xs={6} sm={6} md={6}>
-                    <TextField
-                      disabled
-                      id="outlined-disabled"
-                      label="Postal code "
-                      defaultValue="MD-0001"
-                    />
-                  </Grid>
-                  <Grid item xs={6} sm={6} md={6}>
-                    <TextField
-                      disabled
-                      id="outlined-disabled"
-                      label="Address line #1"
-                      defaultValue="Bvd. Stefan cel Mare și Sfânt"
-                    />
-                  </Grid>
-                  <Grid item xs={6} sm={6} md={6}>
-                    <TextField
-                      disabled
-                      id="outlined-disabled"
-                      label="Address line #2"
-                      defaultValue="--"
-                    />
-                  </Grid>
-                </Grid>
-              </ Box>
-              <br />
+              <div className="containerTextField">
+                <TextField
+                  disabled
+                  className="divTextFieldPrimary"
+                  id="outlined-disabled"
+                  label="Country"
+                  defaultValue="Moldova, Republic of"
+                />
+                <TextField 
+                  disabled
+                  className="divTextFieldSecundary"
+                  id="outlined-disabled"
+                  label="Region"
+                  defaultValue="Mun. Chișinău"
+                />
+              </div>
+              <div className="containerTextField">
+                <TextField
+                  disabled
+                  className="divTextFieldPrimary"
+                  id="outlined-disabled"
+                  label="City"
+                  defaultValue="Chișinău"
+                />
+                <TextField
+                  disabled
+                  className="divTextFieldSecundary"
+                  id="outlined-disabled"
+                  label="Postal code "
+                  defaultValue="MD-0001"
+                />
+              </div>
+              <div className="containerTextField">
+                <TextField
+                  disabled
+                  className="divTextFieldPrimary"
+                  id="outlined-disabled"
+                  label="Address line #1"
+                  defaultValue="Bvd. Stefan cel Mare și Sfânt"
+                />
+                <TextField
+                  disabled
+                  className="divTextFieldSecundary"
+                  id="outlined-disabled"
+                  label="Address line #2"
+                  defaultValue="--"
+                />
+              </div>
               <div style={{marginTop: "3rem", marginBottom:"3rem"}}>       
-                <p>Consent</p>
+                <p>Billing address</p>
                 <br />
                 <CheckBox label="Billing address is the same as company address." onChange={checkedOptions3} checked={optionChecked3}/>
               </div>
             </>
           ) : (
             <>
-              <div style={{marginTop: "3rem", marginBottom:"3rem", paddingRight:"1rem"}}>
+              <div style={disclaimer ? {marginTop: "3rem", marginBottom:"3rem", paddingRight:"1rem"}: {display:"none"}}>
                 <p>Disclaimer</p>
                 {/* <p style={{fontWeight:"400", textAlign: "justify"}}>Please accept permission request to map the network and make sure all your devices are working and are connected to the network. It will take up 24h to complete the scan. Meanwhile, please read more on <Link1 >Assets Inventory</Link1>. Thank you for patience!</p> */}
                 <p style={{fontWeight:"400", textAlign: "justify"}}>{disclaimer}</p>
               </div>
             </>
           )}
-          <div style={{marginTop: "3rem", marginBottom:"3rem"}}>       
-            <p>Consent</p>
-            <br />
-            <CheckBox label={onboarding ?
-               "I have read and agreed that all data entered, including my personal data will be processed and stored on Pinky CyberSafe® Platform in conformity with the GDPR Policy." 
-               : 
-               condiocionalChecked1} onChange={checkedOptions1} checked={optionChecked1}/>
-            <CheckBox label={ onboarding ? 
-            "I have read and agreed to Pinky CyberSafe® Platform End User License Agreement (EULA)."
-            :
-            condiocionalChecked2} onChange={checkedOptions2} checked={optionChecked2}/>
-          </div>
-          <div style={{display: "flex", justifyContent: "space-around", marginTop: "3rem"}}>
-            <Link to={title === "Assets discovery / inventory" ? "/Assets-Discovery" : "/Vulnerability-Assessment"}>
-              <Button 
-                type={(onboarding ? optionChecked1 && optionChecked2 && optionChecked3  : optionChecked1 && optionChecked2) ? "succes" : "sucessOutline"}
-                size="medium"
-                position={"left"}
-                icons={<img style={{marginRight:"5px"}} src={checkIcon} alt="check" />}
-              >
-                {onboarding ? "Confirm and continue" : "Schedule and continue"}
-              </Button>
-            </Link>
-            <Link to={""}>
-              {onboarding ? (
-                <>
-                <Button 
-                  onClick={handleOpen}
-                  type={"discard"}
-                  size="medium"
-                  position={"left"}
-                  icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
-                >
-                  Report an issue
-                </Button>
-                <Modal open={open} onClose={handleClose}>
-                <div className="modal">
-                  <h2 id="simple-modal-titile">Text in a modal </h2>
-                  <p id="simple-modal-description">test of a modal </p>
-                </div>
-              </Modal>
-              </>
-              ) : (
-                <>
+          {onboardingComplete ? (<></>) : (
+            <>
+            <div style={{marginTop: "3rem", marginBottom:"3rem"}}>       
+              <p>Consent</p>
+              <br />
+              <CheckBox label={onboarding ?
+                "I have read and agreed that all data entered, including my personal data will be processed and stored on Pinky CyberSafe® Platform in conformity with the GDPR Policy." 
+                : 
+                onboardingContact ?
+                "I confirm that all data is correct, up to date and that I have legal authority to share it with Pinky CyberSafe® Platform."
+                :
+                condiocionalChecked1} onChange={checkedOptions1} checked={optionChecked1}/>
+              {onboardingContact ? "" : (
+                <CheckBox label={ onboarding ? 
+                "I have read and agreed to Pinky CyberSafe® Platform End User License Agreement (EULA)."
+                :
+                condiocionalChecked2} onChange={checkedOptions2} checked={optionChecked2}/>
+              )}
+            </div>
+            <div style={{display: "flex", alignItems:"center", justifyContent: "space-around", marginTop: "3rem", marginBottom: "2rem"}}>
+              <div className="button-grup-OnboardingContact">
+                <Link to={title === "Assets discovery / inventory" ? "/Assets-Discovery" : title === "Vulnerability assessment" ? "/Vulnerability-Assessment" : onboarding ? "/onboarding-contact" : "/"}>
                   <Button 
-                    // onClick={routeChange(step.testNavigation)}
-                    type={"discard"}
+                    type={(onboarding ? optionChecked1 && optionChecked2 && optionChecked3 : onboardingContact ? optionChecked1  : optionChecked1 && optionChecked2) ? "succes" : "sucessOutline"}
                     size="medium"
                     position={"left"}
-                    icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
+                    disabled={(onboarding ? optionChecked1 && optionChecked2 && optionChecked3 : onboardingContact ? optionChecked1  : optionChecked1 && optionChecked2) ? false : true}
+                    icons={<img style={{marginRight:"5px"}} src={checkIcon} alt="check" />}
                   >
-                    Discard
+                    {onboarding || onboardingContact ? "Confirm and continue" : "Schedule and continue"}
                   </Button>
-                </>
-              )}
-            </Link>
-          </div>
+                </Link>
+                {onboardingContact ? (<>    
+                  <a className="link-previus-modal" href="/Onboarding">Previous step</a>
+                </>) : (<></>)}
+            </div>
+              <Link to={""}>
+                {onboarding || onboardingContact ? (
+                  <>
+                    <a className="link-previus-modal" onClick={handleOpen} href="">Report an issue</a>
+                    <Modal  open={open} onClose={handleClose}>
+                      {bodyModal}
+                    </Modal>              
+                  </>
+                ) : (
+                  <>
+                    <Button 
+                      // onClick={routeChange(step.testNavigation)}
+                      type={"discard"}
+                      size="medium"
+                      position={"left"}
+                      icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
+                    >
+                      Discard
+                    </Button>
+                  </>
+                )}
+              </Link>
+            </div>
+            </>
+          )}
 
         </div>
       </section>
@@ -333,4 +705,3 @@ const ScheduleScan = ({titlePage,title, disclaimer, condiocionalChecked1, condio
 };
 
 export default ScheduleScan;
-
