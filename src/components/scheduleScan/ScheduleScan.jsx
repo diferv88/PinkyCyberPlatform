@@ -115,14 +115,14 @@ const ScheduleScan = ({titlePage,title, disclaimer, condiocionalChecked1, condio
     {console.log(optionChecked1)}
       <HeaderComponent links={""}>{onboarding ? "Onboarding" : "Schedule Scan"}</HeaderComponent>
 
-      <section className="container-schedule">
+      <section className={onboarding ? "container-onboarding" : "container-schedule"}>
 
       {/* <Provider store={store}>
         <Notification />
       </Provider> */}
         
         <div>
-          <div style={{display: "flex", justifyContent:"center", marginTop: "3rem"}}>
+          <div style={{display: "flex", justifyContent:"center"}}>
             <p>{onboarding ? "Review company details" : title}</p>
           </div>
             {onboarding ? (
@@ -137,31 +137,33 @@ const ScheduleScan = ({titlePage,title, disclaimer, condiocionalChecked1, condio
                           label="Company name"
                           defaultValue="Pinky Cyber Security LTD"
                         />
-                        <Grid item xs={6} sm={6} md={6}>
+                      </Grid>
+                      <Grid item xs={6} sm={6} md={6}>
                           <TextField 
                             disabled
                             // id="outlined-disabled"
                             label="Review company details"
                             defaultValue="1002003004005"
                           />
-                        </Grid>
-                        <Grid item xs={6}></Grid>
-                        <Grid item xs={6}></Grid>
+                      </Grid>
+                      <Grid item xs={6} sm={6} md={6}>
+                        <TextField
+                        disabled
+                        id="outlined-disabled"
+                        label="Bussiness email"
+                        defaultValue="hello@pinky.com"
+                      />
+                      </Grid>
+                      <Grid item xs={6} sm={6} md={6}>
+                        <TextField
+                          disabled
+                          id="outlined-disabled"
+                          label="Bussiness phone humber"
+                          defaultValue="--"
+                        />
                       </Grid>
                     </Grid>
                   </Box>
-                    <TextField
-                      disabled
-                      id="outlined-disabled"
-                      label="Bussiness email"
-                      defaultValue="hello@pinky.com"
-                    />
-                    <TextField
-                      disabled
-                      id="outlined-disabled"
-                      label="Bussiness phone humber"
-                      defaultValue="--"
-                    />
               </>
             ) : (
               <div style={{marginTop: "3rem", marginBottom:"3rem"}}>
@@ -194,49 +196,62 @@ const ScheduleScan = ({titlePage,title, disclaimer, condiocionalChecked1, condio
                   // style={{display: "flex", justifyContent:"space-between"}}
                   component="form"
                   sx={{
-                    '& .MuiTextField-root': { m: 1, width: '15rem' },
+                    flexGrow: 1,
                   }}
                   noValidate
                   autoComplete="off"
                 >
+                <Grid container spacing={2}>
+                  <Grid item xs={6} sm={6} md={6}>
                     <TextField
                       disabled
                       id="outlined-disabled"
                       label="Country"
                       defaultValue="Moldova, Republic of"
                     />
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={6}>
                     <TextField 
                       disabled
                       id="outlined-disabled"
                       label="Region"
                       defaultValue="Mun. Chișinău"
                     />
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={6}>
                     <TextField
                       disabled
                       id="outlined-disabled"
                       label="City"
                       defaultValue="Chișinău"
                     />
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={6}>
                     <TextField
                       disabled
                       id="outlined-disabled"
                       label="Postal code "
                       defaultValue="MD-0001"
                     />
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={6}>
                     <TextField
                       disabled
                       id="outlined-disabled"
                       label="Address line #1"
                       defaultValue="Bvd. Stefan cel Mare și Sfânt"
                     />
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={6}>
                     <TextField
                       disabled
                       id="outlined-disabled"
                       label="Address line #2"
                       defaultValue="--"
                     />
-
-                </ Box>
+                  </Grid>
+                </Grid>
+              </ Box>
               <br />
               <div style={{marginTop: "3rem", marginBottom:"3rem"}}>       
                 <p>Consent</p>
