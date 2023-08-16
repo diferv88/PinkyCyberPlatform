@@ -368,7 +368,7 @@ const ScheduleScan = ({
                   You’ve completed the onboarding process.
                 </p>
                 <p className="textBody">
-                  Your account has been updated. You can always review and update your contact details on Manage My Account Page or by requesting assistance from our support team at security@mgrinder.com
+                  Your account has been updated. You can always review and update your contact details on Manage My Account Page or by requesting assistance from our support team at <a style={{textDecoration: "revert", color: "#3892F3",}} href="#">security@mgrinder.com</a>
                 </p>
                 <Link to={"/"}>
                   <Button 
@@ -573,49 +573,49 @@ const ScheduleScan = ({
           {onboarding ? (
             <>
               <p>Company address</p>
-              <div className="containerTextField">
+              <div className="containerTextFieldCampanyA">
                 <TextField
                   disabled
-                  className="divTextFieldPrimary"
+                  className="divTextFieldPrimaryCampanyA"
                   id="outlined-disabled"
                   label="Country"
                   defaultValue="Moldova, Republic of"
                 />
                 <TextField 
                   disabled
-                  className="divTextFieldSecundary"
+                  className="divTextFieldSecundaryCampanyA"
                   id="outlined-disabled"
                   label="Region"
                   defaultValue="Mun. Chișinău"
                 />
               </div>
-              <div className="containerTextField">
+              <div className="containerTextFieldCampanyA">
                 <TextField
                   disabled
-                  className="divTextFieldPrimary"
+                  className="divTextFieldPrimaryCampanyA"
                   id="outlined-disabled"
                   label="City"
                   defaultValue="Chișinău"
                 />
                 <TextField
                   disabled
-                  className="divTextFieldSecundary"
+                  className="divTextFieldSecundaryCampanyA"
                   id="outlined-disabled"
                   label="Postal code "
                   defaultValue="MD-0001"
                 />
               </div>
-              <div className="containerTextField">
+              <div className="containerTextFieldCampanyA">
                 <TextField
                   disabled
-                  className="divTextFieldPrimary"
+                  className="divTextFieldPrimaryCampanyA"
                   id="outlined-disabled"
                   label="Address line #1"
                   defaultValue="Bvd. Stefan cel Mare și Sfânt"
                 />
                 <TextField
                   disabled
-                  className="divTextFieldSecundary"
+                  className="divTextFieldSecundaryCampanyA"
                   id="outlined-disabled"
                   label="Address line #2"
                   defaultValue="--"
@@ -657,7 +657,7 @@ const ScheduleScan = ({
             </div>
             <div style={{display: "flex", alignItems:"center", justifyContent: "space-around", marginTop: "3rem", marginBottom: "2rem"}}>
               <div className="button-grup-OnboardingContact">
-                <Link to={title === "Assets discovery / inventory" ? "/Assets-Discovery" : title === "Vulnerability assessment" ? "/Vulnerability-Assessment" : onboarding ? "/onboarding-contact" : "/"}>
+                <Link to={title === "Assets discovery / inventory" ? "/Assets-Discovery" : title === "Vulnerability assessment" ? "/Vulnerability-Assessment" : onboarding ? "/onboarding-contact" : title === "Review contact and site location details" ? "/onboarding-complete" : "/"}>
                   <Button 
                     type={(onboarding ? optionChecked1 && optionChecked2 && optionChecked3 : onboardingContact ? optionChecked1  : optionChecked1 && optionChecked2) ? "succes" : "sucessOutline"}
                     size="medium"
