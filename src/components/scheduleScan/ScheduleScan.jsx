@@ -110,6 +110,7 @@ const confirmButton = {
 const ScheduleScan = ({
     titlePage,
     title, 
+    imagen,
     disclaimer, 
     condiocionalChecked1, 
     condiocionalChecked2, 
@@ -348,7 +349,7 @@ const ScheduleScan = ({
   return (
     <>
       <HeaderComponent links={""}>{onboarding || onboardingContact || onboardingComplete ? "Onboarding" : "Schedule Scan"}</HeaderComponent>
-
+      <div className="FormContent">
       <section className={onboarding || onboardingContact || onboardingComplete ? "container-onboarding" : "container-schedule"}>
 
       {/* <Provider store={store}>
@@ -700,6 +701,10 @@ const ScheduleScan = ({
 
         </div>
       </section>
+      <section className="ImgContent">
+        {imagen}
+      </section>
+      </div>
     </>
   );
 };
