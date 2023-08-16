@@ -76,7 +76,8 @@ const Navigation = () => {
               <img src={dataSVG} alt="Network image" />
             </NavLink>
             <NavLink
-              to="/issues"
+              // to="/issues"
+              to="/onboarding"
               title="Link to go to the Issues Management page"
             >
               <img src={taskSVG} alt="Issues Management image" />
