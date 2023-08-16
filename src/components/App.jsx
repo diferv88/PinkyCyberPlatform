@@ -10,6 +10,7 @@ import ScheduleScanVulnerability from "./routes/scheduleScanVulnerability/schedu
 import AssetsDiscovery from "./routes/assetsDiscovery/assetsDiscovery.component";
 import VulnerabilityAssesment from "./routes/vulnerabilityAssesment/vulnerabilityAssessment.component";
 import InventoryList from "./routes/inventoryList/inventoryList.component";
+import DetailedScanReport from "./routes/detalledScanReport/detailedScanReport.component";
 import EmailScan from "./routes/emailScan/emailScan.component";
 import PartnerAccountIndex from "./routes/partnerAccount/partnerAccount.component";
 import AddPartnerAccount from "./routes/partnerAccount/PartnerAccouts/PartenrAccountsTest.component";
@@ -23,18 +24,19 @@ function App() {
     <Routes>
       <Route path="/" element={<Navigation />} >
         <Route index element={<Home />}/>
-        <Route path="Proceed-Scan" element={<DashBoard />}/>
-        <Route path="Partner-Account" element={<PartnerAccountIndex />} />
         <Route path="add-partner-account/:id" element={<AddPartnerAccount />} />
-        <Route path="Schedule-Scan-Assets" element={<ScheduleScanAssetsDiscovery />} />
-        <Route path="Schedule-Scan-Vulnerability" element={<ScheduleScanVulnerability />} />
         <Route path="Assets-Discovery" element={<AssetsDiscovery />} />
+        <Route path="Inventory" element={<InventoryList />} />
+        <Route path="DetailedScanReport" element={<DetailedScanReport />} />
+        <Route path="Partner-Account" element={<PartnerAccountIndex />} />
+        <Route path="Proceed-Scan" element={<DashBoard />}/>
         <Route path="Onboarding" element={<Onboarding />} />
         <Route path="Onboarding-Contact" element={<OnboardingContact />} />
         <Route path="Onboarding-Complete" element={<OnboardingComplete />} />
+        <Route path="Schedule-Scan-Assets" element={<ScheduleScanAssetsDiscovery />} />
+        <Route path="Schedule-Scan-Vulnerability" element={<ScheduleScanVulnerability />} />
         <Route path="Vulnerability-Assessment" element={<VulnerabilityAssesment />} />
         <Route path="Vulnerability-Assessment" element={<VulnerabilityAssesment />} />
-        <Route path="Inventory" element={<InventoryList />} />
       </Route>
       <Route path="Email-Scan" element={<EmailScan />} />
       <Route path="Email-Scan-Vulnerability" element={<EmailScanVulnerability />} />
