@@ -1,4 +1,5 @@
 .section-style-detailedScanReport {
+  font-family: Sora;
     &.cards {
       ul {
         li {
@@ -14,6 +15,66 @@
           -ms-flex: 0 0 20%;
           flex: 0 0 25%;
           max-width: 25%;
+        }
+      }
+    }
+    &.formControl {
+      ul {
+        li {
+          -ms-flex: 0 0 20%;
+          flex: 0 0 25%;
+          max-width: 25%;
+          // margin-bottom: 10px;
+          .div-container-info{
+            display: flex;
+            flex-direction: column;
+            &.formBody{
+              font-family: Sora;
+              font-size: 16px;
+              font-weight: 700;
+              margin-bottom: 18px;
+              flex-direction: row;
+              &.spanSection{
+                font-weight: 400;
+                color: #A4AEB8;
+              }
+            }
+            &.spanLink{
+              font-size: 16px;
+              font-weight: 700;
+              color: #3892F3;
+              text-decoration: revert;
+            }
+            &.div-risk-level{
+              width: 260px;
+              height: auto;
+              border-radius: 15px;
+              background-color: #F68511;
+              &.formLabel1{
+                width: auto;
+                font-size: 12px;
+                font-weight: 700;
+                color: white;
+                margin: 10px 0 0px 10px;
+                // margin: 0;
+              }
+              &.risk-lavelTitle{
+                width: auto;
+                font-size: 24px;
+                color: white;
+                margin: 0px 0 10px 10px;
+                // margin: 0;
+              }
+              &.flag-icon-risk-level{
+                
+              }
+            }
+          }
+          &.li-risk-level-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }

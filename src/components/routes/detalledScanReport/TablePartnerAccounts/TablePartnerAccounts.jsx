@@ -23,35 +23,39 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import DotStatus from "../../../dotStatus/DotStatus";
-import BoxBorderColour from "../../../BoxBorderColour/BoxBorderColour";
-import BoxFullColour from "../../../BoxFullColour/BoxFullColour";
+// import BoxBorderColour from "../../../BoxBorderColour/BoxBorderColour";
+// import BoxFullColour from "../../../BoxFullColour/BoxFullColour";
 import CheckBoxFilter from "./../CheckBoxFilter/CheckBoxFilter";
 import HeaderTable from "./../HeaderTable/HeaderTable";
 import "../TableUserAccounts/TableUserAccounts.styles.scss"
 
 
 
-function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,status) {
+function createData(confirmed, vulnerability, Host, Protocol, port) {
     return {
-      partner,
-      connectivity,
-      saasc,
-      netStatus,
-      scan,
+      confirmed,
       vulnerability,
-      status,
+      Host,
+      Protocol, 
+      port
     };
   }
   
   const rows = [
-    createData('partner.name.001', "Online", "-", "Red", "2023-03-10 14:30:14", "80%", "Suspended"),
-    createData('long.partner.name.002', "Online", "128", "Yellow", "2023-03-5 14:18:14", "50%" , "Suspended"),
-    createData('very.long.partner.name.003', "Offline", "-", "Red", "2023-04-15 13:30:14", "25%", "Not active"),
-    createData('partner.name.004', "Offline", "384", "Green", "2023-02-11 20:30:14","100%", "Not active"),
-    createData('partner.name.005', "Online", "-", "Green", "2023-03-10 14:30:14", "20%", "Active"),
-    createData('long.partner.name.006', "Offline", "-", "Red", "2023-03-5 14:18:14", "10%" , "Active"),
-    createData('very.long.partner.name.007', "Offline", "-", "Green", "2023-04-15 13:30:14", "65%", "Active"),
-    createData('partner.name.008', "Online", "192", "Yellow", "2023-02-11 20:30:14","98%", "Active"),
+    createData('Yes', "HTTP Strict Transport Security (HSTS) Errors and Warnings", "GET", "https://www.website.com/", "Port Value"),
+    createData('Yes', "Out-of-date Version (Bootstrap)", "GET", "https://www.website.com/assets/js/bootstrap.min.js",  ""),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/assets/js/vendor/jquery-3.2.1.min.js",""),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/assets/js/vendor/jquery-3.2.1.min.js","Port Value"),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/css/assets/js/vendor/jquery-3.2.1.min.js", "Port Value"),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/assets/js/vendor/jquery-3.2.1.min.js",  ""),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/icon/assets/js/vendor/jquery-3.2.1.min.js	", ""),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/instagram/assets/js/vendor/jquery-3.2.1.min.js	",  ""),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/logo/assets/js/vendor/jquery-3.2.1.min.js	",  "Port Value"),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/product/assets/js/vendor/jquery-3.2.1.min.js	",  "Port Value"),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/assets/js/vendor/jquery-3.2.1.min.js	",  "Port Value"),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/vendor/assets/js/vendor/jquery-3.2.1.min.js	",  ""),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/vendor/jquery-3.2.1.min.js	",  ""),
+    createData('No', "Weak Ciphers Enabled", "GET", "https://www.website.com/", ""),
   ];
   
   function descendingComparator(a, b, orderBy) {
@@ -84,46 +88,34 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
   
   const headCells = [
     {
-      id: 'name',
+      id: 'confirmed',
       numeric: false,
       disablePadding: true,
-      label: 'Partner',
-    },
-    {
-      id: 'Connectivity',
-      numeric: true,
-      disablePadding: false,
-      label: 'Connectivity',
-    },
-    {
-      id: 'SaaS Clients',
-      numeric: true,
-      disablePadding: false,
-      label: 'SaaS Clients',
-    },
-    {
-      id: 'Network',
-      numeric: true,
-      disablePadding: false,
-      label: 'Network status',
-    },
-    {
-      id: 'aoutomated',
-      numeric: true,
-      disablePadding: false,
-      label: 'Last automated scan',
+      label: 'Confirmed',
     },
     {
       id: 'vulnerability',
       numeric: true,
       disablePadding: false,
-      label: 'Last vulnerability assesment',
+      label: 'Vulnerability',
     },
     {
-      id: 'Status',
+      id: 'Host',
       numeric: true,
       disablePadding: false,
-      label: 'Status',
+      label: 'Host',
+    },
+    {
+      id: 'Protocol',
+      numeric: true,
+      disablePadding: false,
+      label: 'Protocol(TCP/UDP)',
+    },
+    {
+      id: 'port',
+      numeric: true,
+      disablePadding: false,
+      label: 'Port',
     },
   ];
   
@@ -184,18 +176,12 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
           >
            <HeaderTable labelButton="Add partner accounts" linkTo="/add-partner-account" form="partner"/>
            <div className="checkBoxs-div">
-            <label className="label-checkbox">Connecting status filter:</label>
-            <CheckBoxFilter label="Online"></CheckBoxFilter>
-            <CheckBoxFilter label="Offline"></CheckBoxFilter>
-            <label className="label-checkbox">Network status filter: </label>
-            <CheckBoxFilter label="Red"></CheckBoxFilter>
-            <CheckBoxFilter label="Yellow"></CheckBoxFilter>
-            <CheckBoxFilter label="Green"></CheckBoxFilter>      
-            <label className="label-checkbox">Status filter:</label>
-            <CheckBoxFilter label="Not active"></CheckBoxFilter>
-            <CheckBoxFilter label="Active"></CheckBoxFilter>
-            <CheckBoxFilter label="Suspended"></CheckBoxFilter>
-            <CheckBoxFilter label="Deleted"></CheckBoxFilter>
+            <label className="label-checkbox">Severity filter:</label>
+            <CheckBoxFilter label="Critical"></CheckBoxFilter>
+            <CheckBoxFilter label="High"></CheckBoxFilter>
+            <CheckBoxFilter label="Medium"></CheckBoxFilter>
+            <CheckBoxFilter label="Low"></CheckBoxFilter>
+            <CheckBoxFilter label="Information"></CheckBoxFilter>
           </div>
         
           </Typography>
@@ -303,17 +289,20 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
             <EnhancedTableHead/>
             <TableBody>
               {visibleRows.map((row, index) => {
-                const isItemSelected = isSelected(row.name);
+                const isItemSelected = isSelected(row.partner);
                 const labelId = `enhanced-table-checkbox-${index}`;
+                console.log(row.confirmed)
+                console.log(row)
+
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name)}
+                    onClick={(event) => handleClick(event, row.confirmed)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.name}
+                    key={row.confirmed}
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >
@@ -326,24 +315,15 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
                         }}
                       />
                     </TableCell>
-                    <TableCell align="left"><span className='span-link'>{row.partner}</span></TableCell>
+                    <TableCell align="left"><span className='span-link'>{row.confirmed}</span></TableCell>
                     <TableCell align="left">
-                      <DotStatus status={row.connectivity}></DotStatus>
-                      {row.connectivity}</TableCell>
-                    <TableCell align="left">{row.saasc}</TableCell>
+                      <DotStatus status={row.vulnerability}></DotStatus>
+                      {row.vulnerability}</TableCell>
+                    <TableCell align="left">{row.Host}</TableCell>
                     <TableCell align="left">
-                      <BoxBorderColour label={row.netStatus}></BoxBorderColour>
+                      {row.Protocol}
                     </TableCell>
-                    <TableCell align="left">{row.scan}</TableCell>
-                    <TableCell align="left">
-                      <div className="div-vulnerability">
-                        <BoxFullColour percent={row.vulnerability}></BoxFullColour>  
-                        <div>{row.scan}</div>
-                      </div>
-                    </TableCell>
-                    <TableCell align="left">
-                      <BoxBorderColour label={row.status}></BoxBorderColour>  
-                    </TableCell>
+                    <TableCell align="left">{row.port}</TableCell>
                   </TableRow>
                 );
               })}

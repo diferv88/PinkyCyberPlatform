@@ -14,6 +14,8 @@ import { Title } from "./title/Title";
 import "./detailedScanReport.styles.scss";
 import TablePartnerAccounts from "./TablePartnerAccounts/TablePartnerAccounts"
 import TableUserAccounts from "./TableUserAccounts/TableUserAccounts";
+import { FormControl, Textarea } from '@mui/joy';
+import { FormLabel } from '@mui/material';
 
 const cards = [
   {
@@ -105,18 +107,56 @@ const imageCards=[
 ]
 const DetailedScanReport =  () => {
   
-  const RedirectClick = e => {
-    console.log(e)
-    window.localStorage.setItem("MEmailScan", JSON.stringify(true));
-    window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
-    window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));
-    window.localStorage.setItem("activeStep", JSON.stringify("thirdStep"));
-  }
+  // const RedirectClick = e => {
+  //   console.log(e)
+  //   window.localStorage.setItem("MEmailScan", JSON.stringify(true));
+  //   window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
+  //   window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));
+  //   window.localStorage.setItem("activeStep", JSON.stringify("thirdStep"));
+  // }
 
 
   return<>
     {/* Cards secction */}
     <HeaderComponent links={""}>Detailed scan report</HeaderComponent>
+    <section className="section-style-detailedScanReport formControl">
+      <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+      <ul className="FomrControl-container">
+        <li>
+          <div className='div-container-info'>
+            <FormLabel>Scan report:</FormLabel>
+            <span className='div-container-info formBody'>5-6-2022 20:07:34 <span className='div-container-info formBody spanSection'> (UTC+02:00)</span></span>
+            <FormLabel>Scan address:</FormLabel>
+            <a className='div-container-info spanLink' href='#'>SaaS Client name</a>
+          </div>
+        </li>
+        <li>
+          <div className='div-container-info'>
+            <FormLabel>Scan time:</FormLabel>
+            <span className='div-container-info formBody'>3-6-2022 20:51:22 <span className='div-container-info formBody spanSection'> (UTC+02:00)</span></span>
+            <FormLabel>Scan duration:</FormLabel>
+            <span className='div-container-info formBody'>00:08:25:56</span>
+          </div>
+        </li>
+        <li>
+          <div className='div-container-info'>
+            <FormLabel>Total Requests:</FormLabel>
+            <span className='div-container-info formBody' style={{height:'38px'}}>461.434</span>
+            <FormLabel>Total Requests:</FormLabel>
+            <span className='div-container-info formBody'>15,2 r/s</span>
+          </div>
+        </li>
+        <li className='li-risk-level-container'>
+          <div className='div-container-info'>
+            <div className='div-container-info div-risk-level'>
+              <FormLabel className='div-container-info div-risk-level formLabel1'>Risk level:</FormLabel>
+              <span className='div-container-info div-risk-level risk-lavelTitle'>MEDIUM</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+      </FormControl>
+    </section>
     <section className="section-style-detailedScanReport cards">
       <p className="section-style-detailedScanReport title-vulnerability">Vulnerabilities</p>
       {/* <Link to={"/"} > 
@@ -173,7 +213,7 @@ const DetailedScanReport =  () => {
     {/* Table user accounts management secction*/}
     <section>
       <Title title="Vulnerability summary" />
-      {/* <TableUserAccounts/> */}
+      <TablePartnerAccounts/>
 
     </section>
 
