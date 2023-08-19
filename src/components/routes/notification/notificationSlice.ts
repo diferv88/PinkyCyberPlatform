@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface NotificationState {
   open?: boolean;
   type?: AlertColor;
+  title?: string;
   message?: string;
   timeout?: number | null;
 }

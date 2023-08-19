@@ -22,6 +22,7 @@ export const Notification = (): JSX.Element => {
         onClose={handleClose}
         severity={notification.type}
       >
+        <b>{notification.title}</b><br/>
         {notification.message}
       </Alert>
     </Snackbar>

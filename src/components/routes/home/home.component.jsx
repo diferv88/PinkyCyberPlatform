@@ -241,7 +241,10 @@ const Home = () => {
 
   React.useEffect(() => {
     displayNotification({
-      message: "This notification displays when the app first renders!"
+      title: "Important! Our aggregated risk score is calculated based on 3 types of risks.",
+      message: "Don’t panic, yet! Our cybersecurity experts treat every system as vulnerable unless proven otherwise. At first login you will see a high aggregated risk score. It is calculated based on 3 types of risks: Operational, Legal & Compliance, Reputational. Code red is for 100-70% risk, yellow for 69-50% and green for 49-0%. Score will improve as you go through development of your cybersecurity program.",
+      type: 'error',
+      timeout: null
     });
   }, [displayNotification]);
 
@@ -266,6 +269,11 @@ const Home = () => {
   return (
     <>
       <HeaderComponent links={""}>Aggregated risk scores</HeaderComponent>
+      <section className="notification">
+        <Provider store={store}>
+          <Notification />
+        </Provider>
+      </section>
       <section className="steps1">
         <Stack sx={{ width: '100%' }} spacing={4}>
           <Stepper alternativeLabel activeStep={4} connector={<QontoConnector />}>
@@ -282,10 +290,6 @@ const Home = () => {
         </Stack>
       </section>
       <section className="container-information">
-
-      <Provider store={store}>
-        <Notification />
-      </Provider>
           <div className="resources">
             <div className="App">
               <div className="box">

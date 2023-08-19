@@ -1,3 +1,16 @@
+.notification {
+  & .MuiSnackbar-root {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    & .MuiAlert-filledError {
+      background-color: #FBD7D4;
+      color: #3E4852;
+    }
+  }
+}
 .steps1 {
   display: flex;
   justify-content: center;
