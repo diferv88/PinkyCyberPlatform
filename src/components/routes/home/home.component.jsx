@@ -261,17 +261,23 @@ const Home = () => {
 
   }
 
+  
+
   return (
     <>
       <HeaderComponent links={""}>Aggregated risk scores</HeaderComponent>
       <section className="steps1">
         <Stack sx={{ width: '100%' }} spacing={4}>
-          <Stepper alternativeLabel activeStep={3} connector={<QontoConnector />}>
-            {stepsLabel.map((label, index) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
+          <Stepper alternativeLabel activeStep={4} connector={<QontoConnector />}>
+            {stepsLabel.map((label, index) => {
+              
+              return (
+                <Step key={label}>
+                  <StepLabel className={`por-${(index == 0?0:index + 1) * 10}`}>{label}</StepLabel>
+                </Step>
+              )
+            }
+            )}
           </Stepper>
         </Stack>
       </section>

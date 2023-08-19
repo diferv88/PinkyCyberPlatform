@@ -6,7 +6,7 @@
     padding: 75px 0;
   }
   & .MuiStepLabel-iconContainer {
-    width: 0px;
+    //width: 0px;
   }
   & .Mui-completed .MuiStepConnector-line {
 
@@ -23,46 +23,84 @@
   }
 
   & .MuiStep-horizontal:first-child {
-    & > span {
-      &::after {
-        content: ' ';
-        position: absolute;
-        top: 10px;
-        left: 4px;
-        right: 4px;
-        padding-top: 8px;
-        background-color: #eaeaf0;
-      }
+    &::after {
+      content: ' ';
+      position: absolute;
+      top: 10px;
+      left: 4px;
+      right: 4px;
+      padding-top: 8px;
+      background-color: #eaeaf0;
     }
-    &.Mui-completed > span {
+    &.Mui-completed {
       &::after {
         background-color: #0FB5AE;
       }
     }
-    &.Mui-active > span {
+    &.Mui-active {
       &::after {
         background-color: #3E4852;
       }
     }
   }
   & .MuiStep-horizontal {
-    & .MuiStepLabel-labelContainer {
-      & span {
+    & .MuiStepLabel-horizontal {
         background-color: #fff;
         padding: 10px;
         border-radius: 8px;
         border: 1px solid #E1E4E7;
         width: calc(200% + -8px);
         position: absolute;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
         left: 4px;
-        top: 10px;
+        top: 25px;
+      & .MuiStepLabel-labelContainer {
+        width: auto;
+        & .MuiStepLabel-label {
+          margin-top: 0;
+        }
       }
     }
     &:nth-child(2), &:nth-child(5), &:nth-child(9) {
-      & .MuiStepLabel-labelContainer {
-        & span {
-          top: -200%;
-          transform: translateY(-10px);
+      & .MuiStepLabel-horizontal {
+          top: -45px;
+      }
+    }
+    .MuiStepLabel-iconContainer {
+      margin-right: 10px;
+      &.Mui-completed {
+        &::before {
+          background-color: #0FB5AE;
+          color: #fff;
+        }
+      }
+      &.Mui-active {
+        &::before {
+          background-color: #3E4852;
+          color: #fff;
+        }
+      }
+      &::before {
+        content: ' ';
+        padding: 4px 8px;
+        border-radius: 4px;
+        background: #E1E4E7; 
+      }
+      & svg {
+        display: none;
+      }
+    }
+    & .por-40, & .por-60, & .por-80 {
+      display: none;
+    }
+    @for $i from 0 through 10 {
+      & .por-#{$i * 10} {
+        .MuiStepLabel-iconContainer {
+          &::before {
+            content: '#{$i * 10}%';
+          }
         }
       }
     }
