@@ -233,7 +233,7 @@ const Home = () => {
     { key: 'firstStep', isActive: isActiveStep, label: 'Proceed to know your enverioment', isDone: activeStepPKE, component: firstComponent, btn:"Scan", testNavigation: "/Schedule-Scan-Assets", icon: iconScan,},
     { key: 'secondStep', isActive: isActiveStep, label: 'Classify your assets', isDone: activeStepCYA, component: secondComponent, btn:"Clasify", testNavigation: "/Inventory", icon: iconClasify, },
     { key: 'thirdStep', isActive: isActiveStep, label: 'Know your vulnerabilities', isDone: activeStepKYV, component: thirdComponent, btn:"Discover", testNavigation: "/Schedule-Scan-Vulnerability", icon:iconDiscover, },
-    { key: 'finalStep', isActive: isActiveStep, label: 'Mitigrate your risks', isDone: activeStepMYR, component: finalComponent, btn:"Mitigate", testNavigation: "/", icon: iconMitigate, },
+    { key: 'finalStep', isActive: isActiveStep, label: 'Mitigrate your risks', isDone: activeStepMYR, component: finalComponent, btn:"Mitigate", testNavigation: "/DetailedScanReport", icon: iconMitigate, },
     { key: 'LearnMore', isActive: isActiveStep, label: 'Learn more and improve', isDone: activeStepLMI, component: learnMore, btn:"Learn", testNavigation: "/", icon:iconLearn, },
   ]);
   const [activeStep, setActiveStep] = useState(steps[0]);

@@ -10,12 +10,13 @@ import ConectionRedSvg from '../../../assets/images/conectionRed.svg'
 import Ticket from '../../../assets/images/ticket.svg';
 import IdentifiedVulnerabilities from '../../../assets/images/Identified-vulnerabilities.svg';
 import ConfirmedVulnerabilities from '../../../assets/images/confirmed-vulnerabilities.svg';
+import IconCardsPorcent from '../../../assets/images/icon-cards-porcent.svg';
 import { Title } from "./title/Title";
 import "./detailedScanReport.styles.scss";
 import TablePartnerAccounts from "./TablePartnerAccounts/TablePartnerAccounts"
 import TableUserAccounts from "./TableUserAccounts/TableUserAccounts";
 import { FormControl, Textarea } from '@mui/joy';
-import { FormLabel } from '@mui/material';
+import { Box, FormLabel, Select } from '@mui/material';
 
 const cards = [
   {
@@ -24,6 +25,7 @@ const cards = [
     status: null,
     // link: "/",
     quantity: 16,
+    color: '#EA3829',
     total: 1536,
   },
   {
@@ -33,6 +35,7 @@ const cards = [
     icon: Ticket,
     total: 1536,
     status: null,
+    color: '#F05F1D'
     // link: "/",
   },
   {
@@ -68,7 +71,7 @@ const cardsPorcent = [
     title: "ISO 27001 Compliance",
     priority: false,
     quantity: "72%",
-    icon: Ticket,
+    icon: IconCardsPorcent,
     total: "100%",
     status: null,
     link: "/",
@@ -77,7 +80,7 @@ const cardsPorcent = [
     title: "HIPPA",
     priority: false,
     quantity: "64%",
-    icon: Ticket,
+    icon: IconCardsPorcent,
     total: "100%",
     status: null,
     link: "/",
@@ -86,7 +89,7 @@ const cardsPorcent = [
     title: "SOC-2",
     priority: false,
     quantity: "80%",
-    icon: Ticket,
+    icon: IconCardsPorcent,
     total: "100%",
     status: null,
     link: "/",
@@ -95,7 +98,7 @@ const cardsPorcent = [
     title: "GDPR",
     priority: false,
     quantity: "88%",
-    icon: Ticket,
+    icon: IconCardsPorcent,
     total: "100%",
     status: null,
     link: "/",
@@ -105,6 +108,9 @@ const imageCards=[
   {imageUrl:IdentifiedVulnerabilities},
   {imageUrl:ConfirmedVulnerabilities},
 ]
+
+
+
 const DetailedScanReport =  () => {
   
   // const RedirectClick = e => {
@@ -114,7 +120,6 @@ const DetailedScanReport =  () => {
   //   window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));
   //   window.localStorage.setItem("activeStep", JSON.stringify("thirdStep"));
   // }
-
 
   return<>
     {/* Cards secction */}
@@ -166,6 +171,7 @@ const DetailedScanReport =  () => {
         {cards.map((card, index) => (
           <li key={index}>
             <Card
+              color={card.color}
               title={card.title}
               priority={card.priority}
               quantity={card.quantity}
@@ -198,14 +204,12 @@ const DetailedScanReport =  () => {
     <section className="section-style-detailedScanReport graph">
       <ul className="card-container">
         {imageCards.map((card, index) => (
-          <>
-          <li>
+          <li key={index}>
             <Card
               key={index}
               imagen={card.imageUrl}
             />
           </li>
-        </>
         ))}
       </ul>
     </section>

@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import "./card.styles.scss";
-const Card = ({ quantity, link, total, title, icon, status, priority, imagen, homeCard }) => {
+const Card = ({ quantity, link, total, title, icon, status, priority, imagen, homeCard, color }) => {
   return (
     <div className={homeCard ? "card-div-container-x4" : "card-div-container"}>
       <div className="card-container-text">
@@ -15,7 +15,7 @@ const Card = ({ quantity, link, total, title, icon, status, priority, imagen, ho
         {icon && <img src={icon} alt="icon" />}
         {status && <span className={`server-status ${status}`}></span>}
       </div>
-      <p>{quantity}</p>
+      <p style={color ? {color:color} : {}}>{quantity}</p>
       {imagen ? (
         <img src={imagen} alt="" />
       ):""}

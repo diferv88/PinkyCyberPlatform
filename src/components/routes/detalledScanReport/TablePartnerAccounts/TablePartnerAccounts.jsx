@@ -28,7 +28,63 @@ import DotStatus from "../../../dotStatus/DotStatus";
 import CheckBoxFilter from "./../CheckBoxFilter/CheckBoxFilter";
 import HeaderTable from "./../HeaderTable/HeaderTable";
 import "../TableUserAccounts/TableUserAccounts.styles.scss"
+import { Button, Modal } from "@mui/material";
+import { 
+  FormControl,
+  FormLabel, 
+  InputLabel, 
+  MenuItem, 
+  OutlinedInput, 
+  Stack,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Collapse,
+  ListSubheader
+} from "@mui/material";
+import "./TablePartnersAccounts.styles.scss"
 
+const myModal = {
+  position: 'absolute',
+  fontFamily: "Sora",
+  width: "1223px",
+  height: "100%",
+  overflow:'scroll',
+  backgroundColor: 'white',
+  borderRadius: "16px",
+  border: '1px solid #E1E4E7',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%,-50%)!important',
+};
+
+const titleModal = {
+  position: "absolute",
+  fontFamily: "Sora",
+  top: "48px",
+  left: "136px",
+}; 
+
+const bodyModalStyle = {
+  position: "absolute",
+  fontFamily: "Sora",
+  width: "1056px",
+  top: "113px",
+  left: "136px",
+}
+
+const paragraphModal ={
+  fontFamily: "Sora",
+  width: "528px",
+  height: "48px",
+  position: "absolute",
+  top: "121px",
+  left: "136px",
+  fontWeight: "400",
+  color: "#3E4852",
+  fontZize: "16px",
+};
 
 
 function createData(confirmed, vulnerability, Host, Protocol, port) {
@@ -212,21 +268,27 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(true);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [open, setOpen] = React.useState(false);
+    const [modalInfo, setModalInfo] = React.useState([])
+    const [openList, setOpenList] = React.useState(false);
 
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
+    const handleOpenList = () => {
+      setOpenList(!openList);
+    }
+
+    const handleOpen = (e,i) => {
+      console.log("set open modal index ==== ", i)
+      console.log("set open modal index ==== ", e)
+      setOpen(true)
+      setModalInfo(rows[i])
     };
 
-    const handleSelectAllClick = (event) => {
-        if (event.target.checked) {
-        const newSelected = rows.map((n) => n.name);
-        setSelected(newSelected);
-        return;
-        }
-        setSelected([]);
+    const handleClose = (e,i) => {
+      console.log("set CLOSE modal index ==== ", i)
+      setOpen(false)
     };
+
+
 
     const handleClick = (event, name) => {
         const selectedIndex = selected.indexOf(name);
@@ -276,9 +338,155 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
         [order, orderBy, page, rowsPerPage],
     );
 
+    const DataListOnboardingContact = (
+      <>
+        <List
+          sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom: 2, }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          className="list-container"
+        >
+          <ListItemButton onClick={handleOpenList}>
+            <ListItemText className="text-container1" primary="Vulnerability remediation"/>
+            {openList ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
+          </ListItemButton>
+          <Collapse in={openList} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 2 }}>
+                <ListItemText 
+                  className="text-item1"
+                  primary="Remedy" 
+                  // secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
+                />
+              </ListItemButton>
+              <ListItemButton sx={{ pl: 2 }}>
+                <ListItemText
+                  className="text-item1"
+                  primary="Browser vendors declared:" 
+                  // secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
+                />
+              </ListItemButton>
+              <ListItemButton sx={{ pl: 2 }}>
+                <ListItemText
+                className="text-item1"
+                primary="External References" 
+                secondary="HTTP Strict Transport Security (HSTS) HTTP Header
+                Wikipedia - HTTP Strict Transport Security Implementation
+                Check HSTS Preload status and eligibility"
+                />
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </List>
+        {/* <List
+          sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom: 2 }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          className="list-container"
+        >
+          <ListItemButton onClick={handleOpenListSL}>
+            <ListItemText className="text-container1" primary="Second site location" secondary="Bvd. Ștefan cel Mare 32, Chișinău" />
+            {openListSL ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
+          </ListItemButton>
+          <Collapse in={openListSL} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 2 }}>
+                <ListItemText 
+                  className="text-item1"
+                  primary="Physical site location" 
+                  secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
+                />
+              </ListItemButton>
+              <ListItemButton sx={{ pl: 2 }}>
+                <ListItemText
+                  className="text-item1"
+                  primary="Associated external IPs" 
+                  secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
+                />
+              </ListItemButton>
+              <ListItemButton sx={{ pl: 2 }}>
+                <ListItemText 
+                  className="text-item1"
+                  primary="Website domain" 
+                  secondary="https://www.websitedomain.com"
+                />
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </List>
+        <List
+          sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom:2 }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          className="list-container"
+        >
+          <ListItemButton onClick={handleOpenListTL}>
+            <ListItemText className="text-container1" primary="Third site location" secondary="Bvd. Dacia 40, Chișinău" />
+            {openListTL ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
+          </ListItemButton>
+          <Collapse in={openListTL} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 2 }}>
+                <ListItemText 
+                  className="text-item1"
+                  primary="Physical site location" 
+                  secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
+                />
+              </ListItemButton>
+              <ListItemButton sx={{ pl: 2 }}>
+                <ListItemText
+                  className="text-item1"
+                  primary="Associated external IPs" 
+                  secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
+                />
+              </ListItemButton>
+              <ListItemButton sx={{ pl: 2 }}>
+                <ListItemText 
+                  className="text-item1"
+                  primary="Website domain" 
+                  secondary="https://www.websitedomain.com"
+                />
+              </ListItemButton>
+            </List>
+          </Collapse>
+        </List> */}
+      </>
+    )
+
+    const bodyModal = (row) => (
+      <Box sx={myModal} >
+        <h2 style={titleModal}>{row.vulnerability}</h2>
+        <div style={bodyModalStyle}>
+          <p style={{fontSize: '14px', fontWeight: 400,}}>Pinky.ai detected errors during parsing of Strict-Transport-Security header.</p>
+          <p><strong>Impact</strong></p>
+          <p>The HSTS Warning and Error may allow attackers to bypass HSTS, effectively allowing them to read and modify your communication with the website. </p>
+          <p><strong>Vulerabilities</strong></p>
+          <p>1.1. <span style={{color: '#3892F3', fontSize: '14px'}}>https://www.website.com/</span></p>
+          <p><strong>Error</strong></p>
+          <p style={{fontSize: '14px', fontWeight: 400,}}>Preload directive not present	</p>
+          <p><strong>Resolution</strong></p>
+          <p style={{fontSize: '14px', fontWeight: 400,}}>Submit domain for inclusion in browsers' HTTP Strict Transport Security (HSTS) preload list.</p>
+          <p><strong>Request</strong></p>
+          <div style={{backgroundColor: "#F0F2F3", borderRadius: '0px, 8px, 8px, 8px', borderColor: '#E1E4E7'}}>
+            <p style={{fontSize: '12px', fontWeight: 500, left: '56px'}}><span style={{fontSize: '12px', fontWeight: 500, color: "#A4AEB8", marginRight: '5px',fontFamily:"Roboto Mono"}}>01</span>GET / HTTP/1.1</p>
+            <p style={{fontSize: '12px', fontWeight: 500, left: '56px'}}><span style={{fontSize: '12px', fontWeight: 500, color: "#A4AEB8", marginRight: '5px', fontFamily:"Roboto Mono"}}>02</span>Host: https://www.website.com/</p>
+            <p style={{fontSize: '12px', fontWeight: 500, left: '56px'}}><span style={{fontSize: '12px', fontWeight: 500, color: "#A4AEB8", marginRight: '5px', fontFamily:"Roboto Mono"}}>03</span>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</p>
+            <p style={{fontSize: '12px', fontWeight: 500, left: '56px'}}><span style={{fontSize: '12px', fontWeight: 500, color: "#A4AEB8", marginRight: '5px', fontFamily:"Roboto Mono"}}>04</span>Accept-Encoding: gzip, deflate</p>
+            <p style={{fontSize: '12px', fontWeight: 500, left: '56px'}}><span style={{fontSize: '12px', fontWeight: 500, color: "#A4AEB8", marginRight: '5px', fontFamily:"Roboto Mono"}}>05</span>Accept-Language: en-us,en;q=0.5</p>
+            <p style={{fontSize: '12px', fontWeight: 500, left: '56px'}}><span style={{fontSize: '12px', fontWeight: 500, color: "#A4AEB8", marginRight: '5px', fontFamily:"Roboto Mono"}}>06</span>Cache-Control: no-cache</p>
+            <p style={{fontSize: '12px', fontWeight: 500, left: '56px'}}><span style={{fontSize: '12px', fontWeight: 500, color: "#A4AEB8", marginRight: '5px', fontFamily:"Roboto Mono"}}>07</span>User-Agent: Mozilla/5.0 (Windows NT 10.0; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36</p>
+            <p style={{fontSize: '12px', fontWeight: 500, left: '56px'}}><span style={{fontSize: '12px', fontWeight: 500, color: "#A4AEB8", marginRight: '5px', fontFamily:"Roboto Mono"}}>08</span>X-Scanner: msgrinder</p>
+          </div>
+          <br />
+          {DataListOnboardingContact}
+        </div>
+      </Box>
+    )
+
+
     return <>
 
-<Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }} className="Table-Accounts-Hide-Show">
       <Paper sx={{ width: '100%', mb: 2 }}>
         <EnhancedTableToolbar/>
         <TableContainer>
@@ -291,10 +499,6 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
               {visibleRows.map((row, index) => {
                 const isItemSelected = isSelected(row.partner);
                 const labelId = `enhanced-table-checkbox-${index}`;
-                console.log(row.confirmed)
-                console.log(row)
-
-
                 return (
                   <TableRow
                     hover
@@ -302,7 +506,7 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.confirmed}
+                    key={index}
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >
@@ -315,15 +519,35 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
                         }}
                       />
                     </TableCell>
-                    <TableCell align="left"><span className='span-link'>{row.confirmed}</span></TableCell>
+                    <TableCell align="left">{row.confirmed}</TableCell>
                     <TableCell align="left">
-                      <DotStatus status={row.vulnerability}></DotStatus>
-                      {row.vulnerability}</TableCell>
-                    <TableCell align="left">{row.Host}</TableCell>
+                      <span onClick={(event) => handleOpen(event,row)} className='span-link'>
+                        <DotStatus status={row.vulnerability}></DotStatus>
+                        {row.vulnerability}
+                      </span>
+                      <Modal  open={open} onClose={(event) => handleClose(event,row)}>
+                        {bodyModal(row)}
+                      </Modal>   
+                    </TableCell>
+                    <TableCell align="left">
+                    <Button variant="outlined" style={{border: "1px solid #3E4852", color:"black"}} size="small">
+                      {row.Host}
+                    </Button>
+                    </TableCell>
                     <TableCell align="left">
                       {row.Protocol}
                     </TableCell>
-                    <TableCell align="left">{row.port}</TableCell>
+                    <TableCell align="left">
+                      {row.port !== "" ? (
+                        <Button variant="outlined" style={{border: "1px solid #3E4852", color:"black"}} size="small">
+                          {row.port}
+                        </Button>
+                      ) : (
+                        <>
+                          {row.port}
+                        </>
+                      )}
+                    </TableCell>
                   </TableRow>
                 );
               })}
