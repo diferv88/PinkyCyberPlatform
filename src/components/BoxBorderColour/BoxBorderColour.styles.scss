@@ -28,3 +28,30 @@
     place-items: center;
    
 }
+
+.inqueue-box , .Suspended-box {
+
+    border: 2px solid #3e4852;
+    color: #3e4852;;
+  }
+.inprogress-box {
+
+    border: 2px solid #ea3829;
+    color: #ea3829;
+
+}
+.done-box, .Active-box {
+
+    border: 2px solid #0fb5ae;
+    color: #0fb5ae;
+}
+
+.inqueue-box ,.inprogress-box, .done-box, .Suspended-box, .Active-box {
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    height: 38px;
+    display: grid;
+    place-items: center;
+   
+}

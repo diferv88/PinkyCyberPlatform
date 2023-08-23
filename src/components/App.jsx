@@ -18,7 +18,7 @@ import AddPartnerAccount from "./routes/partnerAccount/PartnerAccouts/PartenrAcc
 import { Login } from "./routes/login/Login";
 import { RecoveryPasswordLogin } from "./routes/RecoveryPasswordLogin/RecoveryPasswordLogin";
 import EmailScanVulnerability from "./routes/emailScanVulnerability/emailScanVulnerability.component";
-
+import ScheduledScansIndex from "./routes/scheduledscans/scheduledScans.component";
 function App() {
   return (
     <Routes>
@@ -33,6 +33,7 @@ function App() {
         <Route path="Onboarding" element={<Onboarding />} />
         <Route path="Onboarding-Contact" element={<OnboardingContact />} />
         <Route path="Onboarding-Complete" element={<OnboardingComplete />} />
+        <Route path="Scheduled-Scans" element={<ScheduledScansIndex />} />
         <Route path="Schedule-Scan-Assets" element={<ScheduleScanAssetsDiscovery />} />
         <Route path="Schedule-Scan-Vulnerability" element={<ScheduleScanVulnerability />} />
         <Route path="Vulnerability-Assessment" element={<VulnerabilityAssesment />} />
