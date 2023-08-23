@@ -221,11 +221,10 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
 
                 <Autocomplete
                   disablePortal
-                  
                   id="combo-box-demo"
                   options={opciones}
                   sx={{ width: 300 }}
-                  renderInput={(params) => <TextField {...params} label="Type of scan" className="searchText"/>}
+                  renderInput={(params) => <TextField {...params} label="Type of scan" />}
                 />
                 <Autocomplete
                   disablePortal
@@ -248,9 +247,9 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
                   sx={{ width: 300 }}
                   renderInput={(params) => <TextField {...params} label="Risk impact" />}
                 />
-                <button className="label">
+                <div className="label">
                   <div className="textWrapper">Clear all</div>
-                </button>
+                </div>
               </div>
             
               </Typography>
