@@ -67,8 +67,7 @@ const imageCards=[
 ]
 const InventoryList =  () => {
   
-  const RedirectClick = e => {
-    console.log(e)
+  const RedirectClick = () => {
     window.localStorage.setItem("MEmailScan", JSON.stringify(true));
     window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
     window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));

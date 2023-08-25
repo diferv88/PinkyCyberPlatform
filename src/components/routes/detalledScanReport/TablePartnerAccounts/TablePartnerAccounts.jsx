@@ -2,46 +2,34 @@
 /* eslint-disable react/prop-types */
 import "./../detailedScanReport.styles.scss";
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import DotStatus from "../../../dotStatus/DotStatus";
+import IconWarning from '../../../../assets/images/warning.svg';
+import IconFlagHigh from '../../../../assets/images/flag-high.svg';
+import IconFlagCriticalN from '../../../../assets/images/flagCriticalNo.svg';
+import IconFlagLow from '../../../../assets/images/flag-low.svg';
+import IconLampCharge from '../../../../assets/images/lamp-charge.svg';
+import IconError from '../../../../assets/images/close-circle.svg';
+import IconAprobal from '../../../../assets/images/tick-circle.svg';
+import IconInfo from '../../../../assets/images/info-circle.svg';
 // import BoxBorderColour from "../../../BoxBorderColour/BoxBorderColour";
 // import BoxFullColour from "../../../BoxFullColour/BoxFullColour";
 import CheckBoxFilter from "./../CheckBoxFilter/CheckBoxFilter";
-import HeaderTable from "./../HeaderTable/HeaderTable";
 import "../TableUserAccounts/TableUserAccounts.styles.scss"
-import { Button, Modal } from "@mui/material";
+import { Button, Grid, Icon, Modal } from "@mui/material";
 import { 
-  FormControl,
-  FormLabel, 
-  InputLabel, 
-  MenuItem, 
-  OutlinedInput, 
-  Stack,
   List,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
   Collapse,
-  ListSubheader
 } from "@mui/material";
 import "./TablePartnersAccounts.styles.scss"
 
@@ -87,31 +75,46 @@ const paragraphModal ={
 };
 
 
-function createData(confirmed, vulnerability, Host, Protocol, port) {
+function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
     return {
       confirmed,
       vulnerability,
       Host,
       Protocol, 
-      port
+      port,
+      severety
     };
   }
   
   const rows = [
-    createData('Yes', "HTTP Strict Transport Security (HSTS) Errors and Warnings", "GET", "https://www.website.com/", "Port Value"),
-    createData('Yes', "Out-of-date Version (Bootstrap)", "GET", "https://www.website.com/assets/js/bootstrap.min.js",  ""),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/assets/js/vendor/jquery-3.2.1.min.js",""),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/assets/js/vendor/jquery-3.2.1.min.js","Port Value"),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/css/assets/js/vendor/jquery-3.2.1.min.js", "Port Value"),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/assets/js/vendor/jquery-3.2.1.min.js",  ""),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/icon/assets/js/vendor/jquery-3.2.1.min.js	", ""),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/instagram/assets/js/vendor/jquery-3.2.1.min.js	",  ""),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/logo/assets/js/vendor/jquery-3.2.1.min.js	",  "Port Value"),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/product/assets/js/vendor/jquery-3.2.1.min.js	",  "Port Value"),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/assets/js/vendor/jquery-3.2.1.min.js	",  "Port Value"),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/vendor/assets/js/vendor/jquery-3.2.1.min.js	",  ""),
-    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/vendor/jquery-3.2.1.min.js	",  ""),
-    createData('No', "Weak Ciphers Enabled", "GET", "https://www.website.com/", ""),
+    createData('Yes', "HTTP Strict Transport Security (HSTS) Errors and Warnings", "GET", "https://www.website.com/", "Port Value", "Critical"),
+    createData('Yes', "Out-of-date Version (Bootstrap)", "GET", "https://www.website.com/assets/js/bootstrap.min.js",  "","Critical",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/assets/js/vendor/jquery-3.2.1.min.js","","Critical",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/assets/js/vendor/jquery-3.2.1.min.js","Port Value","Critical",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/css/assets/js/vendor/jquery-3.2.1.min.js", "Port Value","Critical",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/assets/js/vendor/jquery-3.2.1.min.js",  "","High",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/icon/assets/js/vendor/jquery-3.2.1.min.js	", "","High",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/instagram/assets/js/vendor/jquery-3.2.1.min.js	",  "","High",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/logo/assets/js/vendor/jquery-3.2.1.min.js	",  "Port Value","High",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/img/product/assets/js/vendor/jquery-3.2.1.min.js	",  "Port Value","High",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/assets/js/vendor/jquery-3.2.1.min.js	",  "Port Value","Medium",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/vendor/assets/js/vendor/jquery-3.2.1.min.js	",  "","Medium",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/vendor/jquery-3.2.1.min.js	",  "","Medium",),
+    createData('No', "Weak Ciphers Enabled", "GET", "https://www.website.com/", "","Medium",),
+    createData('No', "[Possible] Cross-site Request Forgery", "GET", "https://www.website.com//cfdi/", "","Medium",),
+    createData('No', "[Possible] Cross-site Request Forgery", "GET", "https://www.website.com//cfdi/index.php", "","Medium",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/assets/js/vendor/jquery-3.2.1.min.js", "Port Value","Medium",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/assets/js/vendor/assets/js/vendor/jquery-3.2.1.min.js", "Port Value","Medium",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/jquery-3.2.1.min.js", "","Medium",),
+    createData('No', "Weak Ciphers Enabled", "GET", "https://www.website.com/", "","Medium",),
+    createData('No', "[Possible] Cross-site Request Forgery", "GET", "https://www.website.com/cfdi/", "Port Value","Medium",),
+    createData('No', "[Possible] Cross-site Request Forgery", "GET", "https://www.website.com/cfdi/index.php", "","Low",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/assets/js/vendor/jquery-3.2.1.min.js", "Port Value","Low",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/vendor/assets/js/vendor/jquery-3.2.1.min.js", "","Low",),
+    createData('No', "Out-of-date Version (jQuery)", "GET", "https://www.website.com/factura.php/etc/assets/js/vendor/jquery-3.2.1.min.js", "","Low",),
+    createData('No', "Weak Ciphers Enabled", "GET", "https://www.website.com/", "","Low",),
+    createData('No', "[Possible] Cross-site Request Forgery", "GET", "https://www.website.com/cfdi/", "Port Value","Low",),
+    createData('No', "[Possible] Cross-site Request Forgery", "GET", "https://www.website.com//cfdi/index.php", "","Low",),
   ];
   
   function descendingComparator(a, b, orderBy) {
@@ -200,66 +203,6 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
     );
   }
   
-  function EnhancedTableToolbar(props) {
-    const { numSelected } = props;
-  
-    return (
-      <Toolbar
-        sx={{
-          pl: { sm: 2 },
-          pr: { xs: 1, sm: 1 },
-          ...(numSelected > 0 && {
-            bgcolor: (theme) =>
-              alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-          }),
-        }}
-      >
-        {numSelected > 0 ? (
-          <Typography
-            sx={{ flex: '1 1 100%' }}
-            color="inherit"
-            variant="subtitle1"
-            component="div"
-          >
-            {numSelected} selected
-          </Typography>
-        ) : (
-          <Typography
-            sx={{ flex: '1 1 100%' }}
-            variant="h6"
-            id="tableTitle"
-            component="div"
-          >
-           <HeaderTable labelButton="Add partner accounts" linkTo="/add-partner-account" form="partner"/>
-           <div className="checkBoxs-div">
-            <label className="label-checkbox">Severity filter:</label>
-            <CheckBoxFilter label="Critical"></CheckBoxFilter>
-            <CheckBoxFilter label="High"></CheckBoxFilter>
-            <CheckBoxFilter label="Medium"></CheckBoxFilter>
-            <CheckBoxFilter label="Low"></CheckBoxFilter>
-            <CheckBoxFilter label="Information"></CheckBoxFilter>
-          </div>
-        
-          </Typography>
-        )}
-  
-        {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton>
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-      </Toolbar>
-    );
-  }
-
   const TablePartnerAccount = () => {
 
     const [order, setOrder] = React.useState('asc');
@@ -271,6 +214,14 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
     const [open, setOpen] = React.useState(false);
     const [modalInfo, setModalInfo] = React.useState([])
     const [openList, setOpenList] = React.useState(false);
+    const [dataTableFillter, setDataTableFillter] = React.useState([])
+    const [severityFilter, setSeverityFilter] = React.useState({
+      Critical: false,
+      High: false,
+      Medium: false,
+      Low: false,
+      Information: false,
+    })
 
     const handleOpenList = () => {
       setOpenList(!openList);
@@ -288,7 +239,26 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
       setOpen(false)
     };
 
+    const handleChangeCheckBoxFilter = (e) => {
+      console.log(e.target.value)
+      console.log(e.target.checked)
+      setSeverityFilter({
+        ...severityFilter,
+        [e.target.value]: e.target.checked,
+      });
+      if (e.target.checked) {
+        console.log("seleccionado === ", e.target.value)
+        const filterData = rows.filter(item => item.severety == e.target.value);
+        setDataTableFillter([
+          ...dataTableFillter, ...filterData
+        ])
+      }else{
+        const filterData = dataTableFillter.filter(item => item.severety !== e.target.value);
+        setDataTableFillter([...filterData])
+      }
+    }
 
+    console.log(dataTableFillter)
 
     const handleClick = (event, name) => {
         const selectedIndex = selected.indexOf(name);
@@ -310,146 +280,108 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
         setSelected(newSelected);
     };
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-
-    const handleChangeDense = (event) => {
-        setDense(event.target.checked);
-    };
-
     const isSelected = (name) => selected.indexOf(name) !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-    const visibleRows = React.useMemo(
-        () =>
-        stableSort(rows, getComparator(order, orderBy)).slice(
-            page * rowsPerPage,
-            page * rowsPerPage + rowsPerPage,
-        ),
-        [order, orderBy, page, rowsPerPage],
-    );
-
     const DataListOnboardingContact = (
       <>
         <List
-          sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom: 2, }}
+          sx={{ width: '100%', bgcolor: 'rgba(15, 181, 174, 0.1)', marginBottom: 2, borderRadius:'8px'}}
           component="nav"
           aria-labelledby="nested-list-subheader"
           className="list-container"
         >
           <ListItemButton onClick={handleOpenList}>
             <ListItemText className="text-container1" primary="Vulnerability remediation"/>
-            {openList ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
+            {openList ? <p className="link-previus-modal" style={{textDecoration: 'underline',fontFamily:'Sora', fontSize:'14px', fontWeight:700, }} >Hide</p> : <p className="link-previus-modal" style={{textDecoration: 'underline',fontFamily:'Sora', fontSize:'14px', fontWeight:700, }}>Show</p>}
           </ListItemButton>
           <Collapse in={openList} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 2 }}>
-                <ListItemText 
-                  className="text-item1"
-                  primary="Remedy" 
-                  // secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
-                />
+                <Grid container spacing={1}>
+                  <Grid item md={8}>
+                    <p style={{fontFamily:'Sora', fontSize:'17px', fontWeight: 700  , color: '#000'}}>Remedy</p>
+                    <p style={{fontFamily:'Sora', color:'#3E4852', fontWeight: 400, fontSize: '14px'}}>Ideally, after fixing the errors and warnings, you should consider adding your domain to the the HSTS preload list. This will ensure that browsers automatically connect your website by using HTTPS, actively preventing users from visiting your site using HTTP. Since this list is hardcoded in users&rsquo; browsers, it will enable HSTS even before they visit your page for the first time, eliminating the need for Trust On First Use (TOFU) with its associated risks and disadvantages. Unless you fix the errors and warnings your website won&rsquo;t meet the conditions required to enter the browser&rsquo;s preload list.</p>
+                  </Grid>
+                  <Grid item md={2}>
+                    <p style={{fontFamily:'Sora', fontSize:'17px', fontWeight: 700  , color: '#000'}}>Classification</p>
+                    <Grid container spacing={0.5} width={'20rem'} sx={{border: '1px solid #E1E4E7', borderRadius:"8px", backgroundColor:"#fff"}}>
+                      <Grid item md={9} >
+                        <p>OWASP 2013</p>
+                        <p>OWASP 2017</p>
+                        <p>SANS Top 25</p>
+                        <p>WASC</p>
+                        <p>ISO27001</p>
+                      </Grid>
+                      <Grid item md={3} textAlign='end'>
+                        <p style={{color:'#3892F3',display: 'flex', marginRight:'10px', justifyContent:'end'}}><u>A5</u></p>
+                        <p style={{color:'#3892F3',display: 'flex', marginRight:'10px', justifyContent:'end'}}><u>A6</u></p>
+                        <p style={{color:'#3892F3',display: 'flex', marginRight:'10px', justifyContent:'end'}}><u>16</u></p>
+                        <p style={{color:'#3892F3',display: 'flex', marginRight:'10px', justifyContent:'end'}}><u>15</u></p>
+                        <p style={{color:'#3892F3',display: 'flex', marginRight:'10px', justifyContent:'end'}}><u>A.14.1.2</u></p>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
               </ListItemButton>
               <ListItemButton sx={{ pl: 2 }}>
-                <ListItemText
+                {/* <ListItemText
                   className="text-item1"
                   primary="Browser vendors declared:" 
                   // secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
-                />
+                /> */}
+                <Grid container spacing={1}>
+                  <Grid item className="test-container-grid">
+                    <p style={{fontFamily:'Sora', fontSize:'17px', fontWeight: 700  , color: '#000'}}>Browser vendors declared:</p>
+                    <ul className="test-container ulContainer">
+                      <li style={{listStyle:"initial",}}>Serve a valid certificate</li>
+                      <li style={{listStyle:"initial",}}>If you are listening on port 80, redirect all domains from HTTP to HTTPS on the same host. Serve all subdomains over HTTPS:</li>
+                      <li>
+                        <ul>
+                          <li style={{listStyle:"initial",}}>
+                            In particular, you must support HTTPS for the www subdomain if a DNS record for that subdomain exists
+                          </li>
+                        </ul>
+                      </li>
+                      <li style={{listStyle:"initial",}}>Serve an HSTS header on the base domain for HTTPS requests:</li>
+                      <li>
+                        <ul>
+                          <li style={{listStyle:"initial",}}>The  max-age  must be at least 31536000 seconds (1 year)</li>
+                          <li style={{listStyle:"initial",}}>The  includeSubDomains  directive must be specified</li>
+                          <li style={{listStyle:"initial",}}>The  preload  directive must be specified</li>
+                          <li style={{listStyle:"initial",}}>
+                          If you are serving an additional redirect from your HTTPS site, that redirect must have the HSTS header (rather than the page it redirects to)
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </Grid>
+                </Grid>
               </ListItemButton>
               <ListItemButton sx={{ pl: 2 }}>
-                <ListItemText
-                className="text-item1"
-                primary="External References" 
-                secondary="HTTP Strict Transport Security (HSTS) HTTP Header
-                Wikipedia - HTTP Strict Transport Security Implementation
-                Check HSTS Preload status and eligibility"
-                />
+                <Grid container spacing={1}>
+                  <Grid item>
+                    <p style={{fontFamily:'Sora', fontSize:'17px', fontWeight: 700  , color: '#000'}}>External References</p>
+                    <ul>
+                      <li style={{fontFamily:'Sora', fontSize:'14px', fontWeight: 400, color: '#3892F3', listStyle:'initial'}}>
+                        <u>HTTP Strict Transport Security (HSTS) HTTP Header</u>
+                      </li>
+                      <li style={{fontFamily:'Sora', fontSize:'14px', fontWeight: 400, color: '#3892F3', listStyle:'initial' }}>
+                        <u>Wikipedia - HTTP Strict Transport Security Implementation</u>
+                      </li>
+                      <li style={{fontFamily:'Sora', fontSize:'14px', fontWeight: 400, color: '#3892F3', listStyle:'initial' }}>
+                        <u>Check HSTS Preload status and eligibility</u>
+                      </li>
+                    </ul>
+                  </Grid>
+                </Grid>
               </ListItemButton>
             </List>
           </Collapse>
         </List>
-        {/* <List
-          sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom: 2 }}
-          component="nav"
-          aria-labelledby="nested-list-subheader"
-          className="list-container"
-        >
-          <ListItemButton onClick={handleOpenListSL}>
-            <ListItemText className="text-container1" primary="Second site location" secondary="Bvd. Ștefan cel Mare 32, Chișinău" />
-            {openListSL ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
-          </ListItemButton>
-          <Collapse in={openListSL} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 2 }}>
-                <ListItemText 
-                  className="text-item1"
-                  primary="Physical site location" 
-                  secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
-                />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 2 }}>
-                <ListItemText
-                  className="text-item1"
-                  primary="Associated external IPs" 
-                  secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
-                />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 2 }}>
-                <ListItemText 
-                  className="text-item1"
-                  primary="Website domain" 
-                  secondary="https://www.websitedomain.com"
-                />
-              </ListItemButton>
-            </List>
-          </Collapse>
-        </List>
-        <List
-          sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom:2 }}
-          component="nav"
-          aria-labelledby="nested-list-subheader"
-          className="list-container"
-        >
-          <ListItemButton onClick={handleOpenListTL}>
-            <ListItemText className="text-container1" primary="Third site location" secondary="Bvd. Dacia 40, Chișinău" />
-            {openListTL ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
-          </ListItemButton>
-          <Collapse in={openListTL} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 2 }}>
-                <ListItemText 
-                  className="text-item1"
-                  primary="Physical site location" 
-                  secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
-                />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 2 }}>
-                <ListItemText
-                  className="text-item1"
-                  primary="Associated external IPs" 
-                  secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
-                />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 2 }}>
-                <ListItemText 
-                  className="text-item1"
-                  primary="Website domain" 
-                  secondary="https://www.websitedomain.com"
-                />
-              </ListItemButton>
-            </List>
-          </Collapse>
-        </List> */}
       </>
     )
 
@@ -462,10 +394,18 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
           <p>The HSTS Warning and Error may allow attackers to bypass HSTS, effectively allowing them to read and modify your communication with the website. </p>
           <p><strong>Vulerabilities</strong></p>
           <p>1.1. <span style={{color: '#3892F3', fontSize: '14px'}}>https://www.website.com/</span></p>
-          <p><strong>Error</strong></p>
-          <p style={{fontSize: '14px', fontWeight: 400,}}>Preload directive not present	</p>
-          <p><strong>Resolution</strong></p>
-          <p style={{fontSize: '14px', fontWeight: 400,}}>Submit domain for inclusion in browsers' HTTP Strict Transport Security (HSTS) preload list.</p>
+          <div style={{border:'1px solid #E1E4E7', borderRadius: '8px'}}>
+            <Grid container spacing={0} style={{width: '100%'}}>
+              <Grid item sx={{ml: 5,}} md={3}>
+                <p ><strong>Error</strong></p>
+                <p style={{fontSize: '14px', fontWeight: 400,}}>Preload directive not present	</p>
+              </Grid>
+              <Grid item sx={{ml: 5}} md={7.5}>
+                <p><strong>Resolution</strong></p>
+                <p style={{fontSize: '14px', fontWeight: 400,}}>Submit domain for inclusion in browsers&rsquo; HTTP Strict Transport Security (HSTS) preload list.</p>
+              </Grid>
+            </Grid>
+          </div>
           <p><strong>Request</strong></p>
           <div style={{backgroundColor: "#F0F2F3", borderRadius: '0px, 8px, 8px, 8px', borderColor: '#E1E4E7'}}>
             <p style={{fontSize: '12px', fontWeight: 500, left: '56px'}}><span style={{fontSize: '12px', fontWeight: 500, color: "#A4AEB8", marginRight: '5px',fontFamily:"Roboto Mono"}}>01</span>GET / HTTP/1.1</p>
@@ -486,9 +426,17 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
 
     return <>
 
-    <Box sx={{ width: '100%' }} className="Table-Accounts-Hide-Show">
+    <Box sx={{ width: '100%' }} className="Table-Accounts-DetailledSR">
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar/>
+        {/* <EnhancedTableToolbar/> */}
+        <div className="checkBoxs-div">
+            <label className="label-checkbox">Severity filter:</label>
+            <CheckBoxFilter onChange={handleChangeCheckBoxFilter} label="Critical" htmlfor="Critical"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChangeCheckBoxFilter} label="High" htmlfor="High"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChangeCheckBoxFilter} label="Medium" htmlfor="Medium"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChangeCheckBoxFilter} label="Low" htmlfor="Low"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChangeCheckBoxFilter} label="Information" htmlfor="Information"></CheckBoxFilter>
+        </div>
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -496,9 +444,10 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
             size={dense ? 'small' : 'medium'}>
             <EnhancedTableHead/>
             <TableBody>
-              {visibleRows.map((row, index) => {
+              {dataTableFillter.map((row, index) => {
                 const isItemSelected = isSelected(row.partner);
                 const labelId = `enhanced-table-checkbox-${index}`;
+                console.log('row === ', row)
                 return (
                   <TableRow
                     hover
@@ -508,23 +457,48 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
                     tabIndex={-1}
                     key={index}
                     selected={isItemSelected}
-                    sx={{ cursor: 'pointer' }}
+                    sx={
+                      row.severety == 'Critical' && row.confirmed == 'Yes' ? 
+                      {borderLeft: '5px solid rgba(234, 56, 41, 1)'} 
+                      : row.severety == 'Critical' && row.confirmed == 'No' ?
+                      {borderLeft: '5px solid rgba(240, 95, 29, 1) '}
+                      : row.severety == 'High' ? 
+                      {borderLeft: '5px solid rgba(246, 133, 17, 1)'} 
+                      : row.severety == 'Medium' ? 
+                      {borderLeft: '5px solid rgba(249, 178, 8, 1)'} 
+                      : {borderLeft:'5px solid rgba(15, 181, 174, 1)'}}
                   >
                     <TableCell padding="checkbox">
-                      <Checkbox
-                        color="primary"
-                        checked={isItemSelected}
-                        inputProps={{
-                          'aria-labelledby': labelId,
-                        }}
-                      />
                     </TableCell>
-                    <TableCell align="left">{row.confirmed}</TableCell>
                     <TableCell align="left">
-                      <span onClick={(event) => handleOpen(event,row)} className='span-link'>
-                        <DotStatus status={row.vulnerability}></DotStatus>
-                        {row.vulnerability}
-                      </span>
+                      <div style={{display:'flex', alignItems:'center'}}>
+                        <Icon sx={{mr:1}}>
+                          <img src={row.confirmed == 'Yes' ? IconAprobal : IconError} />
+                        </Icon>
+                        {row.confirmed}
+                      </div>
+                    </TableCell>
+                    <TableCell align="left">
+                      <div style={{display:'flex', alignItems:'center'}}>
+                        <Icon sx={{mr: 1}}>
+                          <img 
+                            src={
+                              row.confirmed == 'Yes' && row.severety == 'Critical' ?
+                              IconWarning
+                              : row.confirmed == 'No' && row.severety == 'Critical' ?
+                              IconFlagCriticalN
+                              : row.severety == 'High' ?
+                              IconFlagHigh
+                              : row.severety == 'Medium' ?
+                              IconFlagLow
+                              : IconLampCharge
+                            } width={24} height={24} />
+                        </Icon>
+                        <span onClick={(event) => handleOpen(event,row)} className='span-link'>
+                          <DotStatus status={row.vulnerability}></DotStatus>
+                          {row.vulnerability}
+                        </span>
+                      </div>
                       <Modal  open={open} onClose={(event) => handleClose(event,row)}>
                         {bodyModal(row)}
                       </Modal>   
@@ -534,12 +508,12 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
                       {row.Host}
                     </Button>
                     </TableCell>
-                    <TableCell align="left">
+                    <TableCell align="left" style={{ }}>
                       {row.Protocol}
                     </TableCell>
                     <TableCell align="left">
                       {row.port !== "" ? (
-                        <Button variant="outlined" style={{border: "1px solid #3E4852", color:"black"}} size="small">
+                        <Button variant="outlined" style={{width:'98px', border: "1px solid #3E4852", color:"black", fontSize:'12px'}} size="small">
                           {row.port}
                         </Button>
                       ) : (
@@ -563,25 +537,9 @@ function createData(confirmed, vulnerability, Host, Protocol, port) {
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
     </Box>
-    
-    
     </>
-
   }
 
   export default TablePartnerAccount;

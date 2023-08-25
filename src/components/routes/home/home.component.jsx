@@ -73,39 +73,7 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
 const stepsLabel = ['Let’s get started', 'Environment Mapping', 'Assets risk classified','', 'Penetration tests', '', 'Mitigation plan in progress', '', 'Continuous learning', ''];
 
 const Home = () => {
-  const links = {
-    1: "Partner-Account",
-    2: "network",
-    3: "server",
-    4: "server",
-    5: "server",
-  };
-  const serversStatus = {
-    1: {
-      status: "GREEN",
-      number: 1,
-      percentage: 32,
-      totalPercentage: 100,
-    },
-    2: {
-      status: "GREEN",
-      number: 2,
-      percentage: 24,
-      totalPercentage: 100,
-    },
-    3: {
-      status: "YELLOW",
-      number: 3,
-      percentage: 56,
-      totalPercentage: 100,
-    },
-    4: {
-      status: "RED",
-      number: 4,
-      percentage: 80,
-      totalPercentage: 100,
-    },
-  };
+
   const cards = [
     {
       title: "Overdue payments",
