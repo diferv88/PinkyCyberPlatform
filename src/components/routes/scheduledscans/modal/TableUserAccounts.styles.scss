@@ -1,0 +1,27 @@
+.user-table-row{
+  font-size: medium;
+  font-weight: bold;
+}
+
+.span-link{
+  color: #007bff; /* Color azul típico de los enlaces */
+  text-decoration: underline; /* Línea subrayada */
+  cursor: pointer;
+}
+
+.modal{
+  overflow-y: auto;
+}
+
+.headtable{
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  justify-content: baseline;
+}
+.cerrar{
+  justify-self: end;
+  cursor: pointer;
+}
+.cerrar svg {
+  fill: none !important;
+}

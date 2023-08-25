@@ -19,6 +19,7 @@ import { Login } from "./routes/login/Login";
 import { RecoveryPasswordLogin } from "./routes/RecoveryPasswordLogin/RecoveryPasswordLogin";
 import EmailScanVulnerability from "./routes/emailScanVulnerability/emailScanVulnerability.component";
 import ScheduledScansIndex from "./routes/scheduledscans/scheduledScans.component";
+import InventoryList2 from "./routes/inventoryList2/inventoryList2.component";
 function App() {
   return (
     <Routes>
@@ -27,6 +28,7 @@ function App() {
         <Route path="add-partner-account/:id" element={<AddPartnerAccount />} />
         <Route path="Assets-Discovery" element={<AssetsDiscovery />} />
         <Route path="Inventory" element={<InventoryList />} />
+        <Route path="InventoryList" element={<InventoryList2/>}/>
         <Route path="DetailedScanReport" element={<DetailedScanReport />} />
         <Route path="Partner-Account" element={<PartnerAccountIndex />} />
         <Route path="Proceed-Scan" element={<DashBoard />}/>

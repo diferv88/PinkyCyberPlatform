@@ -30,7 +30,6 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
-import Button from "../../../button/button.component";
 import MoreSquare from "../../../../assets/images/moreSquare.svg"
 function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,status,more) {
     return {
@@ -271,10 +270,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(true);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    const [modal, setModal] = React.useState(false);
-
-    const setModalOpen = () => {setModal(true)};
-    const setModalClose = () => {setModal(false)};
+   
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -423,8 +419,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-      <Button type={"btn-danger"} size={"btn-large"} children={"Problem devices"} position={"right"} isOpen={modal} onClick={setModalOpen}/> 
-      </Paper>
+       </Paper>
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
