@@ -23,6 +23,8 @@ import { Button } from '@mui/material';
 import DotStatus from '../../dotStatus/DotStatus';
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 const cards = [
     {
       title: "Last scan performed",
@@ -67,22 +69,22 @@ function createDateError (errorType, errorDescription, date){
 function createDataPrompt(id, text){
     return {id,text}
 };
-function createDataExternal(user, connectivity,status, role, email, issues,created,createdBy,rImpact,rLevel) {
-    return { user, connectivity, status, role, email,issues ,created,createdBy,rImpact,rLevel};
+function createDataExternal(newButton,deviceName, physicalSite,type, os, ipAddress, macAddress,rImpact,rLevel) {
+    return {newButton, deviceName, physicalSite,type, os, ipAddress, macAddress,rImpact,rLevel};
   }
   
   const rowsExternal = [
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Critical","Assign level"),
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Legal & compliance","High","Assign level"),
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Reputational","Medium","Assign level"),
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Reputational","Low","Assign level"),
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Reputational","Medium","Assign level"),
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Legal & compliance","Low","Assign level"),
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Reputational","Critical","Assign level"),
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Medium","Assign level"),
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Legal & compliance","High","Assign level"),
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Medium","Assign level"),
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Operational","Low","Assign level"),
+    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048","Critical","Assign level"),
+    createDataExternal('New', 'device-name-002', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "High","Assign level"),
+    createDataExternal('New', 'device-name-003', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Assign level"),
+    createDataExternal('New', 'device-name-004', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Low","Assign level"),
+    createDataExternal('New', 'device-name-005', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Assign level"),
+    createDataExternal('New', 'device-name-006', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Low","Assign level"),
+    createDataExternal('New', 'device-name-007', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Critical","Assign level"),
+    createDataExternal('New', 'device-name-008', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Assign level"),
+    createDataExternal('New', 'device-name-009', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "High","Assign level"),
+    createDataExternal('New', 'device-name-0010', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Assign level"),
+    createDataExternal('New', 'device-name-0011', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Low","Assign level"),
   ];
 const dataPrompt = [
     createDataPrompt("0","Starting Nmap 7.60 (https: //nmap.org ) at 2019-06-28 10:57 EDT"),
@@ -130,6 +132,10 @@ const riskTypeData = [
   const riskLevelData = [
     "Assign level"
   ]
+  const opciones =[{label: "Fast"},
+  {label: "Deep"},
+  {label: "Ultra"}
+];
 const InventoryList2 = () =>{
     const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -202,10 +208,7 @@ const InventoryList2 = () =>{
             <h4 className="title-partner">Scaning command prompt</h4>
             {startScan ? 
             <div className="frame">
-                    <p className="element">
-                        <span className="text-wrapper">100</span>
-                        <span className="span">%</span>
-                    </p>
+                <p>100%</p>
             </div> 
                 :null}
                 
@@ -261,17 +264,26 @@ const InventoryList2 = () =>{
                                     <TableCell align="rigth" className='user-table-row'>Date and time</TableCell>
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
+                            {startScan ? <TableBody>
                                 {errorRows.map((rows)=>{
                                     return(
                                         <TableRow key={rows.errorType}>
                                             <TableCell>
-                                                <svg className="options" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M15.9965 12H16.0054" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M11.9955 12H12.0045" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    <path d="M7.99451 12H8.00349" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
+                                                
+                                            </TableCell>
+                                            <TableCell>
+                                                <div className='firstColum'>
+                                                    <div className="box">
+                                                        <div className="rectangle" />
+                                                    </div>
+                                                    <svg className="options" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M15.9965 12H16.0054" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M11.9955 12H12.0045" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M7.99451 12H8.00349" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                                
                                             </TableCell>
                                             <TableCell><span className='span-link'>{rows.errorType}</span></TableCell>
                                             <TableCell>{rows.errorDescription}</TableCell>
@@ -281,6 +293,8 @@ const InventoryList2 = () =>{
                                 })}
                                 
                             </TableBody>
+                            :<div className='Error'><p>No results to display...</p></div>}
+                            
                         </Table>
                     </Paper>
                 </section>
@@ -292,6 +306,41 @@ const InventoryList2 = () =>{
                                 <FontAwesomeIcon icon={faCog} />
                             </button>
                             <input type="text" className="input-search" placeholder="Search..."/>
+                        </div>
+
+                        <div className="text-auto">
+
+                            <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            options={opciones}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Type of scan" />}
+                            />
+                            <Autocomplete
+                            disablePortal
+                            id="type-of-scan"
+                            options={opciones}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Last scan" />}
+                            />
+                            <Autocomplete
+                            disablePortal
+                            id="last-scan"
+                            options={opciones}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Next scan" />}
+                            />
+                            <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            options={opciones}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Risk impact" />}
+                            />
+                            <div className="label">
+                            <div className="textWrapper">Clear all</div>
+                            </div>
                         </div> 
                         <TableContainer component={Paper}>
 
@@ -300,6 +349,7 @@ const InventoryList2 = () =>{
                             <TableHead>
 
                             <TableRow className='user-table-row'>
+                                <TableCell align="left" className='user-table-row'></TableCell>
                                 <TableCell align="left" className='user-table-row'></TableCell>
                                 <TableCell align="left" className='user-table-row'>Device name</TableCell>
                                 <TableCell align="left" className='user-table-row'>Physical site</TableCell>
@@ -311,10 +361,10 @@ const InventoryList2 = () =>{
                                 <TableCell align="left" className='user-table-row'>Risk impact</TableCell>
                             </TableRow>
                             </TableHead>
-                            <TableBody>
+                            {startScan ? <TableBody>
                             {visibleRows.map((row, index) => (
                                 <TableRow
-                                key={row.name}
+                                key={row.deviceName}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                 <TableCell>
@@ -327,35 +377,49 @@ const InventoryList2 = () =>{
                                 </TableCell>
                                 <TableCell component="th" scope="row">
                                     <Button variant="outlined" size="small">
-                                    {row.user}
+                                    {row.newButton}
                                     </Button>
                                 </TableCell>
                                 <TableCell align="left">
-                                    <DotStatus status={row.connectivity}/>
-                                    {row.connectivity}
+                                    <span className='span-link'>{row.deviceName}</span>
                                 </TableCell>
-                                <TableCell align="left">{row.status}</TableCell>
-                                <TableCell align="left">{row.role}</TableCell>
-                                <TableCell align="left">{row.email}</TableCell>
-                                <TableCell align="left"><span className='span-link'>{row.issues}</span></TableCell>
-                                <TableCell align="left">{row.created}</TableCell>
+                                <TableCell align="left">{row.physicalSite}</TableCell>
+                                <TableCell align="left">{row.type}</TableCell>
+                                <TableCell align="left">{row.os}</TableCell>
+                                <TableCell align="left"><span className='span-link'>{row.ipAddress}</span></TableCell>
+                                <TableCell align="left">{row.macAddress}</TableCell>
                                 <TableCell align="left">
                                     <Select
-                                    value={row.createdBy}
-                                    // defaultValue={row.createdBy}
-                                    onChange={(e) => handleChangeRT(e, index)}
-                                    autoWidth
-                                    style={{backgroundColor: "rgba(235, 244, 254, 1)", fontWeight: 700, fontSize: "14px", fontFamily: "Sora", maxWidth:"10rem"}}
+                                        value={row.rLevel}
+                                        onChange={e => handleChangeRL(e,index)}
+                                        autoWidth
+                                        style={{backgroundColor: "rgba(240, 242, 243, 1)", fontWeight: 700, fontSize: "14px", fontFamily: "Sora"}}
                                     >
-                                    {riskTypeData.map((rType, i) =>(
-                                        <MenuItem key={i} value={rType}>{rType}</MenuItem>
-                                    ))}
+                                        {riskLevelData.map((rLevel, i) => (
+                                            <MenuItem key={i} value={rLevel}>
+                                            {rLevel}
+                                            </MenuItem>
+                                        ))}
                                     </Select>
                                 </TableCell>
-                              
+                                <TableCell align="left">
+                                    <Select
+                                        value={row.rImpact}
+                                        onChange={e => handleChangeRI(e,index)}
+                                        autoWidth
+                                        style={{backgroundColor: ( row.rImpact == "Low" ? "rgba(15, 181, 174, 0.2)" : row.rImpact == "Critical" ? "rgba(234, 56, 41, 0.2)" : row.rImpact === "Medium" ? "rgba(246, 133, 17, 0.2)" : row.rImpact === "High" ? "rgba(249, 178, 8, 0.2)" : "rgba(240, 242, 243, 1)"), fontWeight: 700, fontSize: "14px", fontFamily: "Sora"}}
+                                        >
+                                        {riskImpactData.map((rImpact, i) => (
+                                            <MenuItem key={i} value={rImpact}>
+                                            {rImpact}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </TableCell>
                                 </TableRow>
                             ))}
-                            </TableBody>
+                            </TableBody>:<div className='Error'><p>No results to display...</p></div>}
+                            
                         </Table>
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 25]}
@@ -371,37 +435,137 @@ const InventoryList2 = () =>{
                 </section>
                 <section className="table">
                 <h4 className="title-partner">Network internal IPs</h4>
-                    <Paper elevation={1} className="errorNotifications"> 
+                <Paper elevation={1} className="errorNotifications">
                         <div>
                             <button className="gear-button">
                                 <FontAwesomeIcon icon={faCog} />
                             </button>
                             <input type="text" className="input-search" placeholder="Search..."/>
                         </div>
+
+                        <div className="text-auto">
+
+                            <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            options={opciones}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Type of scan" />}
+                            />
+                            <Autocomplete
+                            disablePortal
+                            id="type-of-scan"
+                            options={opciones}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Last scan" />}
+                            />
+                            <Autocomplete
+                            disablePortal
+                            id="last-scan"
+                            options={opciones}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Next scan" />}
+                            />
+                            <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            options={opciones}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Risk impact" />}
+                            />
+                            <div className="label">
+                            <div className="textWrapper">Clear all</div>
+                            </div>
+                        </div> 
+                        <TableContainer component={Paper}>
+
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
+
                             <TableHead>
 
-                                <TableRow className='user-table-row'>
-                                    <TableCell align="left" className='user-table-row'></TableCell>
-                                    <TableCell align="left" className='user-table-row'>Error type</TableCell>
-                                    <TableCell align="left" className='user-table-row'>Error description</TableCell>
-                                    <TableCell align="rigth" className='user-table-row'>Date and time</TableCell>
-                                </TableRow>
+                            <TableRow className='user-table-row'>
+                                <TableCell align="left" className='user-table-row'></TableCell>
+                                <TableCell align="left" className='user-table-row'></TableCell>
+                                <TableCell align="left" className='user-table-row'>Device name</TableCell>
+                                <TableCell align="left" className='user-table-row'>Physical site</TableCell>
+                                <TableCell align="left" className='user-table-row'>Type</TableCell>
+                                <TableCell align="left" className='user-table-row'>OS</TableCell>
+                                <TableCell align="left" className='user-table-row'>Ip Address</TableCell>
+                                <TableCell align="left" className='user-table-row'>MAC address</TableCell>
+                                <TableCell align="left" className='user-table-row'>Risk type</TableCell>
+                                <TableCell align="left" className='user-table-row'>Risk impact</TableCell>
+                            </TableRow>
                             </TableHead>
-                            <TableBody>
-                                {errorRows.map((rows)=>{
-                                    return(
-                                        <TableRow>
-                                            <TableCell></TableCell>
-                                            <TableCell>{rows.errorType}</TableCell>
-                                            <TableCell>{rows.errorDescription}</TableCell>
-                                            <TableCell>{rows.date}</TableCell>
-                                        </TableRow>
-                                    )
-                                })}
-                                
-                            </TableBody>
+                            {startScan ? <TableBody>
+                            {visibleRows.map((row, index) => (
+                                <TableRow
+                                key={row.deviceName}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                <TableCell>
+                                    <svg className="options" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M15.9965 12H16.0054" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M11.9955 12H12.0045" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M7.99451 12H8.00349" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    <Button variant="outlined" size="small">
+                                    {row.newButton}
+                                    </Button>
+                                </TableCell>
+                                <TableCell align="left">
+                                    <span className='span-link'>{row.deviceName}</span>
+                                </TableCell>
+                                <TableCell align="left">{row.physicalSite}</TableCell>
+                                <TableCell align="left">{row.type}</TableCell>
+                                <TableCell align="left">{row.os}</TableCell>
+                                <TableCell align="left"><span className='span-link'>{row.ipAddress}</span></TableCell>
+                                <TableCell align="left">{row.macAddress}</TableCell>
+                                <TableCell align="left">
+                                    <Select
+                                        value={row.rLevel}
+                                        onChange={e => handleChangeRL(e,index)}
+                                        autoWidth
+                                        style={{backgroundColor: "rgba(240, 242, 243, 1)", fontWeight: 700, fontSize: "14px", fontFamily: "Sora"}}
+                                    >
+                                        {riskLevelData.map((rLevel, i) => (
+                                            <MenuItem key={i} value={rLevel}>
+                                            {rLevel}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </TableCell>
+                                <TableCell align="left">
+                                    <Select
+                                        value={row.rImpact}
+                                        onChange={e => handleChangeRI(e,index)}
+                                        autoWidth
+                                        style={{backgroundColor: ( row.rImpact == "Low" ? "rgba(15, 181, 174, 0.2)" : row.rImpact == "Critical" ? "rgba(234, 56, 41, 0.2)" : row.rImpact === "Medium" ? "rgba(246, 133, 17, 0.2)" : row.rImpact === "High" ? "rgba(249, 178, 8, 0.2)" : "rgba(240, 242, 243, 1)"), fontWeight: 700, fontSize: "14px", fontFamily: "Sora"}}
+                                        >
+                                        {riskImpactData.map((rImpact, i) => (
+                                            <MenuItem key={i} value={rImpact}>
+                                            {rImpact}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </TableCell>
+                                </TableRow>
+                            ))}
+                            </TableBody>:<div className='Error'><p>No results to display...</p></div>}
+                            
                         </Table>
+                        <TablePagination
+                            rowsPerPageOptions={[5, 10, 25]}
+                            component="div"
+                            count={errorRows.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                        />
+                        </TableContainer>
                     </Paper>
                 </section>
             </>
