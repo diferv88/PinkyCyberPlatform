@@ -309,14 +309,14 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
                   <Grid item md={2}>
                     <p style={{fontFamily:'Sora', fontSize:'17px', fontWeight: 700  , color: '#000'}}>Classification</p>
                     <Grid container spacing={0.5} width={'20rem'} sx={{border: '1px solid #E1E4E7', borderRadius:"8px", backgroundColor:"#fff"}}>
-                      <Grid item md={9} >
+                      <Grid item md={7} sx={{borderRight: 1}}>
                         <p>OWASP 2013</p>
                         <p>OWASP 2017</p>
                         <p>SANS Top 25</p>
                         <p>WASC</p>
                         <p>ISO27001</p>
                       </Grid>
-                      <Grid item md={3} textAlign='end'>
+                      <Grid item md={5} textAlign='end'>
                         <p style={{color:'#3892F3',display: 'flex', marginRight:'10px', justifyContent:'end'}}><u>A5</u></p>
                         <p style={{color:'#3892F3',display: 'flex', marginRight:'10px', justifyContent:'end'}}><u>A6</u></p>
                         <p style={{color:'#3892F3',display: 'flex', marginRight:'10px', justifyContent:'end'}}><u>16</u></p>

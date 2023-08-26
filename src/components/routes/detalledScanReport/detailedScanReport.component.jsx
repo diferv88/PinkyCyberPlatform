@@ -5,9 +5,7 @@ import * as React from 'react';
 import HeaderComponent from "../../header/header.component";
 import Card from "../../card/card.component";
 import { Link } from 'react-router-dom/dist'; 
-import calendarSVG from "../../../assets/images/arrowLeft.svg";
-import ConectionYellowSvg from '../../../assets/images/conectionYellow.svg'
-import Ticket from '../../../assets/images/ticket.svg';
+import Button from "../../button/button.component";
 import IdentifiedVulnerabilities from '../../../assets/images/Identified-vulnerabilities.svg';
 import ConfirmedVulnerabilities from '../../../assets/images/confirmed-vulnerabilities.svg';
 import IconCardsPorcent from '../../../assets/images/icon-cards-porcent.svg';
@@ -16,12 +14,13 @@ import IconFlagHigh from '../../../assets/images/flag-high.svg';
 import IconFlagMedium from '../../../assets/images/flag-medium.svg';
 import IconFlagLow from '../../../assets/images/flag-low.svg';
 import IconInfo from '../../../assets/images/info-circle.svg';
+import clouseIcon from "../../../assets/images/scan.svg";
+import iconTckSquare from "../../../assets/images/tick-square-white.svg";
 import { Title } from "./title/Title";
 import "./detailedScanReport.styles.scss";
 import TablePartnerAccounts from "./TablePartnerAccounts/TablePartnerAccounts"
-import TableUserAccounts from "./TableUserAccounts/TableUserAccounts";
-import { FormControl, Textarea } from '@mui/joy';
-import { Box, FormLabel, Select } from '@mui/material';
+import { FormControl } from '@mui/joy';
+import { Avatar, FormLabel } from '@mui/material';
 
 
 const cardsPorcent = [
@@ -127,13 +126,11 @@ const DetailedScanReport =  () => {
     window.localStorage.setItem("activeStep", JSON.stringify("LearnMore"));
   }
 
+
   return<>
     {/* Cards secction */}
     <HeaderComponent links={""}>Detailed scan report</HeaderComponent>
     <section className="section-style-detailedScanReport formControl">
-    <Link to={"/"} > 
-      <button onClick={RedirectClick}>test</button>
-    </Link>
       <FormControl fullWidth sx={{ m: 1 }} variant="standard">
       <ul className="FomrControl-container">
         <li>
@@ -161,15 +158,42 @@ const DetailedScanReport =  () => {
           </div>
         </li>
         <li className='li-risk-level-container'>
-          <div className='div-container-info'>
+          <div className='div-container-info' style={{display:'flex'}}>
             <div className='div-container-info div-risk-level'>
               <FormLabel className='div-container-info div-risk-level formLabel1'>Risk level:</FormLabel>
               <span className='div-container-info div-risk-level risk-lavelTitle'>MEDIUM</span>
+            </div>
+            <div className='div-container-info icon-avatar' style={{position:'absolute', top:'35%', left:'68%'}}>
+              <Avatar src={IconFlagMedium} sx={{bgcolor: 'white'}} />
             </div>
           </div>
         </li>
       </ul>
       </FormControl>
+      <div className='button-section-information'>
+        <Link to={"/"} style={{marginRight:'15px'}}>
+          <Button 
+            onClick={RedirectClick}
+            type={"succes"}
+            size="low"
+            position={"left"}
+            icons={<img style={{marginRight:"5px"}} src={iconTckSquare} alt="confimScan" />}
+          >
+            Confirm scan results
+          </Button>
+        </Link>
+        <Link to={"#"} > 
+          <Button 
+            // onClick={routeChange(step.testNavigation)}
+            type={"discard"}
+            size="low"
+            position={"left"}
+            icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="redeScan" />}
+          >
+            Redo scan
+          </Button>
+        </Link>
+      </div>
     </section>
     <section className="section-style-detailedScanReport cards">
       <p className="section-style-detailedScanReport title-vulnerability">Vulnerabilities</p>
