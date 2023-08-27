@@ -202,7 +202,7 @@ const Home = () => {
     { key: 'secondStep', isActive: isActiveStep, label: 'Classify your assets', isDone: activeStepCYA, component: secondComponent, btn:"Clasify", testNavigation: "/Inventory", icon: iconClasify, },
     { key: 'thirdStep', isActive: isActiveStep, label: 'Know your vulnerabilities', isDone: activeStepKYV, component: thirdComponent, btn:"Discover", testNavigation: "/Schedule-Scan-Vulnerability", icon:iconDiscover, },
     { key: 'finalStep', isActive: isActiveStep, label: 'Mitigrate your risks', isDone: activeStepMYR, component: finalComponent, btn:"Mitigate", testNavigation: "/DetailedScanReport", icon: iconMitigate, },
-    { key: 'LearnMore', isActive: isActiveStep, label: 'Learn more and improve', isDone: activeStepLMI, component: learnMore, btn:"Learn", testNavigation: "/", icon:iconLearn, },
+    { key: 'LearnMore', isActive: isActiveStep, label: 'Learn more and improve', isDone: activeStepLMI, component: learnMore, btn:"Learn", testNavigation: "/Scheduled-Scans", icon:iconLearn, },
   ]);
   const [activeStep, setActiveStep] = useState(steps[0]);
   const { displayNotification } = useNotification();

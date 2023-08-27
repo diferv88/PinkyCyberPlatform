@@ -31,6 +31,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import MoreSquare from "../../../../assets/images/moreSquare.svg"
+import { Link } from 'react-router-dom';
 function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,status,more) {
     return {
       partner,
@@ -270,6 +271,9 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(true);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const redirectToOtraRuta = () => {
+      props.history.push('/InventoryList');
+    };
    
 
     const handleRequestSort = (event, property) => {
@@ -363,10 +367,18 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
                     sx={{ cursor: 'pointer' }}
                   >
                     <TableCell align="left">
-                    <div className="box">
-                      <input type="checkbox"/>
-                      <img className="vuesax-linear-more" alt="Vuesax linear more" src={MoreSquare} />
-                    </div>
+                      <div className="firstRow">
+                        <div className="box">
+                        </div>
+                        <svg className="options" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M15.9965 12H16.0054" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M11.9955 12H12.0045" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M7.99451 12H8.00349" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                        </div>
+                      
                     </TableCell>
                     <TableCell align="left" >
                       <BoxBorderColour label={row.partner}></BoxBorderColour>
@@ -391,8 +403,8 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
                       {row.more}
                     </TableCell>
                     <TableCell align="left">
-                      <div className="frame">
-                        <div className="text-wrapper">Scan now</div>
+                      <div className="frame" onClick={()=>redirectToOtraRuta()}>
+                        <div className="text-wrapper"><Link to={"/InventoryList"}>Scan now</Link></div>
                       </div>
                     </TableCell>
                   </TableRow>

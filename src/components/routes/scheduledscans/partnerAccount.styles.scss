@@ -232,13 +232,7 @@
   width: 24px;
 }
 
-.box .vuesax-linear-more {
-  height: 24px;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 24px;
-}
+
 
 .frame {
   align-items: flex-start;
@@ -290,4 +284,9 @@
   height: 56px;
   border-radius: 8px;
   background: #FFF;
+}
+.firstRow{
+  display: flex;
+  align-items: center;
+  width: 3vw;
 }

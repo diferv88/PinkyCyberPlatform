@@ -73,6 +73,7 @@ const ScheduledScansIndex =  () => {
   const [modal, setModal] = React.useState(false);
   const setModalOpen = () => {setModal(true)};
   const setModalClose = () => {setModal(false)};
+
   return<>
 
     {/* Cards secction */}
@@ -110,6 +111,7 @@ const ScheduledScansIndex =  () => {
           <ProblemDevices setModal={setModalClose}/>
         </Box>
       </Modal>
+      <Button type={"btn-danger"} size={"btn-large"} children={"Problem devices"} position={"right"} isOpen={modal} onClick={setModalOpen}/> 
   </>
 
 }
