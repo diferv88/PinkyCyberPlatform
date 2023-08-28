@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -86,9 +87,9 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
             </TableRow>
           </TableHead>
           <TableBody>
-            {visibleRows.map((row) => (
+            {visibleRows.map((row, index) => (
               <TableRow
-                key={row.name}
+                key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
