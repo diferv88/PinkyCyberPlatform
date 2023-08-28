@@ -25,8 +25,9 @@ html:focus-within {
 
 html {
   color: ${({ theme }) => theme.color.brandColors.base.Base700};
- background-color: #F8F9FA;
-font-family: 'Sora', sans-serif;
+  background-color: #F8F9FA;
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
 }
 
 body {

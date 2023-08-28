@@ -4,13 +4,28 @@
   margin-bottom: 40px;
   gap: 1rem;
   & .header-container-text {
+    &-title {
+      display: flex;
+      align-items: center;
+      & .percent {
+        border-radius: 8px;
+        padding: 4px 12px;
+        margin-left: 20px;
+        color: #FFF;
+        font-size: 1.5rem;
+        font-weight: 700;
+        &.red {
+          background: #EA3829;
+        }
+      }
+    }
     h1 {
       margin-bottom: 8px;
       margin-top: 0;
 
       font-style: normal;
       font-weight: 700;
-      font-size: 40px;
+      font-size: 2.5rem;
       line-height: 56px;
     }
     & .container-links {

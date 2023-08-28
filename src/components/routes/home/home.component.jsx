@@ -29,6 +29,7 @@ import "./home.styles.scss";
 import { Notification } from "../notification/notification";
 import { store } from "../notification/store";
 import { Link } from "react-router-dom";
+import { Grid } from "@mui/joy";
 
 const firstComponent = () => {
   return <div>First Component</div>
@@ -236,7 +237,7 @@ const Home = () => {
 
   return (
     <>
-      <HeaderComponent links={""}>Aggregated risk scores</HeaderComponent>
+      <HeaderComponent links={""} percent="100">Aggregated risk scores</HeaderComponent>
       <section className="notification">
         <Provider store={store}>
           <Notification />
@@ -304,18 +305,18 @@ const Home = () => {
           </div>
       </section>
       <section className="section-style-home">
-        <ul className="card-container">
+        <Grid container spacing={1}>
           {cards.map((card, index) => (
             <>
-              <li>
+              <Grid item xs={12} md={6} lg={4}>
                 <Card
                   key={index}
                   imagen={card.img}
                 />
-              </li>
+              </Grid>
             </>
           ))}
-        </ul>
+        </Grid>
       </section>
     </>
   );

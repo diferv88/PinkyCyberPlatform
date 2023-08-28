@@ -1,16 +1,21 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import logo from "../../assets/images/logo.svg";
+
 import { Link, NavLink, Outlet } from "react-router-dom";
 import "./header.styles.scss";
-const HeaderComponent = ({ children, links, overview }) => {
+const HeaderComponent = ({ children, links, overview, logo, percent }) => {
   return (
     <header className={`header-container`}>
       <div className="header-container-text">
-        <h1>
-          {children}
-          {overview && <span>:{overview}</span>}
-        </h1>
+        <div className="header-container-text-title">
+          <h1>
+            {children}
+            {overview && <span>:{overview}</span>}
+          </h1>
+          {percent && (
+            <div className={"percent " + ((parseInt(percent) > 80)?"red":"green")}>{percent}%</div>
+          )}
+        </div>
         {Link && (
           <div className="container-links">
             {Object.keys(links).map((key) => (
@@ -26,11 +31,14 @@ const HeaderComponent = ({ children, links, overview }) => {
           </div>
         )}
       </div>
-      <div className="header-container-logo">
-        <Link to="/">
-          <img src={logo} alt="Logo MGRINDER ( MG )" />
-        </Link>
-      </div>
+      {logo && (
+        <div className="header-container-logo">
+          <Link to="/">
+            <img src={logo} alt="Logo MGRINDER ( MG )" />
+          </Link>
+        </div>
+      )}
+      
     </header>
   );
 };
