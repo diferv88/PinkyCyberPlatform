@@ -19,9 +19,6 @@ import IconFlagLow from '../../../../assets/images/flag-low.svg';
 import IconLampCharge from '../../../../assets/images/lamp-charge.svg';
 import IconError from '../../../../assets/images/close-circle.svg';
 import IconAprobal from '../../../../assets/images/tick-circle.svg';
-import IconInfo from '../../../../assets/images/info-circle.svg';
-// import BoxBorderColour from "../../../BoxBorderColour/BoxBorderColour";
-// import BoxFullColour from "../../../BoxFullColour/BoxFullColour";
 import CheckBoxFilter from "./../CheckBoxFilter/CheckBoxFilter";
 import "../TableUserAccounts/TableUserAccounts.styles.scss"
 import { Button, Grid, Icon, Modal } from "@mui/material";
@@ -32,6 +29,7 @@ import {
   Collapse,
 } from "@mui/material";
 import "./TablePartnersAccounts.styles.scss"
+import { useEffect } from "react";
 
 const myModal = {
   position: 'absolute',
@@ -117,33 +115,6 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
     createData('No', "[Possible] Cross-site Request Forgery", "GET", "https://www.website.com//cfdi/index.php", "","Low",),
   ];
   
-  function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-      return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-      return 1;
-    }
-    return 0;
-  }
-  
-  function getComparator(order, orderBy) {
-    return order === 'desc'
-      ? (a, b) => descendingComparator(a, b, orderBy)
-      : (a, b) => -descendingComparator(a, b, orderBy);
-  }
-  
-  function stableSort(array, comparator) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-      const order = comparator(a[0], b[0]);
-      if (order !== 0) {
-        return order;
-      }
-      return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-  }
   
   const headCells = [
     {
@@ -215,6 +186,7 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
     const [modalInfo, setModalInfo] = React.useState([])
     const [openList, setOpenList] = React.useState(false);
     const [dataTableFillter, setDataTableFillter] = React.useState([])
+    const [dataTable, setDataTable] = React.useState(rows)
     const [severityFilter, setSeverityFilter] = React.useState({
       Critical: false,
       High: false,
@@ -227,27 +199,21 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
       setOpenList(!openList);
     }
 
-    const handleOpen = (e,i) => {
-      console.log("set open modal index ==== ", i)
-      console.log("set open modal index ==== ", e)
+    const handleOpen = (i) => {
       setOpen(true)
       setModalInfo(rows[i])
     };
 
-    const handleClose = (e,i) => {
-      console.log("set CLOSE modal index ==== ", i)
+    const handleClose = () => {
       setOpen(false)
     };
 
     const handleChangeCheckBoxFilter = (e) => {
-      console.log(e.target.value)
-      console.log(e.target.checked)
       setSeverityFilter({
         ...severityFilter,
         [e.target.value]: e.target.checked,
       });
       if (e.target.checked) {
-        console.log("seleccionado === ", e.target.value)
         const filterData = rows.filter(item => item.severety == e.target.value);
         setDataTableFillter([
           ...dataTableFillter, ...filterData
@@ -258,9 +224,7 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
       }
     }
 
-    console.log(dataTableFillter)
-
-    const handleClick = (event, name) => {
+    const handleClick = (name) => {
         const selectedIndex = selected.indexOf(name);
         let newSelected = [];
 
@@ -285,6 +249,7 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
 
     const DataListOnboardingContact = (
       <>
@@ -422,8 +387,6 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
         </div>
       </Box>
     )
-
-
     return <>
 
     <Box sx={{ width: '100%' }} className="Table-Accounts-DetailledSR">
@@ -444,10 +407,9 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
             size={dense ? 'small' : 'medium'}>
             <EnhancedTableHead/>
             <TableBody>
-              {dataTableFillter.map((row, index) => {
+              {dataTableFillter.length == 0 ? rows.map((row, index) => {
                 const isItemSelected = isSelected(row.partner);
                 const labelId = `enhanced-table-checkbox-${index}`;
-                console.log('row === ', row)
                 return (
                   <TableRow
                     hover
@@ -524,7 +486,87 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
                     </TableCell>
                   </TableRow>
                 );
-              })}
+              }) :  dataTableFillter.map((row, index) => {
+                const isItemSelected = isSelected(row.partner);
+                const labelId = `enhanced-table-checkbox-${index}`;
+                return (
+                  <TableRow
+                    hover
+                    onClick={(event) => handleClick(event, row.confirmed)}
+                    role="checkbox"
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={index}
+                    selected={isItemSelected}
+                    sx={
+                      row.severety == 'Critical' && row.confirmed == 'Yes' ? 
+                      {borderLeft: '5px solid rgba(234, 56, 41, 1)'} 
+                      : row.severety == 'Critical' && row.confirmed == 'No' ?
+                      {borderLeft: '5px solid rgba(240, 95, 29, 1) '}
+                      : row.severety == 'High' ? 
+                      {borderLeft: '5px solid rgba(246, 133, 17, 1)'} 
+                      : row.severety == 'Medium' ? 
+                      {borderLeft: '5px solid rgba(249, 178, 8, 1)'} 
+                      : {borderLeft:'5px solid rgba(15, 181, 174, 1)'}}
+                  >
+                    <TableCell padding="checkbox">
+                    </TableCell>
+                    <TableCell align="left">
+                      <div style={{display:'flex', alignItems:'center'}}>
+                        <Icon sx={{mr:1}}>
+                          <img src={row.confirmed == 'Yes' ? IconAprobal : IconError} />
+                        </Icon>
+                        {row.confirmed}
+                      </div>
+                    </TableCell>
+                    <TableCell align="left">
+                      <div style={{display:'flex', alignItems:'center'}}>
+                        <Icon sx={{mr: 1}}>
+                          <img 
+                            src={
+                              row.confirmed == 'Yes' && row.severety == 'Critical' ?
+                              IconWarning
+                              : row.confirmed == 'No' && row.severety == 'Critical' ?
+                              IconFlagCriticalN
+                              : row.severety == 'High' ?
+                              IconFlagHigh
+                              : row.severety == 'Medium' ?
+                              IconFlagLow
+                              : IconLampCharge
+                            } width={24} height={24} />
+                        </Icon>
+                        <span onClick={(event) => handleOpen(event,row)} className='span-link'>
+                          <DotStatus status={row.vulnerability}></DotStatus>
+                          {row.vulnerability}
+                        </span>
+                      </div>
+                      <Modal  open={open} onClose={(event) => handleClose(event,row)}>
+                        {bodyModal(row)}
+                      </Modal>   
+                    </TableCell>
+                    <TableCell align="left">
+                    <Button variant="outlined" style={{border: "1px solid #3E4852", color:"black"}} size="small">
+                      {row.Host}
+                    </Button>
+                    </TableCell>
+                    <TableCell align="left" style={{ }}>
+                      {row.Protocol}
+                    </TableCell>
+                    <TableCell align="left">
+                      {row.port !== "" ? (
+                        <Button variant="outlined" style={{width:'98px', border: "1px solid #3E4852", color:"black", fontSize:'12px'}} size="small">
+                          {row.port}
+                        </Button>
+                      ) : (
+                        <>
+                          {row.port}
+                        </>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                );
+              })
+            } 
               {emptyRows > 0 && (
                 <TableRow
                   style={{

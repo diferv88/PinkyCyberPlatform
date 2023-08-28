@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unknown-property */
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
@@ -9,15 +11,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
 // import SearchBar from "material-ui-search-bar";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import Paper from '@mui/material/Paper';
-import HeaderTable from '../HeaderTable/HeaderTable';
-import DotStatus from '../../../dotStatus/DotStatus';
 import './TableUserAccounts.styles.scss'
-import { Button } from '@mui/material';
 
 
 function createData(devices, ipaddress, macaddress, status, issue, detectiondate,recommendation) {
@@ -37,44 +32,12 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
     createData('device-name-010', "192.4.240.232:2048", "192.4.240.232:2048", "Blocked","Threat detected", "2022-02-20 14:30:24", "Learn more"),
   ];
 
-  const riskTypeData = [
-    "Operational",
-    "Legal & compliance",
-    "Reputational",
-  ]
-  const riskImpactData = [
-    "Critical",
-    "High",
-    "Medium",
-    "Low",
-  ]
-  const riskLevelData = [
-    "Assign level"
-  ]
   
   const TableUserAccounts = ()=> {
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    const [searched, setSearched] = React.useState("");
   
-  
-    const [testRt, setTestRt] = React.useState("");
-    const [testRL, setTestRl] = React.useState("");
-    const [testRI, setTestRI] = React.useState("");
-    //Control Select's
-    const handleChangeRT = (event, i) => {
-      rows[i].createdBy = event.target.value;
-      setTestRt(`${event.target.value}${i}`);
-    };
-    const handleChangeRL = (event, i) => {
-      rows[i].rLevel = event.target.value
-      setTestRl(`${event.target.value}${i}`);
-    };
-    const handleChangeRI = (event, i) => {
-      rows[i].rImpact = event.target.value
-      setTestRI(`${event.target.value}${i}`);
-    };
   
     function stableSort(array) {
       const stabilizedThis = array.map((el, index) => [el, index]);
@@ -125,7 +88,7 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
             </TableRow>
           </TableHead>
           <TableBody>
-            {visibleRows.map((row, index) => (
+            {visibleRows.map((row) => (
               <TableRow
                 key={row.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -161,7 +124,7 @@ const ProblemDevices = (props) => {
         <>
             <div className='headtable'>
               <h4 className="title-partner">Problem devices (48)</h4>
-              <span className='cerrar' onClick={(event)=>(props.setModal())}>
+              <span className='cerrar' onClick={()=>(props.setModal())}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M9.16992 14.8299L14.8299 9.16992" stroke="#EA3829" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M14.8299 14.8299L9.16992 9.16992" stroke="#EA3829" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

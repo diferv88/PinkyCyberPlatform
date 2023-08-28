@@ -1,19 +1,15 @@
+import * as React from 'react';
 import HeaderComponent from "../../header/header.component";
 import Card from "../../card/card.component";
-import calendarSVG from "../../../assets/images/arrowLeft.svg";
 import ConectionYellowSvg from '../../../assets/images/conectionYellow.svg'
 import ConectionRedSvg from '../../../assets/images/conectionRed.svg'
 import Ticket from '../../../assets/images/ticket.svg';
-import { Title } from "./title/Title";
-import "./partnerAccount.styles.scss";
-import * as React from 'react';
 import TablePartnerAccounts from "./TablePartnerAccounts/TablePartnerAccounts";
-import TableUserAccounts from "./TableUserAccounts/TableUserAccounts";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import ProblemDevices from "./modal/problemDevices.component";
+import "./partnerAccount.styles.scss";
 
 const style = {
   display: 'block',
@@ -100,7 +96,7 @@ const ScheduledScansIndex =  () => {
     <section>
       <TablePartnerAccounts/>
     </section>
-    <Button type={"btn-danger"} size={"btn-large"} children={"Problem devices"} position={"right"} isOpen={modal} onClick={setModalOpen}/> 
+    <Button type={"btn-danger"} size={"btn-large"} position={"right"} isOpen={modal} onClick={setModalOpen}>Problem devices</Button>
     <Modal
         open={modal}
         onClose={setModalClose}
@@ -111,7 +107,7 @@ const ScheduledScansIndex =  () => {
           <ProblemDevices setModal={setModalClose}/>
         </Box>
       </Modal>
-      <Button type={"btn-danger"} size={"btn-large"} children={"Problem devices"} position={"right"} isOpen={modal} onClick={setModalOpen}/> 
+      <Button type={"btn-danger"} size={"btn-large"} position={"right"} isOpen={modal} onClick={setModalOpen}>Problem devices</Button>
   </>
 
 }
