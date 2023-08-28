@@ -9,6 +9,7 @@ import "./partnerAccount.styles.scss";
 import * as React from 'react';
 import TablePartnerAccounts from "./TablePartnerAccounts/TablePartnerAccounts"
 import TableUserAccounts from "./TableUserAccounts/TableUserAccounts";
+import { Grid } from "@mui/material";
 
 const cards = [
   {
@@ -56,9 +57,9 @@ const PartnerAccountsIndex =  () => {
     {/* Cards secction */}
     <HeaderComponent links={""}>Clients accounts</HeaderComponent>
     <section className="section-style">
-      <ul className="card-container">
+      <Grid container spacing={1} className="card-container">
         {cards.map((card, index) => (
-          <li key={index}>
+          <Grid item xs={12} md={6} lg={3} key={index}>
             <Card
               title={card.title}
               priority={card.priority}
@@ -68,9 +69,9 @@ const PartnerAccountsIndex =  () => {
               status={card.status}
               link={card.link}
             />
-          </li>
+          </Grid>
         ))}
-      </ul>
+      </Grid>
     </section>
         
     {/* Table Partner accounts management seccion */}

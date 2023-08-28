@@ -70,7 +70,9 @@ const ScheduledScansIndex =  () => {
   const setModalOpen = () => {setModal(true)};
   const setModalClose = () => {setModal(false)};
 
-  return<>
+  return (
+  
+  <>
 
     {/* Cards secction */}
     <HeaderComponent links={""}>Scheduled Scans</HeaderComponent>
@@ -109,6 +111,7 @@ const ScheduledScansIndex =  () => {
       </Modal>
       <Button type={"btn-danger"} size={"btn-large"} position={"right"} isOpen={modal} onClick={setModalOpen}>Problem devices</Button>
   </>
+  )
 
 }
 

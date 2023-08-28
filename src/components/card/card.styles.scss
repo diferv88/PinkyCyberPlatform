@@ -1,24 +1,23 @@
 .card-container {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-
+  .MuiGrid-item:not(:first-child) {
+    padding-left: 2.12rem;
+  }
   .card-div-container {
     background: #ffffff;
     border: 1px solid #e1e4e7;
     border-radius: 16px;
-    padding: 16px;
+    padding: 1rem 1.5rem;
     .card-container-text {
       display: flex;
       justify-content: space-between;
       align-items: center;
       h3 {
         font-weight: 700;
-        font-size: 16px;
+        font-size: 1rem;
         margin: 0;
         span {
           font-weight: 400;
-          font-size: 14px;
+          font-size: 0.875rem;
           line-height: 24px;
           color: #a4aeb8;
         }
@@ -37,13 +36,13 @@
       margin-top: 16px;
       margin-bottom: 16px;
       font-weight: 800;
-      font-size: 48px;
+      font-size: 3rem;
       color: #3e4852;
     }
     .card-links {
       p {
         font-weight: 400;
-        font-size: 14px;
+        font-size: 0.875rem;
         line-height: 24px;
         color: #a4aeb8;
         span {
@@ -59,7 +58,7 @@
       .card-div-container {
         .card-container-text {
           h3 {
-            font-size: 14px;
+            font-size: 0.875rem;
             margin: 0;
             span {
               font-weight: 400;
