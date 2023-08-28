@@ -218,8 +218,8 @@ const InventoryList2 = () =>{
                         <div className="newDev">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M6 4C7.67 2.75 9.75 2 12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 10.19 2.47999 8.48999 3.32999 7.01999L12 12" stroke="#3E4852" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M6.82999 8.95999C6.29999 9.84999 6 10.89 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6C11.09 6 10.22 6.20001 9.45001 6.57001" stroke="#3E4852" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6 4C7.67 2.75 9.75 2 12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 10.19 2.47999 8.48999 3.32999 7.01999L12 12" stroke="#3E4852" strokeWidth="2" stroke-miterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M6.82999 8.95999C6.29999 9.84999 6 10.89 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6C11.09 6 10.22 6.20001 9.45001 6.57001" stroke="#3E4852" strokeWidth="2" stroke-miterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </span>
                             <p>New devices: 0</p>
@@ -227,7 +227,7 @@ const InventoryList2 = () =>{
                         <div className="startScan" onClick={handleStartScan}>
                             <span>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4 11.9994V8.43941C4 4.01941 7.13 2.20941 10.96 4.41941L14.05 6.19941L17.14 7.97941C20.97 10.1894 20.97 13.8094 17.14 16.0194L14.05 17.7994L10.96 19.5794C7.13 21.7894 4 19.9794 4 15.5594V11.9994Z" stroke="white" stroke-width="2.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M4 11.9994V8.43941C4 4.01941 7.13 2.20941 10.96 4.41941L14.05 6.19941L17.14 7.97941C20.97 10.1894 20.97 13.8094 17.14 16.0194L14.05 17.7994L10.96 19.5794C7.13 21.7894 4 19.9794 4 15.5594V11.9994Z" stroke="white" strokeWidth="2.5" stroke-miterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </span>
                             <p>Start scan</p>
@@ -274,10 +274,10 @@ const InventoryList2 = () =>{
                                             <TableCell> 
 
                                                     <svg className="options" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M15.9965 12H16.0054" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M11.9955 12H12.0045" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        <path d="M7.99451 12H8.00349" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                                        <path d="M15.9965 12H16.0054" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                                        <path d="M11.9955 12H12.0045" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                                        <path d="M7.99451 12H8.00349" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                                     </svg>
                                                 
                                             </TableCell>
@@ -365,10 +365,10 @@ const InventoryList2 = () =>{
                                 >
                                 <TableCell>
                                     <svg className="options" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M15.9965 12H16.0054" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M11.9955 12H12.0045" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M7.99451 12H8.00349" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M15.9965 12H16.0054" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M11.9955 12H12.0045" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M7.99451 12H8.00349" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
                                 </TableCell>
                                 <TableCell component="th" scope="row">
@@ -500,10 +500,10 @@ const InventoryList2 = () =>{
                                 >
                                 <TableCell>
                                     <svg className="options" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M15.9965 12H16.0054" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M11.9955 12H12.0045" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M7.99451 12H8.00349" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M15.9965 12H16.0054" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M11.9955 12H12.0045" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M7.99451 12H8.00349" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
                                 </TableCell>
                                 <TableCell component="th" scope="row">

@@ -98,7 +98,7 @@ const ScheduledScansIndex =  () => {
     <section>
       <TablePartnerAccounts/>
     </section>
-    <Button type={"btn-danger"} size={"btn-large"} position={"right"} isOpen={modal} onClick={setModalOpen}>Problem devices</Button>
+    <Button type={"btn-danger"} size={"btn-large"} position={"right"} onClick={setModalOpen}>Problem devices</Button>
     <Modal
         open={modal}
         onClose={setModalClose}
@@ -109,7 +109,7 @@ const ScheduledScansIndex =  () => {
           <ProblemDevices setModal={setModalClose}/>
         </Box>
       </Modal>
-      <Button type={"btn-danger"} size={"btn-large"} position={"right"} isOpen={modal} onClick={setModalOpen}>Problem devices</Button>
+      <Button type={"btn-danger"} size={"btn-large"} position={"right"}  onClick={setModalOpen}>Problem devices</Button>
   </>
   )
 

@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unknown-property */
 import "./../partnerAccount.styles.scss";
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
@@ -146,7 +149,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
     }
   ];
   
-  function EnhancedTableHead(props) {
+  function EnhancedTableHead() {
   
     return (
       <TableHead>
@@ -171,8 +174,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
     );
   }
   
-  function EnhancedTableToolbar(props) {
-    const { numSelected } = props;
+  function EnhancedTableToolbar({ numSelected }) {
   
     return (
 
@@ -263,7 +265,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
     );
   }
 
-  const TablePartnerAccount = () => {
+  const TablePartnerAccount = (props) => {
 
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
@@ -276,20 +278,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
     };
    
 
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-    };
 
-    const handleSelectAllClick = (event) => {
-        if (event.target.checked) {
-        const newSelected = rows.map((n) => n.name);
-        setSelected(newSelected);
-        return;
-        }
-        setSelected([]);
-    };
 
     const handleClick = (event, name) => {
         const selectedIndex = selected.indexOf(name);
@@ -353,8 +342,6 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
             <TableBody>
               {visibleRows.map((row, index) => {
                 const isItemSelected = isSelected(row.name);
-                const labelId = `enhanced-table-checkbox-${index}`;
-
                 return (
                   <TableRow
                     hover
@@ -362,7 +349,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.name}
+                    key={index}
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >
@@ -371,10 +358,10 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
                         <div className="box">
                         </div>
                         <svg className="options" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="M15.9965 12H16.0054" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="M11.9955 12H12.0045" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="M7.99451 12H8.00349" stroke="#A4AEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              <path d="M15.9965 12H16.0054" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              <path d="M11.9955 12H12.0045" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              <path d="M7.99451 12H8.00349" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
 
                         </div>
