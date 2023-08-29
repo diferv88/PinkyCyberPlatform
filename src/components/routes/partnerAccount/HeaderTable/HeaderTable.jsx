@@ -10,7 +10,9 @@ const HeaderTable = ({labelButton, linkTo,form}) =>{
           <div className="search-bar">
             
               <button className="gear-button">
-              <FontAwesomeIcon icon={faCog} />
+              <span class="material-symbols-outlined">
+              settings
+              </span>
               </button>
             
             <input type="text" className="input-search" placeholder="Search..."/>
@@ -19,7 +21,6 @@ const HeaderTable = ({labelButton, linkTo,form}) =>{
             <button className="button-add"> &#43; {labelButton}</button>
           </Link>
          </div>
-         <hr />
          </>
 }
 export default HeaderTable;

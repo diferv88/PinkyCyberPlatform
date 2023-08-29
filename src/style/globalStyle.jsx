@@ -19,6 +19,14 @@ li::marker {
   display: none;
 }
 
+.MuiPaper-root {
+  padding: 0.5rem 1.5rem;
+}
+
+.MuiToolbar-root {
+  padding: 0;
+}
+
 html:focus-within {
   scroll-behavior: smooth;
 }
@@ -78,13 +86,13 @@ a {
   color: inherit;
 }
 
-.material-symbols-outlined {
+/*.material-symbols-outlined {
   font-variation-settings:
   'FILL' 1,
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
-}
+}*/
  .server-status {
       position: relative;
       background: #f0f2f3;

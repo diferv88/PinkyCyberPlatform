@@ -56,36 +56,38 @@ const PartnerAccountsIndex =  () => {
 
     {/* Cards secction */}
     <HeaderComponent links={""}>Clients accounts</HeaderComponent>
-    <section className="section-style">
-      <Grid container spacing={1} className="card-container">
-        {cards.map((card, index) => (
-          <Grid item xs={12} md={6} lg={3} key={index}>
-            <Card
-              title={card.title}
-              priority={card.priority}
-              quantity={card.quantity}
-              icon={card.icon}
-              total={card.total}
-              status={card.status}
-              link={card.link}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </section>
-        
-    {/* Table Partner accounts management seccion */}
-    <section>
-      <Title title="Partner accounts management" />
-      <TablePartnerAccounts/>
-    </section>
+    <div className="partner-account">
+      <section className="section-style">
+        <Grid container spacing={1} className="card-container">
+          {cards.map((card, index) => (
+            <Grid item xs={12} md={6} lg={3} key={index}>
+              <Card
+                title={card.title}
+                priority={card.priority}
+                quantity={card.quantity}
+                icon={card.icon}
+                total={card.total}
+                status={card.status}
+                link={card.link}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </section>
+          
+      {/* Table Partner accounts management seccion */}
+      <section>
+        <Title title="Partner accounts management" />
+        <TablePartnerAccounts/>
+      </section>
 
-    {/* Table user accounts management secction*/}
-    <section>
-      <Title title="User accounts management" />
-      <TableUserAccounts/>
+      {/* Table user accounts management secction*/}
+      <section>
+        <Title title="User accounts management" />
+        <TableUserAccounts/>
 
-    </section>
+      </section>
+    </div>
 
   </>
 

@@ -109,6 +109,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #E1E4E7;
 }
 .button-add{
   border-color: #0FB5AE;
@@ -155,7 +157,7 @@
   border-radius: 8px;
   background: #F0F2F3;  
   margin: 10px;
-  padding: 3px;
+  padding: 1rem;
 }
 
 .input-search{
@@ -164,7 +166,8 @@
   background: #FFF;
   color: #3E4852;
   font-family: Sora;
-  font-size: 16px;
+  font-size: 1rem;
+  padding: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */

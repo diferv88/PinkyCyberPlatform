@@ -1,3 +1,11 @@
+.partner-account {
+  .section-style {
+    border-bottom: 0px;
+  }
+  h4 {
+    margin: 1.5rem auto;
+  }
+}
 .form-row {
     display: flex;
     justify-content: flex-start;
@@ -125,12 +133,16 @@
   display: flex;
   align-items: center;
   margin: 20px 0px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  .label-checkbox{
+    font-size: 0.875rem;
+    font-weight: 400;
+    width: 95px;
+  }
 }
 
-.label-checkbox{
-  font-size: small;
-  font-weight: bold;
-}
+
 
 .tableSortLabel{
   font-size: medium;
@@ -152,11 +164,11 @@
 }
 
 .gear-button{
-
+  display: flex;
   border: none;
   background-color: rgb(208, 208, 208);
-  border-radius: 5px;
-  margin: 10px;
+  border-radius: 8px;
+  margin-right: 8px;
 }
 
 .input-search{
