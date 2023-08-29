@@ -12,8 +12,8 @@ const AddPartnerAccount = () => {
 
   return (
     <>
-      <HeaderComponent links={""}>Add {id} accounts</HeaderComponent>
-      <form>
+      <HeaderComponent links={{"":"Pinky.ai", "./Partner-Account":"Partner accounts", "./add-partner-account/":"Add partner account"}}>Add {id} accounts</HeaderComponent>
+      <form className="form-content">
 
         {/* Company information section */}
         <Title title="Company information" />

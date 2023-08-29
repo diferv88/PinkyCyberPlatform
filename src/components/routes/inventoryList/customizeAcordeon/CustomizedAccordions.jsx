@@ -64,7 +64,6 @@ export default function CustomizedAccordions() {
                 <FormGroup label="Website domain"  width="half" />
             </FormRow>
             <h5 className='title-partner'>Physical site location</h5>
-            <hr className='hr-title'/>
             <FormRow>
                 <FormGroup label="Country" width="quarter" />
                 <FormGroup label="Region" width="quarter" />
@@ -76,14 +75,12 @@ export default function CustomizedAccordions() {
                 <FormGroup label="Adress line #2" placeholder="Street, building, appartment"  width="half" />
             </FormRow>
             <h5 className='title-partner'>Associated external IPs</h5>
-            <hr className='hr-title'/>
             <FormRow>
                 <FormGroup label="ssociated external IP #1" width="quarter" />
                 <FormGroup label="ssociated external IP #2"  width="quarter" />
                 <FormGroup label="ssociated external IP #3"  width="quarter" />
                 <FormGroup label="ssociated external IP $4"  width="quarter" />
             </FormRow>
-            <hr />
             <Button>Hola</Button>
         </AccordionDetails>
       </Accordion>

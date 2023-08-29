@@ -56,7 +56,8 @@ export default function CustomizedAccordions() {
     <div>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <span className='span-acordeon'>First site location</span>
+          <div className='span-acordeon'>First site location</div>
+          <div className='htitle'>Str. 31 August 24, Chișinău, Moldova, Republic of</div>
         </AccordionSummary>
         <AccordionDetails>
             <FormRow>
@@ -64,7 +65,6 @@ export default function CustomizedAccordions() {
                 <FormGroup label="Website domain"  width="half" />
             </FormRow>
             <h5 className='title-partner'>Physical site location</h5>
-            <hr className='hr-title'/>
             <FormRow>
                 <FormGroup label="Country" width="quarter" />
                 <FormGroup label="Region" width="quarter" />
@@ -76,14 +76,12 @@ export default function CustomizedAccordions() {
                 <FormGroup label="Adress line #2" placeholder="Street, building, appartment"  width="half" />
             </FormRow>
             <h5 className='title-partner'>Associated external IPs</h5>
-            <hr className='hr-title'/>
             <FormRow>
                 <FormGroup label="ssociated external IP #1" width="quarter" />
                 <FormGroup label="ssociated external IP #2"  width="quarter" />
                 <FormGroup label="ssociated external IP #3"  width="quarter" />
                 <FormGroup label="ssociated external IP $4"  width="quarter" />
             </FormRow>
-            <hr />
             <Button>Hola</Button>
         </AccordionDetails>
       </Accordion>
