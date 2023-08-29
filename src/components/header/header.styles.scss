@@ -37,6 +37,14 @@
       a {
         color: rgba(56, 146, 243, 1);
         text-decoration: underline;
+        &:not(:first-child)::before {
+          content: "/";
+          margin-right: 0.5rem;
+        }
+        &:last-child {
+          color: #A4AEB8;
+          text-decoration: none;
+        }
       }
     }
   }

@@ -55,7 +55,7 @@ const PartnerAccountsIndex =  () => {
   return<>
 
     {/* Cards secction */}
-    <HeaderComponent links={""}>Clients accounts</HeaderComponent>
+    <HeaderComponent links={{"":"Pinky.ai", "./Partner-Account":"Partner accounts"}}>Clients accounts</HeaderComponent>
     <div className="partner-account">
       <section className="section-style">
         <Grid container spacing={1} className="card-container">

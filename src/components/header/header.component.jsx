@@ -20,12 +20,9 @@ const HeaderComponent = ({ children, links, overview, logo, percent }) => {
           <div className="container-links">
             {Object.keys(links).map((key) => (
               <>
-                <span>
-                  /{" "}
-                  <Link key={key} to={links[key]}>
-                    {links[key].replace("", "")}
-                  </Link>
-                </span>
+                <Link key={links[key]} to={"../" + key}>
+                  {links[key].replace("", "")}
+                </Link>
               </>
             ))}
           </div>
