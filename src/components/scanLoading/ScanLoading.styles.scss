@@ -2,9 +2,8 @@
   display: flex;
   padding: 16px 8px 8px;
   height: 45rem;
-  width: 50rem;
+  width: 100%;
   position: relative;
-    overflow: hidden;
   // margin: auto;
   @keyframes rotate {from {transform: rotate(0deg);}
     to {transform: rotate(360deg);}}
@@ -24,8 +23,57 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
+    top: 50%;
+    left: 50%;
     bottom: 0;
+    transition: transform 3s; 
+    transform: translate(-50%, -50%);
+    max-width: 960px;
+    img, svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      
+      &.img1 {
+        width: 60%;
+        animation: infinite resplandorAnimation3 5s;
+      }
+      &.img2 {
+        width: 75%;
+        animation: infinite resplandorAnimation2 5s;
+      }
+      &.img3 {
+        width: 100%;
+        animation: infinite resplandorAnimation 5s;
+      }
+    }
+    
+  }
+
+  @keyframes resplandorAnimation {
+    0%,100%{
+      transform: scale(1) translate(-50%, -50%);
+    }
+    50%{
+      transform: scale(0.96) translate(-50%, -50%);
+    }
+  }
+  @keyframes resplandorAnimation2 {
+    0%,100%{
+      transform: scale(1) translate(-50%, -50%);
+    }
+    50%{
+      transform: scale(0.94) translate(-50%, -50%);
+    }
+  }
+  @keyframes resplandorAnimation3 {
+    0%,100%{
+      transform: scale(1) translate(-50%, -50%);
+    }
+    50%{
+      transform: scale(0.9) translate(-50%, -50%);
+    }
   }
 
   & .container-general-overview {
