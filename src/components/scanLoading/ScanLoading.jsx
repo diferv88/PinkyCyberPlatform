@@ -50,7 +50,7 @@ const ScanLoading = ({title, titleScan, bodyText, styleText,redirectNavigate}) =
   }, [progress]);
 
   if (progress >= 100) {
-    //return <Navigate to={redirectNavigate} />
+    return <Navigate to={redirectNavigate} />
   }
 
   return (
