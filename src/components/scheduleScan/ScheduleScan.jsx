@@ -348,7 +348,7 @@ const ScheduleScan = ({
 
   return (
     <>
-      <HeaderComponent links={""}>{onboarding || onboardingContact || onboardingComplete ? "Onboarding" : "Schedule Scan"}</HeaderComponent>
+      <HeaderComponent links={{"":"Pinky.ai", "./Schedule-Scan-Assets":"Scheduled Scans"}}>{onboarding || onboardingContact || onboardingComplete ? "Onboarding" : "Schedule Scan"}</HeaderComponent>
       <div className="FormContent">
       <section className={onboarding || onboardingContact || onboardingComplete ? "container-onboarding" : "container-schedule"}>
 
@@ -361,7 +361,7 @@ const ScheduleScan = ({
             {onboardingComplete ? (
                 <img src={IconCheck} style={{width:"40px"}} alt="IconCheck" />
             ) : ""}
-            <p>{onboarding ? "Review company details" : title}</p>
+            <h3 className="schedule-title">{onboarding ? "Review company details" : title}</h3>
           </div>
             {onboardingComplete ? (
               <div className="textOnboardingComplete">
@@ -386,7 +386,7 @@ const ScheduleScan = ({
             </>)}
             {onboarding ? (
               <>
-                <p>Company details</p>
+                <h4 className="schedule-title">Company details</h4>
                 <div className="containerTextField">
                   <TextField
                     disabled
@@ -425,7 +425,7 @@ const ScheduleScan = ({
               </>
             ) : onboardingContact ? (
               <>
-                <p style={{marginBottom: "0px",}}>Company primary contact</p>
+                <h4 className="schedule-title" style={{marginBottom: "0px",}}>Company primary contact</h4>
                 <FormLabel disabled component="legend" sx={{marginBottom: 2}}>Responsible for payment, legal and other questions</FormLabel>
                 <div className="containerTextField">
                   <FormControl>
@@ -483,7 +483,7 @@ const ScheduleScan = ({
                     />
                   </FormControl>
                 </div>
-                <p style={{marginBottom: "0px",}}>Company secondary contact</p>
+                <h4 className="schedule-title" style={{marginBottom: "0px",}}>Company secondary contact</h4>
                 <FormLabel disabled component="legend" sx={{marginBottom: 2}}>Responsible for cybersecurity</FormLabel>
                 <div className="containerTextField">
                   <FormControl>
@@ -541,7 +541,7 @@ const ScheduleScan = ({
                     />
                   </FormControl>
                 </div>
-                <p style={{marginBottom: "0px",}}>Name and locations of company sites</p>
+                <h4 className="schedule-title" style={{marginBottom: "0px",}}>Name and locations of company sites</h4>
                 <div>
                   {DataListOnboardingContact}
                 </div>
@@ -549,7 +549,7 @@ const ScheduleScan = ({
               </>
             ) : onboardingComplete ? (<></>) : (
               <div style={{marginTop: "3rem", marginBottom:"3rem"}}>
-                <p>Schedule scan</p>
+                <h4 className="schedule-title">Schedule scan</h4>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer components={['DatePicker','DatePicker','DatePicker','TimePicker']}>
                     <Stack direction="row">
@@ -573,7 +573,7 @@ const ScheduleScan = ({
             {/* </div> */}
           {onboarding ? (
             <>
-              <p>Company address</p>
+              <h4 className="schedule-title">Company address</h4>
               <div className="containerTextFieldCampanyA">
                 <TextField
                   disabled
@@ -623,7 +623,7 @@ const ScheduleScan = ({
                 />
               </div>
               <div style={{marginTop: "3rem", marginBottom:"3rem"}}>       
-                <p>Billing address</p>
+                <h4 className="schedule-title">Billing address</h4>
                 <br />
                 <CheckBox label="Billing address is the same as company address." onChange={checkedOptions3} checked={optionChecked3}/>
               </div>
@@ -631,7 +631,7 @@ const ScheduleScan = ({
           ) : (
             <>
               <div style={disclaimer ? {marginTop: "3rem", marginBottom:"3rem", paddingRight:"1rem"}: {display:"none"}}>
-                <p>Disclaimer</p>
+                <h4 className="schedule-title">Disclaimer</h4>
                 {/* <p style={{fontWeight:"400", textAlign: "justify"}}>Please accept permission request to map the network and make sure all your devices are working and are connected to the network. It will take up 24h to complete the scan. Meanwhile, please read more on <Link1 >Assets Inventory</Link1>. Thank you for patience!</p> */}
                 <p style={{fontWeight:"400", textAlign: "justify"}}>{disclaimer}</p>
               </div>
@@ -640,7 +640,7 @@ const ScheduleScan = ({
           {onboardingComplete ? (<></>) : (
             <>
             <div style={{marginTop: "3rem", marginBottom:"3rem"}}>       
-              <p>Consent</p>
+              <h4 className="schedule-title">Consent</h4>
               <br />
               <CheckBox label={onboarding ?
                 "I have read and agreed that all data entered, including my personal data will be processed and stored on Pinky CyberSafe® Platform in conformity with the GDPR Policy." 
@@ -656,7 +656,7 @@ const ScheduleScan = ({
                 condiocionalChecked2} onChange={checkedOptions2} checked={optionChecked2}/>
               )}
             </div>
-            <div style={{display: "flex", alignItems:"center", justifyContent: "space-around", marginTop: "3rem", marginBottom: "2rem"}}>
+            <div style={{display: "flex", alignItems:"center", marginTop: "3rem", marginBottom: "2rem", gap: "1rem"}}>
               <div className="button-grup-OnboardingContact">
                 <Link to={title === "Assets discovery / inventory" ? "/Assets-Discovery" : title === "Vulnerability assessment" ? "/Vulnerability-Assessment" : onboarding ? "/onboarding-contact" : title === "Review contact and site location details" ? "/onboarding-complete" : "/"}>
                   <Button 

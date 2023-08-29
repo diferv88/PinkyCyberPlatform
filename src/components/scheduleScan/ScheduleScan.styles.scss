@@ -11,24 +11,37 @@
 .container-schedule {
   background: #ffffff;
   border: 1px solid #e1e4e7;
-  border-radius: 16px;
+  border-radius: 1.5rem;
   display: flex;
-  padding: 2% 3%;
-  width: 784px;
-  height: auto !important;
+  padding: 2.5rem 4rem;
+  width: 100%;
+  max-width: 784px;
 
   .MuiTextField-root {
     width: 100%;
+  }
+  .MuiStack-root {
+    :not(:first-child) {
+      padding-left: 0.5rem;
+    }
+  }
+
+  .schedule-title {
+    color: #3E4852;
+  }
+
+  h3.schedule-title {
+    font-size: 1.25rem;
+  }
+  h4.schedule-title {
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #E1E4E7;
   }
 
   .MuiStack-root.css-m69qwo-MuiStack-root {
     display: flex;
     padding-left: 0px;
-  }
-  .MuiFormControl-root.MuiTextField-root.css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
-    display: flex;
-    margin-top: 0px;
-    width: 10rem;
   }
   p.MuiTypography-root.MuiTypography-body2.css-e784if-MuiTypography-root {
     color: #A4AEB8;
@@ -45,7 +58,6 @@
   }
   div {
     display: block;
-    padding-left: 8px;
     p {
       color: #3E4852;
       font-family: Sora;

@@ -1,10 +1,11 @@
 .container-schedule {
   background: #ffffff;
   border: 1px solid #e1e4e7;
-  border-radius: 16px;
+  border-radius: 1.5rem;
   display: flex;
-  padding: 16px 8px 8px;
-  width: 784px;
+  padding: 2.5rem 4rem;
+  width: 100%;
+  max-width: 784px;
   // @media only screen and (max-width: 55em) {
   //   & {
   //     display: flex;
@@ -47,11 +48,6 @@
     display: flex;
     padding-left: 0px;
 }
-  .MuiFormControl-root.MuiTextField-root.css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
-    display: flex;
-    margin-top: 0px;
-    width: 10rem;
-  }
   p.MuiTypography-root.MuiTypography-body2.css-e784if-MuiTypography-root {
     color: #A4AEB8;
     font-weight: 400;
@@ -67,7 +63,6 @@
   }
   div {
     display: block;
-    padding-left: 8px;
     p {
       color: #3E4852;
       font-family: Sora;

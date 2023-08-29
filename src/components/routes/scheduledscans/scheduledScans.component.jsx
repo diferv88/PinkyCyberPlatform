@@ -75,7 +75,7 @@ const ScheduledScansIndex =  () => {
   <>
 
     {/* Cards secction */}
-    <HeaderComponent links={""}>Scheduled Scans</HeaderComponent>
+    <HeaderComponent links={{"":"Pinky.ai", "./Schedule-Scan-Assets":"Scheduled Scans"}}>Scheduled Scans</HeaderComponent>
     <section className="section-style">
       <ul className="card-container">
         {cards.map((card, index) => (
