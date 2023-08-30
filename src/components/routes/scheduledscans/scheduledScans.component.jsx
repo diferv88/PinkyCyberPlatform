@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import ProblemDevices from "./modal/problemDevices.component";
 import "./partnerAccount.styles.scss";
+import { Grid } from '@mui/material';
 
 const style = {
   display: 'block',
@@ -77,9 +78,9 @@ const ScheduledScansIndex =  () => {
     {/* Cards secction */}
     <HeaderComponent links={{"":"Pinky.ai", "./Schedule-Scan-Assets":"Scheduled Scans"}}>Scheduled Scans</HeaderComponent>
     <section className="section-style">
-      <ul className="card-container">
+      <Grid container spacing={1} className="card-container">
         {cards.map((card, index) => (
-          <li key={index}>
+          <Grid item xs={12} md={6} lg={3}>
             <Card
               title={card.title}
               priority={card.priority}
@@ -89,9 +90,9 @@ const ScheduledScansIndex =  () => {
               status={card.status}
               link={card.link}
             />
-          </li>
+          </Grid>
         ))}
-      </ul>
+      </Grid>
     </section>
         
     {/* Table Partner accounts management seccion */}

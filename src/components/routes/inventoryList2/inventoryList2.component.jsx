@@ -19,7 +19,7 @@ import TablePagination from '@mui/material/TablePagination';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import DotStatus from '../../dotStatus/DotStatus';
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -189,9 +189,9 @@ const InventoryList2 = () =>{
         
         <HeaderComponent links={""}>Inventory List</HeaderComponent>
         <section className="section-style">
-            <ul className="card-container">
+            <Grid container spacing={1} className="card-container">
                 {cards.map((card, index) => (
-                    <li key={index}>
+                    <Grid item xs={12} md={6} lg={3}>
                         <Card
                             title={card.title}
                             priority={card.priority}
@@ -200,9 +200,9 @@ const InventoryList2 = () =>{
                             total={card.total}
                             status={card.status}
                             link={card.link} />
-                    </li>
+                    </Grid>
                 ))}
-            </ul>
+            </Grid>
         </section>
         <section className="commandPrompt">
             <h4 className="title-partner">Scaning command prompt</h4>

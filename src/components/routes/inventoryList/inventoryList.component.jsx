@@ -15,6 +15,7 @@ import { Title } from "./title/Title";
 import "./inventoryList.styles.scss";
 import TablePartnerAccounts from "./TablePartnerAccounts/TablePartnerAccounts"
 import TableUserAccounts from "./TableUserAccounts/TableUserAccounts";
+import { Grid } from '@mui/material';
 
 const cards = [
   {
@@ -79,12 +80,12 @@ const InventoryList =  () => {
     {/* Cards secction */}
     <HeaderComponent links={""}>Inventory list</HeaderComponent>
     <section className="section-style cards">
-    <Link to={"/"} > 
-      <button onClick={RedirectClick}>test</button>
-    </Link>
-      <ul className="card-container">
+      <Link to={"/"} > 
+        <button onClick={RedirectClick}>test</button>
+      </Link>
+      <Grid container spacing={1} className="card-container">
         {cards.map((card, index) => (
-          <li key={index}>
+          <Grid item xs={12} md={6} lg={3}>
             <Card
               title={card.title}
               priority={card.priority}
@@ -94,9 +95,9 @@ const InventoryList =  () => {
               status={card.status}
               link={card.link}
             />
-          </li>
+          </Grid>
         ))}
-      </ul>
+      </Grid>
     </section>
     <section className="section-style graph">
       <ul className="card-container">
