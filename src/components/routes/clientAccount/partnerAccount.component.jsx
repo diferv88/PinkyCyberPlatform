@@ -9,7 +9,7 @@ const ClientAccount = () => {
 
     return (
         <>
-          <UserRoll rollUser={"Client accounts"} userAccount={false} subtitle={"Client accounts management"} terminateUrl={"Client accounts"}/>
+          <UserRoll rollUser={"Client accounts"} userAccount={false} subtitle={"Client accounts management"} terminateUrl={"Client accounts"}  buttondAddUser={"Add client account"}/>
         </>
       );
 };

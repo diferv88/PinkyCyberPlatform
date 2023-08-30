@@ -156,7 +156,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
   }
   
   function EnhancedTableToolbar(props) {
-    const { numSelected, handleChange } = props;  
+    const { numSelected, handleChange, buttondAddUser } = props;  
     return (
       <Toolbar
         sx={{
@@ -184,7 +184,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
             id="tableTitle"
             component="div"
           >
-           <HeaderTable labelButton="Add partner accounts" linkTo="/add-partner-account" form="partner"/>
+           <HeaderTable labelButton={buttondAddUser} linkTo="/add-partner-account" form="partner"/>
            <div className="checkBoxs-div">
             <label className="label-checkbox">Connecting status filter:</label>
             <CheckBoxFilter onChange={handleChange} label="Online" htmlfor='Online'></CheckBoxFilter>
@@ -220,7 +220,9 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
     );
   }
 
-  const TablePartnerAccount = () => {
+  const TablePartnerAccount = (props) => {
+
+    const{buttondAddUser} = props;
 
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
@@ -332,7 +334,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
 
 <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar handleChange={handleChangeCheckBoxFilter}/>
+        <EnhancedTableToolbar handleChange={handleChangeCheckBoxFilter} buttondAddUser={buttondAddUser} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
