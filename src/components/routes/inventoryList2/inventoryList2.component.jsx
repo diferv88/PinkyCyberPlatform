@@ -74,17 +74,17 @@ function createDataExternal(newButton,deviceName, physicalSite,type, os, ipAddre
   }
   
   const rowsExternal = [
-    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048","Critical","Assign level"),
-    createDataExternal('New', 'device-name-002', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "High","Assign level"),
-    createDataExternal('New', 'device-name-003', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Assign level"),
-    createDataExternal('New', 'device-name-004', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Low","Assign level"),
-    createDataExternal('New', 'device-name-005', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Assign level"),
-    createDataExternal('New', 'device-name-006', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Low","Assign level"),
-    createDataExternal('New', 'device-name-007', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Critical","Assign level"),
-    createDataExternal('New', 'device-name-008', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Assign level"),
-    createDataExternal('New', 'device-name-009', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "High","Assign level"),
-    createDataExternal('New', 'device-name-0010', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Assign level"),
-    createDataExternal('New', 'device-name-0011', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Low","Assign level"),
+    createDataExternal('New', 'device-name-001', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048","Critical","Operational"),
+    createDataExternal('New', 'device-name-002', "Placeholder", "Laptop", "Windows","192.4.240.232:2048", "192.4.240.232:2048", "High","Legal & compliance"),
+    createDataExternal('New', 'device-name-003', "Placeholder", "Laptop", "Windows","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Reputational"),
+    createDataExternal('New', 'device-name-004', "Placeholder", "Laptop", "Windows","192.4.240.232:2048", "192.4.240.232:2048", "Low","Reputational"),
+    createDataExternal('New', 'device-name-005', "Placeholder", "Phone", "iOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Reputational"),
+    createDataExternal('New', 'device-name-006', "Placeholder", "Server", "Linux","192.4.240.232:2048", "192.4.240.232:2048", "Low","Legal & compliance"),
+    createDataExternal('New', 'device-name-007', "Placeholder", "Server", "Linux","192.4.240.232:2048", "192.4.240.232:2048", "Critical","Reputational"),
+    createDataExternal('New', 'device-name-008', "Placeholder", "Phone", "iOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Operational"),
+    createDataExternal('New', 'device-name-009', "Placeholder", "Tablet", "iOS","192.4.240.232:2048", "192.4.240.232:2048", "High","Legal & compliance"),
+    createDataExternal('New', 'device-name-0010', "Placeholder", "Tablet", "iOS","192.4.240.232:2048", "192.4.240.232:2048", "Medium","Legal & compliance"),
+    createDataExternal('New', 'device-name-0011', "Placeholder", "Laptop", "MacOS","192.4.240.232:2048", "192.4.240.232:2048", "Low","Operational"),
   ];
 const dataPrompt = [
     createDataPrompt("0","Starting Nmap 7.60 (https: //nmap.org ) at 2019-06-28 10:57 EDT"),
@@ -132,6 +132,19 @@ const riskTypeData = [
   const riskLevelData = [
     "Assign level"
   ]
+
+  const type =[
+    "Laptop",
+    "Phone",
+    "Server",
+    "Tablet"
+]
+const os =[
+    "MacOS",
+    "Windows",
+    "iOS",
+    "Linux"
+]
   const opciones =[{label: "Fast"},
   {label: "Deep"},
   {label: "Ultra"}
@@ -145,8 +158,81 @@ const InventoryList2 = () =>{
   const [testRt, setTestRt] = React.useState("");
   const [testRL, setTestRl] = React.useState("");
   const [testRI, setTestRI] = React.useState("");
-  //Control Select's
+
+  const [searchError, setSearchError] = React.useState("");
+  const [filtroError,setFiltroError] = React.useState(errorRows);
+
+  const handleFilterError = () => {
+    const filteredData = errorRows.filter(dato => {
+      const matchSearch = searchError === "" ? true : dato.errorType.toLowerCase().includes(searchError.toLowerCase());
+      return matchSearch;
+    });
   
+    setFiltroError(filteredData);
+  };
+  React.useEffect(() => {
+    handleFilterError();
+  }, [searchError]);
+
+  const [typeDevice, setTypeDevice] = React.useState("");
+  const [osType, setOsType] = React.useState("");
+  const [riskType, setRiskType] = React.useState("");
+  const [riskImpact, setRiskImpact] = React.useState("");
+  const [filtroExternal,setFiltroExternal] = React.useState(rowsExternal);
+  const [searchExternal, setSearchExternal] = React.useState("");
+  
+  const handleFilterExternal = () => {
+    const filteredData = rowsExternal.filter(dato => {
+      const matchTypeDevice = typeDevice === undefined ? true : dato.type.toLowerCase().includes(typeDevice.toLowerCase());
+      const matchOsType = osType === undefined ? true : dato.os.toLowerCase().includes(osType.toLowerCase());
+      const matchRiskType = riskType === undefined ? true : dato.rLevel.toLowerCase().includes(riskType.toLowerCase());
+      const matchRiskImpact = riskImpact === undefined ? true : dato.rImpact.toLowerCase().includes(riskImpact.toLowerCase());
+      const matchSearchExternal = searchExternal === "" ? true : dato.deviceName.toLowerCase().includes(searchExternal.toLowerCase());
+      return matchTypeDevice && matchOsType && matchRiskType && matchRiskImpact && matchSearchExternal;
+    });
+  
+    setFiltroExternal(filteredData);
+  };
+  React.useEffect(() => {
+    handleFilterExternal();
+  }, [typeDevice, osType, riskType, riskImpact, searchExternal]);
+
+  const handleClearFiltersExternal = () => {
+    setTypeDevice("");
+    setOsType("");
+    setRiskType("");
+    setRiskImpact("");
+  };
+
+  const [typeDevice2, setTypeDevice2] = React.useState("");
+  const [osType2, setOsType2] = React.useState("");
+  const [riskType2, setRiskType2] = React.useState("");
+  const [riskImpact2, setRiskImpact2] = React.useState("");
+  const [filtroInternal,setFiltroInternal] = React.useState(rowsExternal);
+  const [searchInternal, setSearchInternal] = React.useState("");
+  
+  const handleFilterInternal = () => {
+    const filteredData = rowsExternal.filter(dato => {
+      const matchTypeDevice = typeDevice2 === undefined ? true : dato.type.toLowerCase().includes(typeDevice2.toLowerCase());
+      const matchOsType = osType2 === undefined ? true : dato.os.toLowerCase().includes(osType2.toLowerCase());
+      const matchRiskType = riskType2 === undefined ? true : dato.rLevel.toLowerCase().includes(riskType2.toLowerCase());
+      const matchRiskImpact = riskImpact2 === undefined ? true : dato.rImpact.toLowerCase().includes(riskImpact2.toLowerCase());
+      const matchSearchExternal = searchInternal === "" ? true : dato.deviceName.toLowerCase().includes(searchInternal.toLowerCase());
+      return matchTypeDevice && matchOsType && matchRiskType && matchRiskImpact && matchSearchExternal;
+    });
+  
+    setFiltroInternal(filteredData);
+  };
+  React.useEffect(() => {
+    handleFilterInternal();
+  }, [typeDevice2, osType2, riskType2, riskImpact2, searchInternal]);
+
+  const handleClearFiltersInternal = () => {
+    setTypeDevice2("");
+    setOsType2("");
+    setRiskType2("");
+    setRiskImpact2("");
+  };
 
   function stableSort(array) {
     const stabilizedThis = array.map((el, index) => [el, index]);
@@ -190,7 +276,7 @@ const InventoryList2 = () =>{
         <HeaderComponent links={""}>Inventory List</HeaderComponent>
         <section className="section-style">
             <Grid container spacing={1} className="card-container">
-                {cards.map((card, index) => (
+                {startScan ? cards.map((card, index) => (
                     <Grid item xs={12} md={6} lg={3}>
                         <Card
                             title={card.title}
@@ -201,7 +287,8 @@ const InventoryList2 = () =>{
                             status={card.status}
                             link={card.link} />
                     </Grid>
-                ))}
+                )):null}
+                
             </Grid>
         </section>
         <section className="commandPrompt">
@@ -222,7 +309,7 @@ const InventoryList2 = () =>{
                                     <path d="M6.82999 8.95999C6.29999 9.84999 6 10.89 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6C11.09 6 10.22 6.20001 9.45001 6.57001" stroke="#3E4852" strokeWidth="2" stroke-miterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </span>
-                            <p>New devices: 0</p>
+                            <p>New devices: 4</p>
                         </div>
                         <div className="startScan" onClick={handleStartScan}>
                             <span>
@@ -251,7 +338,7 @@ const InventoryList2 = () =>{
                             <button className="gear-button">
                                 <FontAwesomeIcon icon={faCog} />
                             </button>
-                            <input type="text" className="input-search" placeholder="Search..."/>
+                            <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearchError(event.target.value)}}/>
                         </div>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
@@ -265,13 +352,11 @@ const InventoryList2 = () =>{
                                 </TableRow>
                             </TableHead>
                             {startScan ? <TableBody>
-                                {errorRows.map((rows)=>{
+                                {filtroError.map((rows,index)=>{
                                     return(
-                                        <TableRow style={{borderLeft:"3px solid #ea3829"}} key={rows.errorType}>
+                                        <TableRow style={{borderLeft:"3px solid #ea3829"}} key={index}>
+                                            
                                             <TableCell style={{borderLeftColor: "#ea3829", borderLeft:"2px"}}> 
-                                                
-                                            </TableCell>
-                                            <TableCell> 
 
                                                     <svg className="options" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#A4AEB8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -301,7 +386,7 @@ const InventoryList2 = () =>{
                             <button className="gear-button">
                                 <FontAwesomeIcon icon={faCog} />
                             </button>
-                            <input type="text" className="input-search" placeholder="Search..."/>
+                            <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearchExternal(event.target.value)}}/>
                         </div>
 
                         <div className="text-auto">
@@ -309,32 +394,40 @@ const InventoryList2 = () =>{
                             <Autocomplete
                             disablePortal
                             id="combo-box-demo"
-                            options={opciones}
+                            options={type}
+                            value={typeDevice}
+                            onChange={(event)=>{setTypeDevice(event.target.outerText)}}
                             sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Type of scan" />}
+                            renderInput={(params) => <TextField {...params} label="Type" />}
                             />
                             <Autocomplete
                             disablePortal
                             id="type-of-scan"
-                            options={opciones}
+                            options={os}
+                            value={osType}
+                            onChange={(event)=>{setOsType(event.target.outerText)}}
                             sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Last scan" />}
+                            renderInput={(params) => <TextField {...params} label="Os" />}
                             />
                             <Autocomplete
                             disablePortal
                             id="last-scan"
-                            options={opciones}
+                            options={riskTypeData}
+                            value={riskType}
+                            onChange={(event)=>{setRiskType(event.target.outerText)}}
                             sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Next scan" />}
+                            renderInput={(params) => <TextField {...params} label="Risk type" />}
                             />
                             <Autocomplete
                             disablePortal
                             id="combo-box-demo"
-                            options={opciones}
+                            options={riskImpactData}
+                            value={riskImpact}
+                            onChange={(event)=>{setRiskImpact(event.target.outerText)}}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Risk impact" />}
                             />
-                            <div className="label">
+                            <div className="label" onClick={handleClearFiltersExternal}>
                             <div className="textWrapper">Clear all</div>
                             </div>
                         </div> 
@@ -358,7 +451,7 @@ const InventoryList2 = () =>{
                             </TableRow>
                             </TableHead>
                             {startScan ? <TableBody>
-                            {visibleRows.map((row, index) => (
+                            {filtroExternal.map((row, index) => (
                                 <TableRow
                                 key={row.deviceName}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -382,21 +475,11 @@ const InventoryList2 = () =>{
                                 <TableCell align="left">{row.physicalSite}</TableCell>
                                 <TableCell align="left">{row.type}</TableCell>
                                 <TableCell align="left">{row.os}</TableCell>
-                                <TableCell align="left"><span className='span-link'>{row.ipAddress}</span></TableCell>
+                                <TableCell align="left">{row.ipAddress}</TableCell>
                                 <TableCell align="left">{row.macAddress}</TableCell>
                                 <TableCell align="left">
-                                    <Select
-                                        value={row.rLevel}
-                                        onChange={e => handleChangeRL(e,index)}
-                                        autoWidth
-                                        style={{backgroundColor: "rgba(240, 242, 243, 1)", fontWeight: 700, fontSize: "14px", fontFamily: "Sora"}}
-                                    >
-                                        {riskLevelData.map((rLevel, i) => (
-                                            <MenuItem key={i} value={rLevel}>
-                                            {rLevel}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
+                                    <span className='riskType'>{row.rLevel}</span>
+                                        
                                 </TableCell>
                                 <TableCell align="left">
                                     <Select
@@ -436,40 +519,48 @@ const InventoryList2 = () =>{
                             <button className="gear-button">
                                 <FontAwesomeIcon icon={faCog} />
                             </button>
-                            <input type="text" className="input-search" placeholder="Search..."/>
+                            <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearchInternal(event.target.value)}}/>
                         </div>
 
                         <div className="text-auto">
 
                             <Autocomplete
                             disablePortal
-                            id="combo-box-demo"
-                            options={opciones}
+                            id="typeDevice2"
+                            options={type}
+                            value={typeDevice2}
+                            onChange={(event)=>{setTypeDevice2(event.target.outerText)}}
                             sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Type of scan" />}
+                            renderInput={(params) => <TextField {...params} label="Type" />}
                             />
                             <Autocomplete
                             disablePortal
-                            id="type-of-scan"
-                            options={opciones}
+                            id="type-of-scan2"
+                            options={os}
+                            value={osType2}
+                            onChange={(event)=>{setOsType2(event.target.outerText)}}
                             sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Last scan" />}
+                            renderInput={(params) => <TextField {...params} label="Os" />}
                             />
                             <Autocomplete
                             disablePortal
-                            id="last-scan"
-                            options={opciones}
+                            id="last-scan2"
+                            options={riskTypeData}
+                            value={riskType2}
+                            onChange={(event)=>{setRiskType2(event.target.outerText)}}
                             sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Next scan" />}
+                            renderInput={(params) => <TextField {...params} label="Risk type" />}
                             />
                             <Autocomplete
                             disablePortal
-                            id="combo-box-demo"
-                            options={opciones}
+                            id="combo-box-demo2"
+                            options={riskImpactData}
+                            value={riskImpact2}
+                            onChange={(event)=>{setRiskImpact2(event.target.outerText)}}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Risk impact" />}
                             />
-                            <div className="label">
+                            <div className="label" onClick={handleClearFiltersInternal}>
                             <div className="textWrapper">Clear all</div>
                             </div>
                         </div> 
@@ -493,7 +584,7 @@ const InventoryList2 = () =>{
                             </TableRow>
                             </TableHead>
                             {startScan ? <TableBody>
-                            {visibleRows.map((row, index) => (
+                            {filtroInternal.map((row, index) => (
                                 <TableRow
                                 key={row.deviceName}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -517,21 +608,11 @@ const InventoryList2 = () =>{
                                 <TableCell align="left">{row.physicalSite}</TableCell>
                                 <TableCell align="left">{row.type}</TableCell>
                                 <TableCell align="left">{row.os}</TableCell>
-                                <TableCell align="left"><span className='span-link'>{row.ipAddress}</span></TableCell>
+                                <TableCell align="left">{row.ipAddress}</TableCell>
                                 <TableCell align="left">{row.macAddress}</TableCell>
                                 <TableCell align="left">
-                                    <Select
-                                        value={row.rLevel}
-                                        onChange={e => handleChangeRL(e,index)}
-                                        autoWidth
-                                        style={{backgroundColor: "rgba(240, 242, 243, 1)", fontWeight: 700, fontSize: "14px", fontFamily: "Sora"}}
-                                    >
-                                        {riskLevelData.map((rLevel, i) => (
-                                            <MenuItem key={i} value={rLevel}>
-                                            {rLevel}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
+                                    {row.rLevel}
+                                        
                                 </TableCell>
                                 <TableCell align="left">
                                     <Select
