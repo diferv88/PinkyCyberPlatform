@@ -1,7 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from 'react'
 import './VrificationCode.styles.scss'
-import FormGroup from '../routes/partnerAccount/formGroup/FormGroup'
-import FormRow from '../routes/partnerAccount/formRow/FormRow'
+import FormGroup from '../pageUsers/formGroup/FormGroup'
+import FormRow from '../pageUsers/formRow/FormRow'
 const VerificationCode = ({method, onChange, inputClassName}) => {
 
   return <>

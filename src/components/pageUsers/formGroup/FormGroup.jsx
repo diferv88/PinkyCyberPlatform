@@ -1,5 +1,5 @@
-import '../partnerAccount.styles.scss'
-import ShowPasswordIcon from '../../../../assets/images/showPasswordIcon.svg'
+import "./../userRoll.styles.scss";
+import ShowPasswordIcon from '../../../assets/images/showPasswordIcon.svg'
 import { useState } from 'react';
 const FormGroup = ({ label, placeholder, width, type, value, onChange, login, inputClassName  }) => {
   const [inputType, setInputType] = useState(type);

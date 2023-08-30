@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import HeaderTable from '../HeaderTable/HeaderTable';
-import DotStatus from '../../../dotStatus/DotStatus';
+import DotStatus from '../../dotStatus/DotStatus';
 import './TableUserAccounts.styles.scss'
 function createData(user, connectivity,status, role, email, issues,created,createdBy) {
   return { user, connectivity, status, role, email,issues ,created,createdBy};

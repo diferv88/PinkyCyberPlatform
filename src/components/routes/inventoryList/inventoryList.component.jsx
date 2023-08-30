@@ -85,7 +85,7 @@ const InventoryList =  () => {
       </Link>
       <Grid container spacing={1} className="card-container">
         {cards.map((card, index) => (
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid key={index} item xs={12} md={6} lg={3}>
             <Card
               title={card.title}
               priority={card.priority}

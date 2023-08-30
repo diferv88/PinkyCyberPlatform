@@ -7,8 +7,6 @@ import ConectionYellowSvg from '../../../assets/images/conectionYellow.svg'
 import ConectionRedSvg from '../../../assets/images/conectionRed.svg'
 import "./inventoryList.styles.scss";
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import { Title } from "../partnerAccount/title/Title";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -277,7 +275,7 @@ const InventoryList2 = () =>{
         <section className="section-style">
             <Grid container spacing={1} className="card-container">
                 {startScan ? cards.map((card, index) => (
-                    <Grid item xs={12} md={6} lg={3}>
+                    <Grid key={index} item xs={12} md={6} lg={3}>
                         <Card
                             title={card.title}
                             priority={card.priority}

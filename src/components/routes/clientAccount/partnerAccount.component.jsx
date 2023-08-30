@@ -5,13 +5,13 @@ import * as React from "react";
 // import "./onboarding.styles.scss";
 import UserRoll from "../../pageUsers/userRoll.component";
 
-const PartnerAccount = () => {
+const ClientAccount = () => {
 
     return (
         <>
-          <UserRoll rollUser={"Partner accounts"} userAccount={true} subtitle={"Partner accounts management"} terminateUrl={"Partner accounts"}/>
+          <UserRoll rollUser={"Client accounts"} userAccount={false} subtitle={"Client accounts management"} terminateUrl={"Client accounts"}/>
         </>
       );
 };
 
-export default PartnerAccount;
+export default ClientAccount;

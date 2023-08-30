@@ -42,7 +42,6 @@ import Select from "@mui/material/Select";
 import Textarea from '@mui/joy/Textarea';
 import IconCheck from "../../assets/Icons/IconCheck.svg"
 import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
-import CustomizedAccordions from "../routes/partnerAccount/customizeAcordeon/CustomizedAccordions";
 
 
 const myModal = {

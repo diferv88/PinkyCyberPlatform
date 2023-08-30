@@ -5,7 +5,7 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import FormRow from '../formRow/FormRow';
-import Button from '../../../button/button.component';
+import Button from '../../button/button.component';
 import FormGroup from '../formGroup/FormGroup.jsx';
 
 const Accordion = styled((props) => (

@@ -1,4 +1,6 @@
-import "./../partnerAccount.styles.scss";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import "./../userRoll.styles.scss";
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -20,12 +22,15 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import DotStatus from "../../../dotStatus/DotStatus";
-import BoxBorderColour from "../../../BoxBorderColour/BoxBorderColour";
-import BoxFullColour from "../../../BoxFullColour/BoxFullColour";
+import DotStatus from "../../dotStatus/DotStatus";
+import BoxBorderColour from "../../BoxBorderColour/BoxBorderColour";
+import BoxFullColour from "../../BoxFullColour/BoxFullColour";
 import CheckBoxFilter from "./../CheckBoxFilter/CheckBoxFilter";
 import HeaderTable from "./../HeaderTable/HeaderTable";
 import "../TableUserAccounts/TableUserAccounts.styles.scss"
+import { useState } from "react";
+import { useEffect } from "react";
+import { useCallback } from "react";
 
 
 
@@ -151,8 +156,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
   }
   
   function EnhancedTableToolbar(props) {
-    const { numSelected } = props;
-  
+    const { numSelected, handleChange } = props;  
     return (
       <Toolbar
         sx={{
@@ -183,17 +187,17 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
            <HeaderTable labelButton="Add partner accounts" linkTo="/add-partner-account" form="partner"/>
            <div className="checkBoxs-div">
             <label className="label-checkbox">Connecting status filter:</label>
-            <CheckBoxFilter label="Online"></CheckBoxFilter>
-            <CheckBoxFilter label="Offline"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChange} label="Online" htmlfor='Online'></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChange} label="Offline" htmlfor="Offline"></CheckBoxFilter>
             <label className="label-checkbox">Network status filter: </label>
-            <CheckBoxFilter label="Red"></CheckBoxFilter>
-            <CheckBoxFilter label="Yellow"></CheckBoxFilter>
-            <CheckBoxFilter label="Green"></CheckBoxFilter>      
+            <CheckBoxFilter onChange={handleChange} label="Red" htmlfor="Red"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChange} label="Yellow" htmlfor="Yellow"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChange} label="Green" htmlfor="Green"></CheckBoxFilter>      
             <label className="label-checkbox">Status filter:</label>
-            <CheckBoxFilter label="Not active"></CheckBoxFilter>
-            <CheckBoxFilter label="Active"></CheckBoxFilter>
-            <CheckBoxFilter label="Suspended"></CheckBoxFilter>
-            <CheckBoxFilter label="Deleted"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChange} label="Not active" htmlfor="Not active"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChange} label="Active" htmlfor="Active"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChange} label="Suspended" htmlfor="Suspended"></CheckBoxFilter>
+            <CheckBoxFilter onChange={handleChange} label="Deleted" htmlfor="Deleted"></CheckBoxFilter>
           </div>
         
           </Typography>
@@ -224,6 +228,41 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(true);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [dataTableFillter, setDataTableFillter] = React.useState(rows)
+    const [severityFilter, setSeverityFilter] = useState({
+      Online: false,
+      Offline: false,
+      Red: false,
+      Yellow: false,
+      Green: false,
+      NotActive: false,
+      Active: false,
+      Suspended: false,
+      Deleted: false
+    })
+
+    const handleChangeCheckBoxFilter = ((e) => {
+      setSeverityFilter({
+        ...severityFilter,
+        [e.target.value]: e.target.checked,
+      });
+      if (e.target.checked) {
+        const filterData = rows.filter(item => (item.connectivity == e.target.value) || (item.netStatus == e.target.value) || (item.status == e.target.value));
+        setDataTableFillter(dataTableFillter.length >= 8 ? [
+          ...filterData
+        ] : [...dataTableFillter, ...filterData])
+      }
+      else{
+        const filterData = dataTableFillter.filter(item => (item.netStatus !== e.target.value) && (item.connectivity !== e.target.value) && (item.status !== e.target.value));
+
+        setDataTableFillter(filterData.length > 0 ? [...filterData] : [...rows])
+      }
+      console.log(e)
+    })
+
+    // useEffect(()=> {
+    //   handleChangeCheckBoxFilter();
+    // })
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -287,12 +326,13 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
         ),
         [order, orderBy, page, rowsPerPage],
     );
+    console.log(severityFilter)
 
     return <>
 
 <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar/>
+        <EnhancedTableToolbar handleChange={handleChangeCheckBoxFilter}/>
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -300,7 +340,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
             size={dense ? 'small' : 'medium'}>
             <EnhancedTableHead/>
             <TableBody>
-              {visibleRows.map((row, index) => {
+              {dataTableFillter.map((row, index) => {
                 const isItemSelected = isSelected(row.name);
                 const labelId = `enhanced-table-checkbox-${index}`;
 

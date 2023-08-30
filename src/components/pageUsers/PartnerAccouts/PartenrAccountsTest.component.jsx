@@ -1,5 +1,5 @@
-import HeaderComponent from "../../../header/header.component"
-import "./../partnerAccount.styles.scss";
+import HeaderComponent from "../../header/header.component"
+import "./../userRoll.styles.scss";
 import FormGroup from "../formGroup/FormGroup";
 import FormRow from "../formRow/FormRow";
 import { Title } from "../title/Title";

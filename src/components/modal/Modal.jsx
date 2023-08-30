@@ -3,8 +3,8 @@
 /* eslint-disable no-useless-escape */
 import './Modal.styles.scss'
 import  React,{useState} from 'react';
-import FormGroup from '../routes/partnerAccount/formGroup/FormGroup';
-import FormRow from '../routes/partnerAccount/formRow/FormRow';
+import FormGroup from '../pageUsers/formGroup/FormGroup';
+import FormRow from '../pageUsers/formRow/FormRow';
 import { Link , useNavigate} from "react-router-dom";
 import PasswordRequirements from '../passwordRequirements/PasswordRequirements';
 import { InformationBox } from '../informationBox/InformationBox';

@@ -13,7 +13,8 @@ import InventoryList from "./routes/inventoryList/inventoryList.component";
 import DetailedScanReport from "./routes/detalledScanReport/detailedScanReport.component";
 import EmailScan from "./routes/emailScan/emailScan.component";
 import PartnerAccountIndex from "./routes/partnerAccount/partnerAccount.component";
-import AddPartnerAccount from "./routes/partnerAccount/PartnerAccouts/PartenrAccountsTest.component";
+import ClientAccountIndex from "./routes/clientAccount/partnerAccount.component";
+import AddPartnerAccount from "./pageUsers/PartnerAccouts/PartenrAccountsTest.component";
 // import Onboarding from "./routes/onboarding/Onboarding";
 import { Login } from "./routes/login/Login";
 import { RecoveryPasswordLogin } from "./routes/RecoveryPasswordLogin/RecoveryPasswordLogin";
@@ -31,6 +32,7 @@ function App() {
         <Route path="InventoryList" element={<InventoryList2/>}/>
         <Route path="DetailedScanReport" element={<DetailedScanReport />} />
         <Route path="Partner-Account" element={<PartnerAccountIndex />} />
+        <Route path="Client-Account" element={<ClientAccountIndex />} />
         <Route path="Proceed-Scan" element={<DashBoard />}/>
         <Route path="Onboarding" element={<Onboarding />} />
         <Route path="Onboarding-Contact" element={<OnboardingContact />} />
