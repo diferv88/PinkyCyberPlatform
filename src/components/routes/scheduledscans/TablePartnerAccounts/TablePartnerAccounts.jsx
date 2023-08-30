@@ -51,6 +51,15 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
             {label: "Deep"},
             {label: "Ultra"}
   ];
+  const opcionesTypeScan =[{label: "Inventory list"},
+                    {label: "Vulnerability assessment"},
+];
+const opcionesLastScan =[{label: "2023-04-15"},
+                    {label: "2023-03-5"},
+];
+const opcionesNextScan =[{label: "2023-04-15"},
+                    {label: "2023-03-5"},
+];
   const rows = [
     createData('inqueue','partner.name.001', "Inventory list", "2023-03-10 14:30:14", "2023-03-10 14:30:14", "512","32", "Technical settings"),
     createData('inqueue','long.partner.name.002', "Inventory list", "2023-03-5 14:18:14", "2023-03-5 14:18:14", "512","24", "Technical settings"),
@@ -174,8 +183,8 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
     );
   }
   
-  function EnhancedTableToolbar({ numSelected }) {
-  
+  function EnhancedTableToolbar({ numSelected, typeScan, setTypeScan, lastScan, setLastScan, nextScan, setNextScan, impactRisk, setImpactRisk, search, setSearch, handleClearFilters}) {
+
     return (
 
       <Toolbar
@@ -214,39 +223,45 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
                 <button className="gear-button">
                   <FontAwesomeIcon icon={faCog} />
                 </button>
-                <input type="text" className="input-search" placeholder="Search..."/>
+                <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearch(event.target.value)}}/>
               </div>
               <div className="text-auto">
 
                 <Autocomplete
                   disablePortal
-                  id="combo-box-demo"
-                  options={opciones}
+                  id="type-of-scan"
+                  value = {typeScan}
+                  options={opcionesTypeScan}
+                  onChange={(event)=>{setTypeScan(event.target.outerText)}}
                   sx={{ width: 300 }}
                   renderInput={(params) => <TextField {...params} label="Type of scan" />}
                 />
                 <Autocomplete
                   disablePortal
-                  id="type-of-scan"
-                  options={opciones}
+                  id="last-scan"
+                  value={lastScan}
+                  options={opcionesLastScan}
+                  onChange={(event)=>{setLastScan(event.target.outerText)}}
                   sx={{ width: 300 }}
                   renderInput={(params) => <TextField {...params} label="Last scan" />}
                 />
                 <Autocomplete
                   disablePortal
-                  id="last-scan"
-                  options={opciones}
+                  id="next-scan"
+                  value={nextScan}
+                  options={opcionesNextScan}
+                  onChange={(event)=>{setNextScan(event.target.outerText)}}
                   sx={{ width: 300 }}
                   renderInput={(params) => <TextField {...params} label="Next scan" />}
                 />
                 <Autocomplete
                   disablePortal
-                  id="combo-box-demo"
+                  id="impact-risk"
                   options={opciones}
                   sx={{ width: 300 }}
                   renderInput={(params) => <TextField {...params} label="Risk impact" />}
                 />
-                <div className="label">
+                <div className="label" onClick={handleClearFilters}>
                   <div className="textWrapper">Clear all</div>
                 </div>
               </div>
@@ -273,9 +288,35 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
     const redirectToOtraRuta = () => {
       props.history.push('/InventoryList');
     };
-   
 
+    const [typeScan, setTypeScan] = React.useState("");
+    const [lastScan, setLastScan] = React.useState("");
+    const [nextScan, setNextScan] = React.useState("");
+    const [impactRisk, setImpactRisk] = React.useState("");
+    const [filtro,setFiltro] = React.useState(rows);
+    const [search, setSearch] = React.useState("");
+    
+    const handleFilter = () => {
+      const filteredData = rows.filter(dato => {
+        const matchTypeScan = typeScan === undefined ? true : dato.saasc.toLowerCase().includes(typeScan.toLowerCase());
+        const matchLastScan = lastScan === undefined ? true : dato.netStatus.toLowerCase().includes(lastScan.toLowerCase());
+        const matchNextScan = nextScan === undefined ? true : dato.scan.toLowerCase().includes(nextScan.toLowerCase());
+        const matchSearch = search === "" ? true : dato.connectivity.toLowerCase().includes(search.toLowerCase());
+        return matchTypeScan && matchLastScan && matchNextScan && matchSearch;
+      });
+    
+      setFiltro(filteredData);
+    };
+    React.useEffect(() => {
+      handleFilter();
+    }, [typeScan, lastScan, nextScan, search]);
 
+    const handleClearFilters = () => {
+      setTypeScan("");
+      setLastScan("");
+      setNextScan("");
+      setSearch("");
+    };
 
     const handleClick = (event, name) => {
         const selectedIndex = selected.indexOf(name);
@@ -329,7 +370,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
 
 <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar/>
+        <EnhancedTableToolbar typeScan={typeScan} setTypeScan={setTypeScan} lastScan={lastScan} setLastScan={setLastScan} nextScan={nextScan} setNextScan={setNextScan} impactRisk={impactRisk} setImpactRisk={setImpactRisk} search={search} setSearch={setSearch} handleClearFilters={handleClearFilters}/>
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -337,7 +378,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
             size={dense ? 'small' : 'medium'}>
             <EnhancedTableHead/>
             <TableBody>
-              {visibleRows.map((row, index) => {
+              {filtro.map((row, index) => {
                 const isItemSelected = isSelected(row.name);
                 return (
                   <TableRow
@@ -368,7 +409,8 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
                       <BoxBorderColour label={row.partner}></BoxBorderColour>
                     </TableCell>
                     <TableCell align="left" className='span-link'>
-                      {row.connectivity}</TableCell>
+                      {row.connectivity}
+                    </TableCell>
                     <TableCell align="left">{row.saasc}</TableCell>
                     <TableCell align="left">
                      {row.netStatus}
