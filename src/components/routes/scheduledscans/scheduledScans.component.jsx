@@ -110,7 +110,6 @@ const ScheduledScansIndex =  () => {
           <ProblemDevices setModal={setModalClose}/>
         </Box>
       </Modal>
-      <Button type={"btn-danger"} size={"btn-large"} position={"right"}  onClick={setModalOpen}>Problem devices</Button>
   </>
   )
 
