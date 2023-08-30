@@ -32,12 +32,12 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
   ];
 
   
-  const TableUserAccounts = ()=> {
+  const TableUserAccounts = ({filtro})=> {
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  
-  
+    
+
     function stableSort(array) {
       const stabilizedThis = array.map((el, index) => [el, index]);
       stabilizedThis.sort((a, b) => {
@@ -87,7 +87,7 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
             </TableRow>
           </TableHead>
           <TableBody>
-            {visibleRows.map((row, index) => (
+            {filtro.map((row, index) => (
               <TableRow
                 key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -119,6 +119,20 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
       </>
   };
 const ProblemDevices = (props) => {
+  const [search, setSearch] = React.useState("");
+  const [filtro,setFiltro] = React.useState(rows);
+
+  const handleFilter = () => {
+    const filteredData = rows.filter(dato => {
+      const matchSearch = search === "" ? true : dato.devices.toLowerCase().includes(search.toLowerCase());
+      return matchSearch;
+    });
+  
+    setFiltro(filteredData);
+  };
+  React.useEffect(() => {
+    handleFilter();
+  }, [search]);
     return(
         <>
             <div className='headtable'>
@@ -135,9 +149,9 @@ const ProblemDevices = (props) => {
                 <button className="gear-button">
                   <FontAwesomeIcon icon={faCog} />
                 </button>
-                <input type="text" className="input-search" placeholder="Search..."/>
+                <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearch(event.target.value)}}/>
             </div>
-            <TableUserAccounts/>
+            <TableUserAccounts filtro={filtro}/>
         </>
     )
 };
