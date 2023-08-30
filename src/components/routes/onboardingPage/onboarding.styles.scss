@@ -6,6 +6,21 @@
   padding: 2% 3%;
   width: 784px;
   flex-shrink: 0;
+
+  h3.schedule-title {
+    font-size: 1.25rem;
+  }
+  h4.schedule-title {
+    font-size: 1rem;
+    &:not(.nobottonline), ~ legend {
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #E1E4E7;
+    }
+  }
+  .MuiPaper-root {
+    padding: 0;
+    margin-bottom: 8px;
+  }
   // @media only screen and (max-width: 55em) {
   //   & {
   //     display: flex;
@@ -48,7 +63,15 @@
   .MuiTextField-root {
     width: 100%;
   }
-  
+  .MuiOutlinedInput-notchedOutline {
+    border-width: 0px;
+  }
+  .MuiInputBase-input {
+    padding-left: 0px;
+  }
+  .MuiInputLabel-formControl {
+    left: -14px;
+  }
   div {
     p {
       color: #3E4852;

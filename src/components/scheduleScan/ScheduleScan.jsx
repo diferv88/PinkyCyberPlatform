@@ -16,6 +16,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import "./ScheduleScan.styles.scss";
 import "./Onboarding.styles.scss";
 import { 
@@ -37,6 +42,7 @@ import Select from "@mui/material/Select";
 import Textarea from '@mui/joy/Textarea';
 import IconCheck from "../../assets/Icons/IconCheck.svg"
 import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
+import CustomizedAccordions from "../routes/partnerAccount/customizeAcordeon/CustomizedAccordions";
 
 
 const myModal = {
@@ -232,117 +238,138 @@ const ScheduleScan = ({
 
   </Box>
   )
+
+  const Accordion = styled((props) => (
+    <MuiAccordion disableGutters elevation={0} square {...props} />
+  ))(({ theme }) => ({
+    border: `1px solid ${theme.palette.divider}`,
+    '&:not(:last-child)': {
+      borderBottom: 0,
+    },
+    '&:before': {
+      display: 'none',
+    },
+    marginBottom: '50px',
+    fontFamily: "'Sora', sans-serif",
+    borderRadius: '5px',
+  }));
   
+  const AccordionSummary = styled((props) => (
+      <MuiAccordionSummary
+        expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+        {...props}
+      />
+    ))(({ theme }) => ({
+      backgroundColor: '#e1e5e8',
+      flexDirection: 'row-reverse',
+      '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+        transform: 'rotate(90deg)',
+      },
+      '& .MuiAccordionSummary-content': {
+        marginLeft: theme.spacing(1),
+      },
+    }));
+  
+    const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+      padding: theme.spacing(2),
+      borderTop: '1px solid rgba(0, 0, 0, .125)',
+      backgroundColor: '#eef1f4',
+    }));
+  const [expanded, setExpanded] = React.useState('panel1');
+
+  const handleChange1 = (panel) => (event, newExpanded) => {
+    setExpanded(newExpanded ? panel : false);
+  };
   const DataListOnboardingContact = (
     <>
-      <List
-        sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom: 2 }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        className="list-container"
-      >
-        <ListItemButton onClick={handleOpenList}>
-          <ListItemText className="text-container1" primary="First site location" secondary="Str. 31 August 24, Chișinău" />
-          {openList ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
-        </ListItemButton>
-        <Collapse in={openList} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 2 }}>
-              <ListItemText 
-                className="text-item1"
-                primary="Physical site location" 
-                secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
-              />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 2 }}>
-              <ListItemText
-                className="text-item1"
-                primary="Associated external IPs" 
-                secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
-              />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 2 }}>
-              <ListItemText
+    <Accordion expanded={expanded === 'panel1'} onChange={handleChange1('panel1')}>
+        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <div className='span-acordeon'>First site location</div>
+          <div className='htitle'>Str. 31 August 24, Chișinău</div>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ListItemButton sx={{ pl: 2 }}>
+            <ListItemText 
               className="text-item1"
-              primary="Website domain" 
-              secondary="https://www.websitedomain.com"
-              />
-            </ListItemButton>
-          </List>
-        </Collapse>
-      </List>
-      <List
-        sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom: 2 }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        className="list-container"
-      >
-        <ListItemButton onClick={handleOpenListSL}>
-          <ListItemText className="text-container1" primary="Second site location" secondary="Bvd. Ștefan cel Mare 32, Chișinău" />
-          {openListSL ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
-        </ListItemButton>
-        <Collapse in={openListSL} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 2 }}>
-              <ListItemText 
-                className="text-item1"
-                primary="Physical site location" 
-                secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
-              />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 2 }}>
-              <ListItemText
-                className="text-item1"
-                primary="Associated external IPs" 
-                secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
-              />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 2 }}>
-              <ListItemText 
-                className="text-item1"
-                primary="Website domain" 
-                secondary="https://www.websitedomain.com"
-              />
-            </ListItemButton>
-          </List>
-        </Collapse>
-      </List>
-      <List
-        sx={{ width: '100%', bgcolor: '#F0F2F3', marginBottom:2 }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        className="list-container"
-      >
-        <ListItemButton onClick={handleOpenListTL}>
-          <ListItemText className="text-container1" primary="Third site location" secondary="Bvd. Dacia 40, Chișinău" />
-          {openListTL ? <p className="link-previus-modal" >Hide</p> : <p className="link-previus-modal" >Show</p>}
-        </ListItemButton>
-        <Collapse in={openListTL} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 2 }}>
-              <ListItemText 
-                className="text-item1"
-                primary="Physical site location" 
-                secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
-              />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 2 }}>
-              <ListItemText
-                className="text-item1"
-                primary="Associated external IPs" 
-                secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
-              />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 2 }}>
-              <ListItemText 
-                className="text-item1"
-                primary="Website domain" 
-                secondary="https://www.websitedomain.com"
-              />
-            </ListItemButton>
-          </List>
-        </Collapse>
-      </List>
+              primary="Physical site location" 
+              secondary="Str. 31 August 24, Chișinău, Moldova, Republic of, MD-2001"
+            />
+          </ListItemButton>
+          <ListItemButton sx={{ pl: 2 }}>
+            <ListItemText
+              className="text-item1"
+              primary="Associated external IPs" 
+              secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
+            />
+          </ListItemButton>
+          <ListItemButton sx={{ pl: 2 }}>
+            <ListItemText
+            className="text-item1"
+            primary="Website domain" 
+            secondary="https://www.websitedomain.com"
+            />
+          </ListItemButton>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion expanded={expanded === 'panel2'} onChange={handleChange1('panel2')}>
+        <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+          <div className='span-acordeon'>Second site location</div>
+          <div className='htitle'>Bvd. Ștefan cel Mare 32, Chișinău</div>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ListItemButton sx={{ pl: 2 }}>
+            <ListItemText 
+              className="text-item1"
+              primary="Physical site location" 
+              secondary="Bvd. Ștefan cel Mare 32, Chișinău, Republic of, MD-2001"
+            />
+          </ListItemButton>
+          <ListItemButton sx={{ pl: 2 }}>
+            <ListItemText
+              className="text-item1"
+              primary="Associated external IPs" 
+              secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
+            />
+          </ListItemButton>
+          <ListItemButton sx={{ pl: 2 }}>
+            <ListItemText
+            className="text-item1"
+            primary="Website domain" 
+            secondary="https://www.websitedomain.com"
+            />
+          </ListItemButton>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion expanded={expanded === 'panel3'} onChange={handleChange1('panel3')}>
+        <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+          <div className='span-acordeon'>Third site location</div>
+          <div className='htitle'>Bvd. Dacia 40, Chișinău</div>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ListItemButton sx={{ pl: 2 }}>
+            <ListItemText 
+              className="text-item1"
+              primary="Physical site location" 
+              secondary="Bvd. Dacia 40, Chișinău, Republic of, MD-2001"
+            />
+          </ListItemButton>
+          <ListItemButton sx={{ pl: 2 }}>
+            <ListItemText
+              className="text-item1"
+              primary="Associated external IPs" 
+              secondary="255.255.255.0;  255.255.255.1;  255.255.255.2"
+            />
+          </ListItemButton>
+          <ListItemButton sx={{ pl: 2 }}>
+            <ListItemText
+            className="text-item1"
+            primary="Website domain" 
+            secondary="https://www.websitedomain.com"
+            />
+          </ListItemButton>
+        </AccordionDetails>
+      </Accordion>
     </>
   )
 
@@ -425,7 +452,7 @@ const ScheduleScan = ({
               </>
             ) : onboardingContact ? (
               <>
-                <h4 className="schedule-title" style={{marginBottom: "0px",}}>Company primary contact</h4>
+                <h4 className="schedule-title nobottonline" style={{marginBottom: "0px",}}>Company primary contact</h4>
                 <FormLabel disabled component="legend" sx={{marginBottom: 2}}>Responsible for payment, legal and other questions</FormLabel>
                 <div className="containerTextField">
                   <FormControl>
@@ -483,7 +510,7 @@ const ScheduleScan = ({
                     />
                   </FormControl>
                 </div>
-                <h4 className="schedule-title" style={{marginBottom: "0px",}}>Company secondary contact</h4>
+                <h4 className="schedule-title nobottonline" style={{marginBottom: "0px",}}>Company secondary contact</h4>
                 <FormLabel disabled component="legend" sx={{marginBottom: 2}}>Responsible for cybersecurity</FormLabel>
                 <div className="containerTextField">
                   <FormControl>
@@ -541,7 +568,7 @@ const ScheduleScan = ({
                     />
                   </FormControl>
                 </div>
-                <h4 className="schedule-title" style={{marginBottom: "0px",}}>Name and locations of company sites</h4>
+                <h4 className="schedule-title">Name and locations of company sites</h4>
                 <div>
                   {DataListOnboardingContact}
                 </div>

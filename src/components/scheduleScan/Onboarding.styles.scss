@@ -29,6 +29,15 @@
         padding-left: 0px !important;
       }
     }
+
+    .MuiPaper-root {
+      padding: 0;
+      margin-bottom: 8px;
+      & .MuiAccordionSummary-content {
+        display: block;
+        margin: 1rem 0px 1rem 8px;
+      }
+    }
     
     .textOnboardingComplete{
       display: block;
