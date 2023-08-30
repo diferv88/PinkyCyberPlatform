@@ -1,11 +1,14 @@
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import checkIcon from "../../../assets/Icons/Check-Icon.svg";
+import clouseIcon from "../../../assets/Icons/Clouse-Icon.svg";
+import Button from "../../button/button.component";
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import FormRow from '../formRow/FormRow';
-import Button from '../../button/button.component';
 import FormGroup from '../formGroup/FormGroup.jsx';
 
 const Accordion = styled((props) => (
@@ -45,10 +48,11 @@ const AccordionSummary = styled((props) => (
     backgroundColor: '#eef1f4',
   }));
 
-export default function CustomizedAccordions() {
+export default function CustomizedAccordions(props) {
+  const {userRolAcount} = props
   const [expanded, setExpanded] = React.useState('panel1');
 
-  const handleChange = (panel) => (event, newExpanded) => {
+  const handleChange = (panel) => (event,newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
 
@@ -82,7 +86,28 @@ export default function CustomizedAccordions() {
                 <FormGroup label="ssociated external IP #3"  width="quarter" />
                 <FormGroup label="ssociated external IP $4"  width="quarter" />
             </FormRow>
-            <Button>Hola</Button>
+            <FormRow >
+              <Button 
+                type={"succes"}
+                size="medium"
+                position={"left"}
+                style={{marginRight:10}}
+                // onClick={handleClose}
+                // style={confirmButton}
+                icons={<img style={{marginRight:"5px"}} src={checkIcon} alt="check" />}
+              >
+                Update
+              </Button>
+              <Button 
+                // onClick={routeChange(step.testNavigation)}
+                type={"discard"}
+                size="medium"
+                position={"left"}
+                icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
+              >
+                Discard
+              </Button>
+            </FormRow>
         </AccordionDetails>
       </Accordion>
       

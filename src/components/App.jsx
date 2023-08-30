@@ -15,6 +15,7 @@ import EmailScan from "./routes/emailScan/emailScan.component";
 import PartnerAccountIndex from "./routes/partnerAccount/partnerAccount.component";
 import ClientAccountIndex from "./routes/clientAccount/partnerAccount.component";
 import AddPartnerAccount from "./pageUsers/PartnerAccouts/PartenrAccountsTest.component";
+import AddClientAccount from "./pageUsers/clientsAccounts/ClientsAccounts";
 // import Onboarding from "./routes/onboarding/Onboarding";
 import { Login } from "./routes/login/Login";
 import { RecoveryPasswordLogin } from "./routes/RecoveryPasswordLogin/RecoveryPasswordLogin";
@@ -27,6 +28,7 @@ function App() {
       <Route path="/" element={<Navigation />} >
         <Route index element={<Home />}/>
         <Route path="add-partner-account/:id" element={<AddPartnerAccount />} />
+        <Route path="add-client-account/:id" element={<AddClientAccount />} />
         <Route path="Assets-Discovery" element={<AssetsDiscovery />} />
         <Route path="Inventory" element={<InventoryList />} />
         <Route path="InventoryList" element={<InventoryList2/>}/>

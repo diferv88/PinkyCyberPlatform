@@ -93,7 +93,7 @@ const AddPartnerAccount = () => {
 
         {/* Name and locations of company sites /Acordeon */}
         <Title title="Name and locations of company sites" />
-        <CustomizedAccordions/>
+        <CustomizedAccordions userRolAccount={"Partner"}/>
         
       </form>
     </>

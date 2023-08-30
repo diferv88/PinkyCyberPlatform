@@ -184,7 +184,7 @@ function createData(partner, connectivity, saasc, netStatus, scan,vulnerability,
             id="tableTitle"
             component="div"
           >
-           <HeaderTable labelButton={buttondAddUser} linkTo="/add-partner-account" form="partner"/>
+           <HeaderTable labelButton={buttondAddUser}  linkTo={buttondAddUser === "Add partner account" ? "/add-partner-account" : "/add-client-account"} form={buttondAddUser === "Add partner account" ? "partner" : "client"}/>
            <div className="checkBoxs-div">
             <label className="label-checkbox">Connecting status filter:</label>
             <CheckBoxFilter onChange={handleChange} label="Online" htmlfor='Online'></CheckBoxFilter>

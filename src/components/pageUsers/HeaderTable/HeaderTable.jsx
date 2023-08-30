@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unknown-property */
 import { Link } from "react-router-dom";
 
 
