@@ -271,7 +271,7 @@ const InventoryList2 = () =>{
     return(
         <>
         
-        <HeaderComponent links={""}>Inventory List</HeaderComponent>
+        <HeaderComponent links={{"":"Pinky.ai", "./InventoryList":"Inventory List"}}>Inventory List</HeaderComponent>
         <section className="section-style">
             <Grid container spacing={1} className="card-container">
                 {startScan ? cards.map((card, index) => (

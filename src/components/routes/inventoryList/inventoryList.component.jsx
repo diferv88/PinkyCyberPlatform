@@ -78,14 +78,14 @@ const InventoryList =  () => {
 
   return<>
     {/* Cards secction */}
-    <HeaderComponent links={""}>Inventory list</HeaderComponent>
+    <HeaderComponent links={{"":"Pinky.ai", "./Inventory":"Inventory"}}>Inventory list</HeaderComponent>
     <section className="section-style cards">
       <Link to={"/"} > 
         <button onClick={RedirectClick}>test</button>
       </Link>
       <Grid container spacing={1} className="card-container">
         {cards.map((card, index) => (
-          <Grid key={index} item xs={12} md={6} lg={3}>
+          <Grid key={index} item xs={12} md={6} lg={2.4}>
             <Card
               title={card.title}
               priority={card.priority}
@@ -100,18 +100,18 @@ const InventoryList =  () => {
       </Grid>
     </section>
     <section className="section-style graph">
-      <ul className="card-container">
+    <Grid container spacing={1} className="card-container">
         {imageCards.map((card, index) => (
           <>
-          <li>
+          <Grid key={index} item xs={12} lg={4}>
             <Card
               key={index}
               imagen={card.imageUrl}
             />
-          </li>
+          </Grid>
         </>
         ))}
-      </ul>
+      </Grid>
     </section>
 
     {/* Table user accounts management secction*/}

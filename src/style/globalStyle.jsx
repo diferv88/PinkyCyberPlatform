@@ -20,11 +20,16 @@ li::marker {
 }
 
 .MuiPaper-root {
-  padding: 0.5rem 1.5rem;
+  padding: 1.5rem;
 }
 
 .MuiToolbar-root {
   padding: 0;
+}
+
+.MuiSelect-select {
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
 }
 
 html:focus-within {
