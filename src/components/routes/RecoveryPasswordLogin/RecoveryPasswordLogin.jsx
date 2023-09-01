@@ -5,7 +5,7 @@ import pinkyLoginLogo from '../../../assets/images/pinkycibersafelogo.svg';
 import Footer from '../../footer/footer.component';
 
 export const RecoveryPasswordLogin = () => {
-  return <div className='container' style={{
+  return <div className='container login-section' style={{
             backgroundImage: `url(${LogoBack})`,
             }} >
             <img src={pinkyLoginLogo} className='pinky-logo'/>

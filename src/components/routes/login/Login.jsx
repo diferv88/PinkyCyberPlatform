@@ -8,7 +8,7 @@ import Footer from '../../footer/footer.component'
 import LogoBack from '../../../assets/images/loginBackground.svg'
 
 export const Login = () => {
-  return <div className='container' style={{
+  return <div className='container login-section' style={{
           backgroundImage: `url(${LogoBack})`,
         }} >
       <img src={pinkyLoginLogo} className='pinky-logo'/>

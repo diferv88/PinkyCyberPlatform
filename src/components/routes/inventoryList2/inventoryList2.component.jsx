@@ -332,11 +332,13 @@ const InventoryList2 = () =>{
                 <h4 className="title-partner">Error notifications</h4>
                 
                     <Paper elevation={1} className="errorNotifications"> 
-                        <div>
-                            <button className="gear-button">
-                                <FontAwesomeIcon icon={faCog} />
-                            </button>
-                            <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearchError(event.target.value)}}/>
+                        <div className='div-add'>
+                            <div className="search-bar">
+                                <button className="gear-button">
+                                    <FontAwesomeIcon icon={faCog} />
+                                </button>
+                                <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearchError(event.target.value)}}/>
+                            </div>
                         </div>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
@@ -380,11 +382,13 @@ const InventoryList2 = () =>{
                 <section className="table">
                 <h4 className="title-partner">Network external IPs</h4>
                     <Paper elevation={1} className="errorNotifications">
-                        <div>
-                            <button className="gear-button">
-                                <FontAwesomeIcon icon={faCog} />
-                            </button>
-                            <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearchExternal(event.target.value)}}/>
+                        <div className='div-add'>
+                            <div className="search-bar">
+                                <button className="gear-button">
+                                    <FontAwesomeIcon icon={faCog} />
+                                </button>
+                                <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearchExternal(event.target.value)}}/>
+                            </div>
                         </div>
 
                         <div className="text-auto">
@@ -513,11 +517,13 @@ const InventoryList2 = () =>{
                 <section className="table">
                 <h4 className="title-partner">Network internal IPs</h4>
                 <Paper elevation={1} className="errorNotifications">
-                        <div>
-                            <button className="gear-button">
-                                <FontAwesomeIcon icon={faCog} />
-                            </button>
-                            <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearchInternal(event.target.value)}}/>
+                        <div className='div-add'>
+                            <div className="search-bar">
+                                <button className="gear-button">
+                                    <FontAwesomeIcon icon={faCog} />
+                                </button>
+                                <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearchInternal(event.target.value)}}/>
+                            </div>
                         </div>
 
                         <div className="text-auto">

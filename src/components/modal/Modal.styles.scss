@@ -28,12 +28,11 @@
       background-color: #0FB5AE;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 1rem 1.5rem 1rem 1rem;
       border-radius: 10px;
-      font-size: small;
+      font-size: 1rem;
       display: flex;
       align-items: center;
-      margin: 7px 7%;
       cursor: pointer;
 
       .button-image{
@@ -64,11 +63,11 @@
     .links {
 
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
+        gap: 1.5rem;
         a {
-          margin: 7px 7%;
-          font-size: x-small;
+          font-size: 1rem;
           text-decoration-line: underline;
           color: #3892f3;
         }

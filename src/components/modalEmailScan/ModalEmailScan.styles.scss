@@ -6,7 +6,7 @@
   
 .form-container {
     background-color: white;
-    width: 800px !important;
+    width: 800px;
     margin: auto;
     padding: 20px;
     border-radius: 10px;
@@ -37,8 +37,7 @@
       font-weight: 700;
       font-size: 32px;
     }
-    .sing-in{
-      width: 13rem;
+    .sing-in {
       text-align: center;
       text-decoration: none;
     }
@@ -51,7 +50,6 @@
       font-size: small;
       display: flex;
       align-items: center;
-      margin: 7px 7%;
       cursor: pointer;
       top: 386px;
       justify-content: center;
@@ -67,11 +65,10 @@
     .links {
 
         display: flex;
-        justify-content: center !important;
+        justify-content: flex-start;
         align-items: center;
         a {
-          margin: 7px 7%;
-          font-size: x-small;
+          font-size: 1rem;
           text-decoration-line: underline;
           color: #3892f3;
         }

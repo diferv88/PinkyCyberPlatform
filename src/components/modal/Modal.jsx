@@ -308,8 +308,6 @@ const Modal = ({ title , buttonText, secondInputLabel, secondInputTipe, secondIn
             )}
             
             {formState.showRequirements && <PasswordRequirements password={formState.passwordValue} />}
-
-            <hr />
             <div className="links">
               <button
                 className={`sing-in ${isButtonDisabled ? 'disabled' : ''}`}
@@ -322,7 +320,6 @@ const Modal = ({ title , buttonText, secondInputLabel, secondInputTipe, secondIn
                 />
                 {formState.buttonText}
               </button>
-              <br />
               {formState.showForgotPasswordLink && (
                 <Link to='/login' onClick={handleForgotPasswordClick}>{formState.linkToFlow}</Link>
               )}
