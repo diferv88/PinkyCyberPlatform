@@ -55,7 +55,7 @@ const ScanLoading = ({title, titleScan, bodyText, styleText,redirectNavigate}) =
 
   return (
     <>
-      <HeaderComponent links={""}>{title}</HeaderComponent>
+      <HeaderComponent links={{"":"Pinky.ai", "./Inventory":title}}>{title}</HeaderComponent>
       <section className="container-information-assets">
         <div id="imageRotate">
           <svg className="img3" viewBox="0 0 960 960" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -14,7 +14,7 @@ const EmailScan = () => {
 
   return (
     <>
-    <div className='container'>
+    <div className='container email-scan'>
       <Modal title={textData.title} bodyText={textData.body} buttonText={textData.btnText} />
     </div>
     </>

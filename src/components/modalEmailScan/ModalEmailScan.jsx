@@ -61,6 +61,8 @@ const ModalEmailScan = ({ title, bodyText, buttonText }) => {
           </div>
           <form>            
             
+          <br />
+          <br />
             <div className="links">
               <Link to={"/"} style={{ textDecoration: 'none', color: 'white' }} >
                 <button
@@ -73,6 +75,8 @@ const ModalEmailScan = ({ title, bodyText, buttonText }) => {
               <br />
               <br />
             </div>
+            <br />
+            <br />
             <br />
             <br />
             <br />
