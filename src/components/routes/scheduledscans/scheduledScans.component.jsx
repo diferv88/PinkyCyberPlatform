@@ -8,6 +8,7 @@ import TablePartnerAccounts from "./TablePartnerAccounts/TablePartnerAccounts";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import ProblemDevices from './modal/problemDevices.component';
 import "./partnerAccount.styles.scss";
 import { Grid } from '@mui/material';
 
@@ -109,6 +110,7 @@ const ScheduledScansIndex =  () => {
       >
         <Box sx={style} className="boxmodal">
           <Box className="overflowModal">
+            <ProblemDevices setModal={setModalClose}/>
           </Box>
           
         </Box>
