@@ -24,7 +24,6 @@ const BUTTON_SIZE_CLASSES = {
 };
 
 const Button = ({ children, type, size, icons, position, ...otherProps }) => {
-  console.log(otherProps)
   return (
     <button
       className={`button-container ${BUTTON_TYPE_CLASSES[type]} ${BUTTON_SIZE_CLASSES[size]}  `}

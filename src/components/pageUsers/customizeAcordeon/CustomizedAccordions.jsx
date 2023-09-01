@@ -50,8 +50,8 @@ const AccordionSummary = styled((props) => (
     backgroundColor: '#eef1f4',
   }));
 
-export default function CustomizedAccordions(props) {
-  const {userRolAcount} = props
+export default function CustomizedAccordions({userRolAcount, isActive, typeLocation, title,}) {
+
   const [expanded, setExpanded] = React.useState('panel1');
 
   const handleChange = (panel) => (event,newExpanded) => {
@@ -60,10 +60,10 @@ export default function CustomizedAccordions(props) {
 
   return (
     <div>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+      <Accordion expanded={expanded === isActive} onChange={handleChange(isActive)}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <div className='span-acordeon'>First site location</div>
-          <div className='htitle'>Str. 31 August 24, Chișinău, Moldova, Republic of</div>
+          <div className='span-acordeon'>{typeLocation}</div>
+          <div className='htitle'>{title}</div>
         </AccordionSummary>
         <AccordionDetails>
             <FormRow>
@@ -113,7 +113,7 @@ export default function CustomizedAccordions(props) {
             </FormRow>
         </AccordionDetails>
       </Accordion>
-      <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+      {/* <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
           <div className='span-acordeon'>Second site location</div>
           <div className='htitle'>Bvd. Ștefan cel Mare 32, Chișinău, Moldova, Republic of</div>
@@ -216,7 +216,7 @@ export default function CustomizedAccordions(props) {
               </Button>
             </FormRow>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
       
     </div>
   );

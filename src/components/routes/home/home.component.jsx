@@ -218,7 +218,6 @@ const Home = () => {
   }, [displayNotification]);
 
   const handleNext = () => {
-    console.log(activeStepPKE);
     const index = steps.findIndex(x => x.key === activeStep.key);
     setSteps(prevStep => prevStep.map(x => {
       if (x.key === activeStep.key || steps[steps.length - 1].key === activeStep.key) x.isDone = true;
@@ -226,14 +225,6 @@ const Home = () => {
     }))
     setActiveStep(steps[index + 1]);
   }
-
-  const routeChange= (i) => {
-    let path = i;
-    console.log(path);
-
-  }
-
-  
 
   return (
     <>
@@ -265,11 +256,7 @@ const Home = () => {
                 <div className="steps">
                   <ul className="nav">
                     {steps.map((step, i) => {
-                      return <li key={i} className={`${isActiveStep === step.key ? 'active' : ''} ${step.isDone ? 'done' : ''}`}>
-                        {console.log("steps isdone ==== ",step.isDone)}
-                        {console.log("activeStep.key ==== ",activeStep.key)}
-                        {console.log("step.key ======= ",step.key)}
-                        
+                      return <li key={i} className={`${isActiveStep === step.key ? 'active' : ''} ${step.isDone ? 'done' : ''}`}>                      
                         <div className="bg">
                           <div className="bgContent">
                             <div className="ctext">

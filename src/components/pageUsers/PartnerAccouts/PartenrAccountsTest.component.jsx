@@ -9,8 +9,35 @@ import { Title } from "../title/Title";
 import CustomizedAccordions from "../customizeAcordeon/CustomizedAccordions";
 import { Link } from 'react-router-dom/dist'; 
 import { useParams } from 'react-router-dom';
+import { useState } from "react";
+
+const AcordeonData = [
+  {
+    title: 'Str. 31 August 24, Chișinău, Moldova, Republic of',
+    typeLocation: 'First site location',
+    isActive: 'panel1',
+    isNew: false,
+  },
+  {
+    title: 'Bvd. Ștefan cel Mare 32, Chișinău, Moldova, Republic of',
+    typeLocation: 'Second site location',
+    isActive: null,
+    isNew: false
+  },
+  {
+    title: 'Bvd. Dacia 40, Chișinău, Moldova, Republic of',
+    typeLocation: 'Third site location',
+    isActive: null,
+    isNew: false
+  },
+]
 
 const AddPartnerAccount = () => {
+  const [dataAcordeon, setDataAcordeon] = useState(AcordeonData)
+
+  const handleClickAddAcordeon = () => {
+
+  }
 
   const { id } = useParams();
 
@@ -97,7 +124,16 @@ const AddPartnerAccount = () => {
 
         {/* Name and locations of company sites /Acordeon */}
         <Title title="Name and locations of company sites" />
-        <CustomizedAccordions userRolAccount={"Partner"}/>
+        {dataAcordeon?.map((itemAcordeon, index) => (
+          <CustomizedAccordions 
+            key= {index}
+            userRolAccount={"Partner"}
+            isActive={itemAcordeon.isActive}
+            typeLocation={itemAcordeon.typeLocation}
+            title={itemAcordeon.title}
+            isNew={itemAcordeon.isNew}
+          />
+        ))}
         <FormRow>
             <a style={{textDecoration: 'revert', color:'blue', marginBottom:'1rem', marginTop:'1rem'}} href="#">
               Add another location

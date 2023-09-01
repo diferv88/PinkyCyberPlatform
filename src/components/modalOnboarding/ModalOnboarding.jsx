@@ -36,7 +36,6 @@ const ModalEmailScan = ({ title, bodyText, buttonText }) => {
     "website",
   ]
   const RedirectClick = e => {
-    console.log(e)
     if (title === "Inventory scan completed!") {
       window.localStorage.setItem("MEmailScan", JSON.stringify(true));
       window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));

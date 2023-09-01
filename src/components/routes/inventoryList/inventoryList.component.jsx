@@ -81,8 +81,7 @@ const InventoryList =  () => {
   const RedirectClick = () => {
     window.localStorage.setItem("MEmailScan", JSON.stringify(true));
     window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
-    window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));
-    window.localStorage.setItem("activeStep", JSON.stringify("thirdStep"));
+    window.localStorage.setItem("activeStep", JSON.stringify("secondStep"));
   }
 
   return<>
@@ -105,6 +104,7 @@ const InventoryList =  () => {
               buttonText={card.buttonText}
               buttonIcon={card.buttonIcon}
               linkButton={card.linkButton}
+              actionButton={RedirectClick}
             />
           </Grid>
         ))}

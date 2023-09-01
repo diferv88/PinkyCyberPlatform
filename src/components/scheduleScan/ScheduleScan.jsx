@@ -30,18 +30,13 @@ import {
   MenuItem, 
   OutlinedInput, 
   Stack,
-  List,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
-  Collapse,
-  ListSubheader
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import Select from "@mui/material/Select";
 import Textarea from '@mui/joy/Textarea';
 import IconCheck from "../../assets/Icons/IconCheck.svg"
-import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
 
 
 const myModal = {
@@ -76,13 +71,6 @@ const paragraphModal ={
   fontZize: "16px",
 };
 
-const selectIssue = {
-  width: "512px",
-  height: "84px",
-  top: "193px",
-  left: "136px",
-}
-
 const textAreaContainer = {
   position: "absolute",
   width:"512px !important",
@@ -113,7 +101,6 @@ const confirmButton = {
 
 
 const ScheduleScan = ({
-    titlePage,
     title, 
     imagen,
     disclaimer, 
@@ -131,9 +118,6 @@ const ScheduleScan = ({
     const [optionChecked3, setOptionChecked3] = React.useState(false)
     const [selectedIssu, setSelectedIssu] = React.useState("Incomplete information")
     const [open, setOpen] = React.useState(false);
-    const [openList, setOpenList] = React.useState(false);
-    const [openListSL, setOpenListSL] = React.useState(false);
-    const [openListTL, setOpenListTL] = React.useState(false);
 
     
     React.useEffect(() => {
@@ -152,25 +136,12 @@ const ScheduleScan = ({
     const checkedOptions3 = () => {
       setOptionChecked3(!optionChecked3);
     }
-    const handleOpenList = () => {
-      setOpenList(!openList);
-    }
-    const handleOpenListSL = () => {
-      setOpenListSL(!openListSL);
-    }
-    const handleOpenListTL = () => {
-      setOpenListTL(!openListTL);
-    }
-    
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const handleChange = (e) => {
       setSelectedIssu(e.target.value)
     }
-    const onChageMoreInformation = (e) => {
-      console.log("e ======= ",e.target.value)
-    }
-    
+
   const bodyModal = (
     <Box sx={myModal}>
     <h2 style={titleModal}>Report an issue</h2>

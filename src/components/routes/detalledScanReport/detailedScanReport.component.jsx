@@ -203,7 +203,6 @@ const DetailedScanReport =  () => {
       <ul className="card-container">
         {cards.map((card, index) => (
           <li key={index}>
-            {console.log("card icon = ", card.icon)}
             <Card
               color={card.color}
               title={card.title}

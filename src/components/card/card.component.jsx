@@ -3,8 +3,8 @@
 import { Link } from "react-router-dom";
 import Button from "../button/button.component";
 import "./card.styles.scss";
-const Card = ({ quantity, link, total, title, icon, status, priority, imagen, homeCard, color,button,linkButton, buttonText, buttonIcon, subtitle }) => {
-  console.log(subtitle)
+const Card = ({ quantity, link, total, title, icon, status, priority, imagen, homeCard, color,button,linkButton, buttonText, buttonIcon, subtitle, actionButton }) => {
+
   return (
     <div className={homeCard ? "card-div-container-x4" : "card-div-container"}>
       <div className="card-container-text">
@@ -31,8 +31,7 @@ const Card = ({ quantity, link, total, title, icon, status, priority, imagen, ho
             size="medium"
             position={"left"}
             style={{marginRight:"5px", marginBotom:"5px"}}
-            // onClick={handleClose}
-            // style={confirmButton}
+            onClick={actionButton}
             icons={buttonIcon}
           >
             {buttonText}

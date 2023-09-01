@@ -36,8 +36,12 @@ const ModalEmailScan = ({ title, bodyText, buttonText }) => {
     "website",
   ]
   const RedirectClick = e => {
-    console.log(e)
-    if (title === "Inventory scan completed!") {
+    if(window.localStorage.getItem("activeStep") == JSON.stringify("secondStep")){
+      window.localStorage.setItem("MEmailScan", JSON.stringify(true));
+      window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
+      window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));
+      window.localStorage.setItem("activeStep", JSON.stringify("thirdStep"));
+    }else if (title === "Inventory scan completed!") {
       window.localStorage.setItem("MEmailScan", JSON.stringify(true));
       window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
       window.localStorage.setItem("activeStep", JSON.stringify("secondStep"));     

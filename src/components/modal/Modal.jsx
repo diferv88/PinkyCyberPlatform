@@ -139,6 +139,12 @@ const Modal = ({ title , buttonText, secondInputLabel, secondInputTipe, secondIn
     } else {
       handleValidPassword(buttonLink);
     }
+    window.localStorage.setItem("MEmailScan", JSON.stringify(false));
+    window.localStorage.setItem("ClassifyYAssest", JSON.stringify(false));
+    window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(false));
+    window.localStorage.setItem("MitigateYourRisk", JSON.stringify(false));
+    window.localStorage.setItem("LearnMore", JSON.stringify(false));
+    window.localStorage.setItem("activeStep", JSON.stringify("firstStep"));
   };
   
   const handleContinueClick = () => {
