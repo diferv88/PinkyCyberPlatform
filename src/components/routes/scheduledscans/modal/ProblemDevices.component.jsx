@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -146,7 +144,6 @@ const ProblemDevices = (props) => {
             <div className="div-add">
               <div className="search-bar">
                   <button className="gear-button">
-                    <FontAwesomeIcon icon={faCog} />
                   </button>
                   <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearch(event.target.value)}}/>
               </div>
