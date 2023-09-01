@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -68,7 +69,8 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
   
     return <>
     <section className='modal'>
-        <Table sx={{}} aria-label="simple table">
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
   
           <TableHead>
   
@@ -111,6 +113,7 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
+      </TableContainer>
       </section>
       </>
   };
@@ -130,7 +133,7 @@ const ProblemDevices = (props) => {
     handleFilter();
   }, [search]);
     return(
-        <><div className='stickymodal'>
+        <>
             <div className='headtable'>
               <h4 className="title-partner">Problem devices (48)</h4>
               <span className='cerrar' onClick={()=>(props.setModal())}>
@@ -144,10 +147,10 @@ const ProblemDevices = (props) => {
             <div className="div-add">
               <div className="search-bar">
                   <button className="gear-button">
+                    <FontAwesomeIcon icon={faCog} />
                   </button>
                   <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearch(event.target.value)}}/>
               </div>
-            </div>
             </div>
             <TableUserAccounts filtro={filtro}/>
         </>
