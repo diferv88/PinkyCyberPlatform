@@ -36,16 +36,6 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     
-
-    function stableSort(array) {
-      const stabilizedThis = array.map((el, index) => [el, index]);
-      stabilizedThis.sort((a, b) => {
-        
-        return a[1] - b[1];
-      });
-      return stabilizedThis.map((el) => el[0]);
-    }
-  
     //Controls rowsPerPage
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -54,20 +44,11 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
     const handleChangeRowsPerPage = (event) => {
       setRowsPerPage(parseInt(event.target.value, 10));
       setPage(0);
-    };
-  
-    const visibleRows = React.useMemo(
-      () =>
-        stableSort(rows).slice(
-          page * rowsPerPage,
-          page * rowsPerPage + rowsPerPage,
-        ),
-      [page, rowsPerPage],
-    );
-  
+    }; 
     
   
-    return <>
+    return(
+    <>
     <section className='modal'>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -116,6 +97,7 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
       </TableContainer>
       </section>
       </>
+    );
   };
 const ProblemDevices = (props) => {
   const [search, setSearch] = React.useState("");
