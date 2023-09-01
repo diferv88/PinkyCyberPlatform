@@ -101,7 +101,7 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
   };
 const ProblemDevices = (props) => {
   const [search, setSearch] = React.useState("");
-  const [filtro,setFiltro] = React.useState(rows);
+  const [filtro, setFiltro] = React.useState("");
 
   const handleFilter = () => {
     const filteredData = rows.filter(dato => {
