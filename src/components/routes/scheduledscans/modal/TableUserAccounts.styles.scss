@@ -9,10 +9,6 @@
   cursor: pointer;
 }
 
-.modal{
-  overflow-y: auto;
-}
-
 .headtable{
   display: grid;
   grid-template-columns: 5fr 1fr;
@@ -24,4 +20,9 @@
 }
 .cerrar svg {
   fill: none !important;
+}
+.stickymodal{
+  position: sticky;
+  top: 0;
+  background: white;
 }

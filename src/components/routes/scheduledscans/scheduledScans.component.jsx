@@ -24,6 +24,7 @@ const style = {
   border: '1px solid #E1E4E7',
   borderRadius: '16px',
   boxShadow: 24,
+  overflowY: "auto",
   p: 4,
 };
 
@@ -100,14 +101,18 @@ const ScheduledScansIndex =  () => {
       <TablePartnerAccounts/>
     </section>
     <Button type={"btn-danger"} size={"btn-large"} position={"right"} onClick={setModalOpen}>Problem devices</Button>
+    
     <Modal
         open={modal}
         onClose={setModalClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <ProblemDevices setModal={setModalClose}/>
+        <Box sx={style} className="boxmodal">
+          <Box className="overflowModal">
+            <ProblemDevices setModal={setModalClose}/>
+          </Box>
+          
         </Box>
       </Modal>
   </>
