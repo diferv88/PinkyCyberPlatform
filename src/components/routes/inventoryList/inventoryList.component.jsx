@@ -2,9 +2,6 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
 import HeaderComponent from "../../header/header.component";
-import { Provider } from "react-redux";
-import { useNotification } from "../notification/useNotification";
-import { Notification } from "../notification/notification";
 import { store } from "../notification/store";
 import Card from "../../card/card.component";
 import { Link } from 'react-router-dom/dist'; 
@@ -29,7 +26,6 @@ const cards = [
     status: null,
     button: true,
     buttonText: "Repeat scan",
-    link: "/",
   },
   {
     title: "New devices",
@@ -82,24 +78,10 @@ const InventoryList =  () => {
     window.localStorage.setItem("activeStep", JSON.stringify("thirdStep"));
   }
 
-  const { displayNotification } = useNotification();
-
-  React.useEffect(() => {
-    displayNotification({
-      title: "Important! Our aggregated risk score is calculated based on 3 types of risks.",
-      message: "Don’t panic, yet! Our cybersecurity experts treat every system as vulnerable unless proven otherwise. At first login you will see a high aggregated risk score. It is calculated based on 3 types of risks: Operational, Legal & Compliance, Reputational. Code red is for 100-70% risk, yellow for 69-50% and green for 49-0%. Score will improve as you go through development of your cybersecurity program.",
-      type: 'error',
-      timeout: null
-    });
-  }, [displayNotification]);
-
   return<>
     {/* Cards secction */}
     <HeaderComponent links={{"":"Pinky.ai", "./Inventory":"Inventory"}}>Inventory list</HeaderComponent>
     <section className="section-style cards">
-      <Link to={"/"} > 
-        <button onClick={RedirectClick}>test</button>
-      </Link>
       <Grid container spacing={1} className="card-container">
         {cards.map((card, index) => (
           <Grid key={index} item xs={12} md={6} lg={2.4}>
@@ -132,11 +114,6 @@ const InventoryList =  () => {
         </>
         ))}
       </Grid>
-    </section>
-    <section className="notification">
-      <Provider store={store}>
-        <Notification />
-      </Provider>
     </section>
     {/* Table user accounts management secction*/}
     <section>

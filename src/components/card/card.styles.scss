@@ -1,8 +1,15 @@
+.section-style.cards {
+  border-bottom-width: 0px;
+  margin-bottom: 1rem;
+}
 .card-container {
   .MuiGrid-item:not(:first-child) {
     padding-left: 2.12rem;
   }
   .card-div-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background: #ffffff;
     border: 1px solid #e1e4e7;
     border-radius: 16px;
@@ -23,6 +30,9 @@
           color: #a4aeb8;
         }
       }
+    }
+    .subtitle {
+      font-size: 0.875rem;
     }
     .card-links {
       display: flex;
@@ -45,7 +55,6 @@
         font-weight: 400;
         font-size: 0.875rem;
         line-height: 24px;
-        color: #a4aeb8;
         span {
           font-weight: 800;
         }

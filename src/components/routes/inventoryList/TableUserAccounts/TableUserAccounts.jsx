@@ -19,6 +19,10 @@ import DotStatus from '../../../dotStatus/DotStatus';
 import './TableUserAccounts.styles.scss'
 import { Button } from '@mui/material';
 import { useEffect } from 'react';
+import { Provider } from "react-redux";
+import { store } from "../../notification/store";
+import { useNotification } from "../../notification/useNotification";
+import { Notification } from "../../notification/notification";
 
 function createData(user, connectivity,status, role, email, issues,created,createdBy,rImpact,rLevel) {
   return { user, connectivity, status, role, email,issues ,created,createdBy,rImpact,rLevel};
@@ -106,7 +110,16 @@ const riskLevelData = [
     [page, rowsPerPage],
   );
 
-  
+  const { displayNotification } = useNotification();
+
+  React.useEffect(() => {
+    displayNotification({
+      title: "Important! Our aggregated risk score is calculated based on 3 types of risks.",
+      message: "Don’t panic, yet! Our cybersecurity experts treat every system as vulnerable unless proven otherwise. At first login you will see a high aggregated risk score. It is calculated based on 3 types of risks: Operational, Legal & Compliance, Reputational. Code red is for 100-70% risk, yellow for 69-50% and green for 49-0%. Score will improve as you go through development of your cybersecurity program.",
+      type: 'info',
+      timeout: null
+    });
+  }, [displayNotification]);
 
   return <>
     {/* <SearchBar
@@ -115,6 +128,11 @@ const riskLevelData = [
           onCancelSearch={() => cancelSearch()}
     /> */}
     <TableContainer component={Paper}>
+      <section className="notification">
+        <Provider store={store}>
+          <Notification />
+        </Provider>
+      </section>
         <HeaderTable labelButton="Add user" linkTo="/add-partner-account" form="user"/>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
 

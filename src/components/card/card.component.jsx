@@ -18,7 +18,7 @@ const Card = ({ quantity, link, total, title, icon, status, priority, imagen, ho
         {status && <span className={`server-status ${status}`}></span>}
       </div>
       {subtitle && (
-        <div>
+        <div className="subtitle">
           <h4>{subtitle}</h4>
         </div>
       )}

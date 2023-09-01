@@ -21,7 +21,6 @@ const HeaderTable = (
             <button className="button-add"> &#43; {labelButton}</button>
           </Link> */}
          </div>
-         <hr />
          </>
 }
 export default HeaderTable;
