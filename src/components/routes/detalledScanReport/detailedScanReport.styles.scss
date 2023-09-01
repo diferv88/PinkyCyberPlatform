@@ -21,8 +21,16 @@
     &.formControl {
       background-color: white;
       border: 1px solid #E1E4E7;
-      padding: 10px;
+      padding: 1rem 1.5rem 1.5rem 1.5rem;
       border-radius: 16px;
+      .MuiFormControl-root{
+        margin: 0px;
+      }
+      label {
+        color: #A4AEB8;
+        font-size: 0.875rem;
+        font-weight: 400;
+      }
       ul {
         margin-bottom: 0;
         li {
@@ -35,7 +43,7 @@
             flex-direction: column;
             &.formBody{
               font-family: Sora;
-              font-size: 16px;
+              font-size: 1rem;
               font-weight: 700;
               margin-bottom: 18px;
               flex-direction: row;
@@ -45,30 +53,33 @@
               }
             }
             &.spanLink{
-              font-size: 16px;
+              font-size: 1rem;
               font-weight: 700;
               
               color: #3892F3;
               text-decoration: revert;
             }
             &.div-risk-level{
-              width: 260px;
-              height: auto;
+              display: flex;
               border-radius: 15px;
               background-color: #F68511;
+              flex-direction: row;
+              align-items: center;
+              padding: 1rem 1.5rem 1rem 1rem;
+              gap: 6.25rem;
               &.formLabel1{
                 width: auto;
                 font-size: 12px;
                 font-weight: 700;
                 color: white;
-                margin: 10px 0 0px 10px;
+                padding: 0;
                 // margin: 0;
               }
               &.risk-lavelTitle{
                 width: auto;
                 font-size: 24px;
                 color: white;
-                margin: 0px 0 10px 10px;
+                padding: 0px;
                 // margin: 0;
               }
               &.flag-icon-risk-level{

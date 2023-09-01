@@ -129,7 +129,7 @@ const DetailedScanReport =  () => {
 
   return<>
     {/* Cards secction */}
-    <HeaderComponent links={""}>Detailed scan report</HeaderComponent>
+    <HeaderComponent links={{"":"Pinky.ai", "/":"Issues management", "./InventoryList":"Detailed scan report"}}>Detailed scan report</HeaderComponent>
     <section className="section-style-detailedScanReport formControl">
       <FormControl fullWidth sx={{ m: 1 }} variant="standard">
       <ul className="FomrControl-container">
@@ -160,11 +160,11 @@ const DetailedScanReport =  () => {
         <li className='li-risk-level-container'>
           <div className='div-container-info' style={{display:'flex'}}>
             <div className='div-container-info div-risk-level'>
-              <FormLabel className='div-container-info div-risk-level formLabel1'>Risk level:</FormLabel>
-              <span className='div-container-info div-risk-level risk-lavelTitle'>MEDIUM</span>
-            </div>
-            <div className='div-container-info icon-avatar' style={{position:'absolute', top:'35%', left:'68%'}}>
-              <Avatar src={IconFlagMedium} sx={{bgcolor: 'white'}} />
+              <div><FormLabel className='div-container-info div-risk-level formLabel1'>Risk level:</FormLabel>
+              <span className='div-container-info div-risk-level risk-lavelTitle'>MEDIUM</span></div>
+              <div className='div-container-info icon-avatar'>
+                <Avatar src={IconFlagMedium} sx={{bgcolor: 'white'}} />
+              </div>
             </div>
           </div>
         </li>
