@@ -110,7 +110,6 @@ const ScheduledScansIndex =  () => {
       >
         <Box sx={style} className="boxmodal">
           <Box className="overflowModal">
-            <ProblemDevices setModal={setModalClose}/>
           </Box>
           
         </Box>
