@@ -106,6 +106,7 @@
     .MuiAccordion-root {
       padding: 0px;
       border-width: 0px;
+      margin-bottom: 0.5rem;
       .MuiAccordionSummary-content {
         display: block;
         .htitle {
@@ -119,6 +120,8 @@
       }
       .MuiAccordionDetails-root {
         background-color: #F8F9FA;
+        padding: 1.5rem;
+        padding-bottom: 1rem;
         .title-partner {
           font-size: 1rem;
           padding-bottom: 0.3rem;

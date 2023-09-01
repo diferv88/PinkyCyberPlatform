@@ -103,6 +103,7 @@ const AddPartnerAccount = () => {
               Add another location
             </a>
         </FormRow>
+        <Title title="" />
         <FormRow >
           <Link to='/Partner-Account'>
             <Button 

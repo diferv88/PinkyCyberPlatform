@@ -88,6 +88,7 @@ export default function CustomizedAccordions(props) {
                 <FormGroup label="ssociated external IP #3"  width="quarter" />
                 <FormGroup label="ssociated external IP $4"  width="quarter" />
             </FormRow>
+            <h5 className='title-partner'></h5>
             <FormRow >
               <Button 
                 type={"succes"}
