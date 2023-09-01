@@ -2,6 +2,10 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
 import HeaderComponent from "../../header/header.component";
+import { Provider } from "react-redux";
+import { useNotification } from "../notification/useNotification";
+import { Notification } from "../notification/notification";
+import { store } from "../notification/store";
 import Card from "../../card/card.component";
 import { Link } from 'react-router-dom/dist'; 
 import calendarSVG from "../../../assets/images/arrowLeft.svg";
@@ -20,8 +24,11 @@ import { Grid } from '@mui/material';
 const cards = [
   {
     title: "Last scan performed",
+    subtitle: "01-01-2022 20:00:00",
     icon: Ticket,
     status: null,
+    button: true,
+    buttonText: "Repeat scan",
     link: "/",
   },
   {
@@ -75,6 +82,16 @@ const InventoryList =  () => {
     window.localStorage.setItem("activeStep", JSON.stringify("thirdStep"));
   }
 
+  const { displayNotification } = useNotification();
+
+  React.useEffect(() => {
+    displayNotification({
+      title: "Important! Our aggregated risk score is calculated based on 3 types of risks.",
+      message: "Don’t panic, yet! Our cybersecurity experts treat every system as vulnerable unless proven otherwise. At first login you will see a high aggregated risk score. It is calculated based on 3 types of risks: Operational, Legal & Compliance, Reputational. Code red is for 100-70% risk, yellow for 69-50% and green for 49-0%. Score will improve as you go through development of your cybersecurity program.",
+      type: 'error',
+      timeout: null
+    });
+  }, [displayNotification]);
 
   return<>
     {/* Cards secction */}
@@ -94,6 +111,9 @@ const InventoryList =  () => {
               total={card.total}
               status={card.status}
               link={card.link}
+              button={card.button}
+              buttonText={card.buttonText}
+              subtitle={card?.subtitle ? card.subtitle : null}
             />
           </Grid>
         ))}
@@ -113,7 +133,11 @@ const InventoryList =  () => {
         ))}
       </Grid>
     </section>
-
+    <section className="notification">
+      <Provider store={store}>
+        <Notification />
+      </Provider>
+    </section>
     {/* Table user accounts management secction*/}
     <section>
       <Title title="Devices management" />

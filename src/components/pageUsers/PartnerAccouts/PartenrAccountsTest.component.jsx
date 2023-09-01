@@ -2,8 +2,12 @@ import HeaderComponent from "../../header/header.component"
 import "./../userRoll.styles.scss";
 import FormGroup from "../formGroup/FormGroup";
 import FormRow from "../formRow/FormRow";
+import Button from "../../button/button.component";
+import checkIcon from "../../../assets/Icons/Check-Icon.svg";
+import clouseIcon from "../../../assets/Icons/Clouse-Icon.svg";
 import { Title } from "../title/Title";
 import CustomizedAccordions from "../customizeAcordeon/CustomizedAccordions";
+import { Link } from 'react-router-dom/dist'; 
 import { useParams } from 'react-router-dom';
 
 const AddPartnerAccount = () => {
@@ -94,6 +98,37 @@ const AddPartnerAccount = () => {
         {/* Name and locations of company sites /Acordeon */}
         <Title title="Name and locations of company sites" />
         <CustomizedAccordions userRolAccount={"Partner"}/>
+        <FormRow>
+            <a style={{textDecoration: 'revert', color:'blue', marginBottom:'1rem', marginTop:'1rem'}} href="#">
+              Add another location
+            </a>
+        </FormRow>
+        <FormRow >
+          <Link to='/Partner-Account'>
+            <Button 
+              type={"succes"}
+              size="medium"
+              position={"left"}
+              style={{marginRight:10}}
+              // onClick={handleClose}
+              // style={confirmButton}
+              icons={<img style={{marginRight:"5px"}} src={checkIcon} alt="check" />}
+            >
+              Add account
+            </Button>
+          </Link>
+          <Link to='/Partner-Account'>
+            <Button 
+              // onClick={routeChange(step.testNavigation)}
+              type={"discard"}
+              size="medium"
+              position={"left"}
+              icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
+            >
+              Discard changes
+            </Button>
+          </Link>
+        </FormRow>
         
       </form>
     </>
