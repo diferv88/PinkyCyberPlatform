@@ -43,7 +43,6 @@ function App() {
         <Route path="Schedule-Scan-Assets" element={<ScheduleScanAssetsDiscovery />} />
         <Route path="Schedule-Scan-Vulnerability" element={<ScheduleScanVulnerability />} />
         <Route path="Vulnerability-Assessment" element={<VulnerabilityAssesment />} />
-        <Route path="Vulnerability-Assessment" element={<VulnerabilityAssesment />} />
       </Route>
       <Route path="Email-Scan" element={<EmailScan />} />
       <Route path="Email-Scan-Vulnerability" element={<EmailScanVulnerability />} />
