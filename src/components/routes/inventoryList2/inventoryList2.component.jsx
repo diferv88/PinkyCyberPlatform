@@ -17,21 +17,27 @@ import TablePagination from '@mui/material/TablePagination';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
-import { Button, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import DotStatus from '../../dotStatus/DotStatus';
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import Button from '../../button/button.component';
+
+import playIcon from "../../../assets/Icons/play-icon.svg";
+import radarIcon from "../../../assets/Icons/radar-2.svg";
+
 const cards = [
     {
-      title: "Last scan performed",
-      priority: false,
-      quantity: "01-01-2022 20:00:00 (UTC+02:00)",
-      icon: Ticket,
-      total: null,
-      status: null,
-      link: "/",
+        title: "Last scan performed",
+        subtitle: "01-01-2022 20:00:00",
+        icon: Ticket,
+        status: null,
+        button: false,
+        buttonText: "Repeat scan",
+        linktitle: "Repeat scan",
+        link: "/",
     },
     {
       title: "Error notifications",
@@ -272,9 +278,10 @@ const InventoryList2 = () =>{
         <>
         
         <HeaderComponent links={{"":"Pinky.ai", "./InventoryList":"Inventory List"}}>Inventory List</HeaderComponent>
-        <section className="section-style">
+        {startScan ? 
+            <section className="section-style">
             <Grid container spacing={1} className="card-container">
-                {startScan ? cards.map((card, index) => (
+                {cards.map((card, index) => (
                     <Grid key={index} item xs={12} md={6} lg={3}>
                         <Card
                             title={card.title}
@@ -283,12 +290,17 @@ const InventoryList2 = () =>{
                             icon={card.icon}
                             total={card.total}
                             status={card.status}
-                            link={card.link} />
+                            link={card.link}
+                            linktitle={card.linktitle}
+                            button={card.button}
+                            buttonText={card.buttonText}
+                            subtitle={card?.subtitle ? card.subtitle : null} />
                     </Grid>
-                )):null}
-                
+                ))}                
             </Grid>
-        </section>
+        </section>:null
+        }
+        
         <section className="commandPrompt">
             <h4 className="title-partner">Scaning command prompt</h4>
             {startScan ? 
@@ -299,24 +311,30 @@ const InventoryList2 = () =>{
                 
         </section>
                 <Paper elevation={1} className="comandos">
-                    <section className="encabezado"> 
-                        <div className="newDev">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M6 4C7.67 2.75 9.75 2 12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 10.19 2.47999 8.48999 3.32999 7.01999L12 12" stroke="#3E4852" strokeWidth="2" stroke-miterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d="M6.82999 8.95999C6.29999 9.84999 6 10.89 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6C11.09 6 10.22 6.20001 9.45001 6.57001" stroke="#3E4852" strokeWidth="2" stroke-miterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                            </span>
-                            <p>New devices: 4</p>
-                        </div>
-                        <div className="startScan" onClick={handleStartScan}>
-                            <span>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4 11.9994V8.43941C4 4.01941 7.13 2.20941 10.96 4.41941L14.05 6.19941L17.14 7.97941C20.97 10.1894 20.97 13.8094 17.14 16.0194L14.05 17.7994L10.96 19.5794C7.13 21.7894 4 19.9794 4 15.5594V11.9994Z" stroke="white" strokeWidth="2.5" stroke-miterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                            </span>
-                            <p>Start scan</p>
-                        </div>
+                    <section className="encabezado">
+                        <Button
+                            type={"neutral"}
+                            size="medium"
+                            position={"left"}
+                            style={{marginRight:10}}
+                            onClick={handleStartScan}
+                            // style={confirmButton}
+                            icons={<img style={{marginRight:"5px"}} src={radarIcon} alt="New Devices" />}
+                            >
+                            New devices: 4
+                        </Button>
+
+                        <Button
+                            type={"succes"}
+                            size="medium"
+                            position={"left"}
+                            style={{marginRight:10}}
+                            onClick={handleStartScan}
+                            // style={confirmButton}
+                            icons={<img style={{marginRight:"5px"}} src={playIcon} alt="Start" />}
+                            >
+                            Start scan
+                        </Button>
                     </section>
                     <div className="prompt">
                         {startScan ? 
@@ -433,8 +451,6 @@ const InventoryList2 = () =>{
                             <div className="textWrapper">Clear all</div>
                             </div>
                         </div> 
-                        <TableContainer component={Paper}>
-
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
 
                             <TableHead>
@@ -467,9 +483,14 @@ const InventoryList2 = () =>{
                                     </svg>
                                 </TableCell>
                                 <TableCell component="th" scope="row">
-                                    <Button variant="outlined" size="small">
+                                <Button
+                                    type={"new"}
+                                    size="medium"
+                                    position={"left"}
+                                    //onClick={handleStartScan}
+                                    >
                                     {row.newButton}
-                                    </Button>
+                                </Button>
                                 </TableCell>
                                 <TableCell align="left">
                                     <span className='span-link'>{row.deviceName}</span>
@@ -511,7 +532,6 @@ const InventoryList2 = () =>{
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
                         />
-                        </TableContainer>
                     </Paper>
                 </section>
                 <section className="table">
@@ -568,8 +588,6 @@ const InventoryList2 = () =>{
                             <div className="textWrapper">Clear all</div>
                             </div>
                         </div> 
-                        <TableContainer component={Paper}>
-
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
 
                             <TableHead>
@@ -602,8 +620,13 @@ const InventoryList2 = () =>{
                                     </svg>
                                 </TableCell>
                                 <TableCell component="th" scope="row">
-                                    <Button variant="outlined" size="small">
-                                    {row.newButton}
+                                    <Button
+                                        type={"new"}
+                                        size="medium"
+                                        position={"left"}
+                                        //onClick={handleStartScan}
+                                        >
+                                        {row.newButton}
                                     </Button>
                                 </TableCell>
                                 <TableCell align="left">
@@ -646,7 +669,6 @@ const InventoryList2 = () =>{
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
                         />
-                        </TableContainer>
                     </Paper>
                 </section>
             </>

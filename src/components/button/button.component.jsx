@@ -11,6 +11,10 @@ const BUTTON_TYPE_CLASSES = {
   warningOutline: "btn-warning-outline",
   discard: "btn-discard",
   discardOutline: "btn-discard-outline",
+  neutral: "btn-neutral",
+  neutralOutline: "btn-neutral-outline",
+  new: "btn-new",
+  newOutline: "btn-new-outline",
 };
 const BUTTON_SIZE_CLASSES = {
   small: "btn-small",

@@ -60,6 +60,39 @@
       background-color: #3E4852;
     }
   }
+  &.btn-neutral{
+    background-color: #F0F2F3;
+    color: #3E4852;
+    &:hover{
+      transition: all 0.3s ease-in-out;
+      background-color: #53606D;
+      color: #fff;
+    }
+    &:focus {
+      transition: all 0.3s ease-in-out;
+      background-color: #3E4852;
+      color: #fff;
+    }
+  }
+  &.btn-new{
+    border-radius: 6px !important;
+    background-color: #fff;
+    color: #3892F3;
+    border: 1px solid #3892F3;
+    font-size: 0.875rem;
+    font-weight: 400;
+    padding: 0.25rem 0.5rem;
+    &:hover{
+      transition: all 0.3s ease-in-out;
+      background-color: #3892F3;
+      color: #fff;
+    }
+    &:focus {
+      transition: all 0.3s ease-in-out;
+      background-color: #3892F3;
+      color: #fff;
+    }
+  }
   &.btn-discard-outline{
     background-color: #C3C9CF;
     &:hover,

@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import Button from "../button/button.component";
 import "./card.styles.scss";
-const Card = ({ quantity, link, total, title, icon, status, priority, imagen, homeCard, color,button, buttonText, subtitle }) => {
+const Card = ({ quantity, link, linktitle, total, title, icon, status, priority, imagen, homeCard, color,button, buttonText, subtitle }) => {
   console.log(subtitle)
   return (
     <div className={homeCard ? "card-div-container-x4" : "card-div-container"}>
@@ -48,7 +48,7 @@ const Card = ({ quantity, link, total, title, icon, status, priority, imagen, ho
         }
         {
           link ? 
-        (<Link to={link}>Overview</Link>
+        (<Link to={link}>{linktitle?linktitle:"Overview"}</Link>
         ) : ""
         }
         {

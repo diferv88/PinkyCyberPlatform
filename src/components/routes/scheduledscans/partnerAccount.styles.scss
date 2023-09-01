@@ -259,8 +259,6 @@
   flex-direction: column; 
   align-items: center;
   justify-content: center;
-  width: 6vw;
-  height: 4vh;
   padding: 4px 4px 4px 8px;
   border: 0px;
   border-radius: 8px;
@@ -274,6 +272,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: 24px; /* 171.429% */
+  padding: 0.5rem 1rem;
 }
 
 .searchText{
