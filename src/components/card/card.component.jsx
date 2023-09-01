@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import Button from "../button/button.component";
 import "./card.styles.scss";
-const Card = ({ quantity, link, linktitle, total, title, icon, status, priority, imagen, homeCard, color,button, buttonText, subtitle }) => {
+const Card = ({ quantity, link, total, title, icon, status, priority, imagen, homeCard, color,button,linkButton, buttonText, buttonIcon, subtitle }) => {
   console.log(subtitle)
   return (
     <div className={homeCard ? "card-div-container-x4" : "card-div-container"}>
@@ -18,43 +18,43 @@ const Card = ({ quantity, link, linktitle, total, title, icon, status, priority,
         {status && <span className={`server-status ${status}`}></span>}
       </div>
       {subtitle && (
-        <div className="subtitle">
-          <h4>{subtitle}</h4>
-        </div>
+        <p style={{fontFamily: "Sora", fontWeight:700, fontSize: "14px"}}>{subtitle}</p>
       )}
       <p style={color ? {color:color} : {}}>{quantity}</p>
       {imagen ? (
         <img src={imagen} alt="" />
       ):""}
       {button && (
-        <Link to='/Assets-Discovery'>
+        <Link to={linkButton}>
           <Button 
             type={"succes"}
             size="medium"
             position={"left"}
-            style={{marginRight:10, marginBotom:"5px"}}
+            style={{marginRight:"5px", marginBotom:"5px"}}
             // onClick={handleClose}
             // style={confirmButton}
-            // icons={<img style={{marginRight:"5px"}} src={checkIcon} alt="check" />}
+            icons={buttonIcon}
           >
             {buttonText}
           </Button>
         </Link>
       )}
-      <div className="card-links">
-        {total ? (<p>
-          Total :<span>{total}</span>
-        </p>) : ""
-        }
-        {
-          link ? 
-        (<Link to={link}>{linktitle?linktitle:"Overview"}</Link>
-        ) : ""
-        }
-        {
-          // todo <Link to={link}>Overview</Link>
-        }
-      </div>
+      {!button && 
+        <div className="card-links">
+          {total ? (<p>
+            Total :<span>{total}</span>
+          </p>) : ""
+          }
+          {
+            link ? 
+          (<Link to={link}>Overview</Link>
+          ) : ""
+          }
+          {
+            // todo <Link to={link}>Overview</Link>
+          }
+        </div>
+      }
     </div>
   );
 };
