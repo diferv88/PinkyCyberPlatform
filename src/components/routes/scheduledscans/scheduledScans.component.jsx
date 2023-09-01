@@ -96,7 +96,7 @@ const ScheduledScansIndex =  () => {
     </section>
         
     {/* Table Partner accounts management seccion */}
-    <section>
+    <section className='schedulescans'>
       <TablePartnerAccounts/>
     </section>
     <Button type={"btn-danger"} size={"btn-large"} position={"right"} onClick={setModalOpen}>Problem devices</Button>

@@ -145,11 +145,13 @@ const ProblemDevices = (props) => {
                 </svg>
               </span>
             </div>
-            <div>
-                <button className="gear-button">
-                  <FontAwesomeIcon icon={faCog} />
-                </button>
-                <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearch(event.target.value)}}/>
+            <div className="div-add">
+              <div className="search-bar">
+                  <button className="gear-button">
+                    <FontAwesomeIcon icon={faCog} />
+                  </button>
+                  <input type="text" className="input-search" placeholder="Search..." onChange={(event)=>{setSearch(event.target.value)}}/>
+              </div>
             </div>
             <TableUserAccounts filtro={filtro}/>
         </>
