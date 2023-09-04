@@ -208,7 +208,7 @@ const Modal = ({ title , buttonText, secondInputLabel, secondInputTipe, secondIn
     }
   };
   
-  const handleAccountNotFound = () =>{
+  const handleAccountNotFound = (eve) =>{
     setFormState({
       ...formState, emailValue: event.target.value, showInformationBox: true, InformationBoxValue: "Invalid email address, please check and try again.", informationColour: 'red'
 

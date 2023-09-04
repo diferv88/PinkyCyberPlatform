@@ -81,8 +81,10 @@ const ScheduledScansIndex =  () => {
     <section className="section-style">
       <Grid container spacing={1} className="card-container">
         {cards.map((card, index) => (
+          // eslint-disable-next-line react/jsx-key
           <Grid item xs={12} md={6} lg={3}>
             <Card
+              key={index}
               title={card.title}
               priority={card.priority}
               quantity={card.quantity}

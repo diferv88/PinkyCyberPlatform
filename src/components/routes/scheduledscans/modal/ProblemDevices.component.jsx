@@ -1,6 +1,5 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -101,24 +100,26 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
   };
 const ProblemDevices = (props) => {
   const [search, setSearch] = React.useState("");
-  const [filtro, setFiltro] = React.useState("");
+  const [filtro, setFiltro] = React.useState(rows);
 
   const handleFilter = () => {
-    const filteredData = rows.filter(dato => {
-      const matchSearch = search === "" ? true : dato.devices.toLowerCase().includes(search.toLowerCase());
+    const filteredData = rows.filter((dato) => {
+      const matchSearch =
+        search === "" ? true : dato.devices.toLowerCase().includes(search.toLowerCase());
       return matchSearch;
     });
-  
+
     setFiltro(filteredData);
   };
+
   React.useEffect(() => {
     handleFilter();
   }, [search]);
-    return(
-        <>
-            
-        </>
-    )
+
+  // Renderizar el componente TableUserAccounts con los datos filtrados
+  return (
+    <TableUserAccounts filtro={filtro} />
+  );
 };
 
 export default ProblemDevices;
