@@ -31,6 +31,7 @@ const Modal = ({ title , buttonText, secondInputLabel, secondInputTipe, secondIn
   const [checked, setChecked] = useState(false);
   const [checked2, setChecked2] = useState(false);
   const [isCodeValid, setIsCodeValid] = useState(false)
+  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
   const [formState, setFormState] = useState({
     title: title,
     emailLabel: 'Email address',
@@ -51,6 +52,11 @@ const Modal = ({ title , buttonText, secondInputLabel, secondInputTipe, secondIn
     recoveryMethod: '',
     flow: '1',
   });
+  
+  const isEmailValid = (email) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
+  };
 
   const handleForgotPasswordClick = () => {
 
@@ -178,22 +184,36 @@ const Modal = ({ title , buttonText, secondInputLabel, secondInputTipe, secondIn
   
     if (buttonLink === '/') {
       const account = accounts.find(
-        (account) =>
-          account.email === formState.emailValue &&
-          (account.password === formState.passwordValue ||
-            account.verificationCode === formState.passwordValue)
+        (account) => account.email === formState.emailValue
       );
   
       if (account) {
-        navigate(buttonLink);
+        // Si el correo electrónico existe en la "base de datos"
+        if (
+          account.password === formState.passwordValue ||
+          account.verificationCode === formState.passwordValue
+        ) {
+          // Verificación exitosa
+          navigate(buttonLink);
+        } else {
+          // Contraseña o código de verificación incorrectos
+          handleInvalidAccount();
+        }
       } else {
-        handleInvalidAccount();
+        // El correo electrónico no existe en la "base de datos"
+        handleAccountNotFound();
       }
     } else {
-      handleResetClick();
+      handleResetClick(); // Restablecimiento de contraseña
     }
   };
   
+  const handleAccountNotFound = () =>{
+    setFormState({
+      ...formState, emailValue: event.target.value, showInformationBox: true, InformationBoxValue: "Invalid email address, please check and try again.", informationColour: 'red'
+
+    })
+  }
   const handleInvalidAccount = () => {
     setAttemptsLeft(attemptsLeft - 1);
     setDoPasswordsMatch(false);
@@ -224,7 +244,7 @@ const Modal = ({ title , buttonText, secondInputLabel, secondInputTipe, secondIn
         showInformationBox: true,
         InformationBoxValue: formState.buttonText === 'Verify'
           ? `Entered 6-digit code is incorrect. Please try again, ${attemptsLeft} attempt(s) left.`
-          : `Entered email address or password is incorrect. Please try again, ${attemptsLeft} attempt(s) left.`,
+          : `Entered password is incorrect. Please try again, ${attemptsLeft} attempt(s) left.`,
         informationColour: 'red',
       });
     }
@@ -286,10 +306,19 @@ const Modal = ({ title , buttonText, secondInputLabel, secondInputTipe, secondIn
                 placeholder={formState.emailPlaceholder}
                 type={formState.type}
                 value={formState.emailValue}
-                onChange={(event) => setFormState({ ...formState, emailValue: event.target.value })}
+                 onChange={(event) => {
+                  setIsEmailInvalid(!isEmailValid(event.target.value));
+                  isEmailInvalid ? 
+                  setFormState({ ...formState, emailValue: event.target.value,showInformationBox: true,InformationBoxValue: "Invalid email address.", informationColour: 'red'})
+                  :
+                  setFormState({ ...formState, emailValue: event.target.value,showInformationBox: false });
+                   // Validar el correo en tiempo real
+                }}
                 login="login"
-                inputClassName={!doPasswordsMatch ? 'input-error' : ''}
+                inputClassName={!doPasswordsMatch || isEmailInvalid ? 'input-error' : ''}
               />
+
+
             </FormRow>
             {!doPasswordsMatchText && formState.buttonText === 'Update password' && (
               <p className="error-message">The passwords entered must match.</p>
