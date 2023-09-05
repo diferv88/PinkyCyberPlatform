@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import HeaderComponent from "../../header/header.component"
 import "./../userRoll.styles.scss";
 import FormGroup from "../formGroup/FormGroup";
@@ -35,9 +36,9 @@ const AcordeonData = [
 const AddPartnerAccount = () => {
   const [dataAcordeon, setDataAcordeon] = useState(AcordeonData)
 
-  const handleClickAddAcordeon = () => {
+  // const handleClickAddAcordeon = () => {
 
-  }
+  // }
 
   const { id } = useParams();
 

@@ -50,13 +50,28 @@ const AccordionSummary = styled((props) => (
     backgroundColor: '#eef1f4',
   }));
 
-export default function CustomizedAccordions({userRolAcount, isActive, typeLocation, title,}) {
+export default function CustomizedAccordions({userRolAcount, isActive, isNew, typeLocation, title,}) {
 
   const [expanded, setExpanded] = React.useState('panel1');
 
   const handleChange = (panel) => (event,newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
+
+  const dataClientAcordeon = {
+    Location:'First site location',
+    Website:'https://www.websitedomain.com',
+    Country:'Moldova, Republic of',
+    Region :'Mun. Chișinău',
+    City:'Chișinău',
+    Postal:'MD-0001',
+    Address1:'Str. 31 August 24',
+    Address2:'Street, building, appartment',
+    Associated1:'255.255.255.0',
+    Associated2:'255.255.255.1',
+    Associated3:'255.255.255.2',
+    Associated4:'XXX.XXX.XXX.X',
+  }
 
   return (
     <div>
@@ -67,26 +82,26 @@ export default function CustomizedAccordions({userRolAcount, isActive, typeLocat
         </AccordionSummary>
         <AccordionDetails>
             <FormRow>
-                <FormGroup label="Location name" width="half" />
-                <FormGroup label="Website domain"  width="half" />
+                <FormGroup label="Location name" width="half" value={dataClientAcordeon.Location} />
+                <FormGroup label="Website domain"  width="half" value={dataClientAcordeon.Website} />
             </FormRow>
             <h5 className='title-partner'>Physical site location</h5>
             <FormRow>
-                <FormGroup label="Country" width="quarter" />
-                <FormGroup label="Region" width="quarter" />
-                <FormGroup label="City"  width="quarter" />
-                <FormGroup label="Postal code" width="quarter" />
+                <FormGroup label="Country" width="quarter" value={dataClientAcordeon.Country} />
+                <FormGroup label="Region" width="quarter" value={dataClientAcordeon.Region} />
+                <FormGroup label="City"  width="quarter" value={dataClientAcordeon.City} />
+                <FormGroup label="Postal code" width="quarter" value={dataClientAcordeon.Postal}/>
             </FormRow>
             <FormRow>
-                <FormGroup label="Adress line #1" width="half" />
-                <FormGroup label="Adress line #2" placeholder="Street, building, appartment"  width="half" />
+                <FormGroup label="Adress line #1" width="half" value={dataClientAcordeon.Address1}/>
+                <FormGroup label="Adress line #2" placeholder="Street, building, appartment"  width="half" value={dataClientAcordeon.Address2}/>
             </FormRow>
             <h5 className='title-partner'>Associated external IPs</h5>
             <FormRow>
-                <FormGroup label="ssociated external IP #1" width="quarter" />
-                <FormGroup label="ssociated external IP #2"  width="quarter" />
-                <FormGroup label="ssociated external IP #3"  width="quarter" />
-                <FormGroup label="ssociated external IP $4"  width="quarter" />
+                <FormGroup label="ssociated external IP #1" width="quarter" value={dataClientAcordeon.Associated1}/>
+                <FormGroup label="ssociated external IP #2"  width="quarter" value={dataClientAcordeon.Associated2}/>
+                <FormGroup label="ssociated external IP #3"  width="quarter" value={dataClientAcordeon.Associated3}/>
+                <FormGroup label="ssociated external IP $4"  width="quarter" value={dataClientAcordeon.Associated4}/>
             </FormRow>
             <h5 className='title-partner'></h5>
             <FormRow >
@@ -113,111 +128,6 @@ export default function CustomizedAccordions({userRolAcount, isActive, typeLocat
             </FormRow>
         </AccordionDetails>
       </Accordion>
-      {/* <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <div className='span-acordeon'>Second site location</div>
-          <div className='htitle'>Bvd. Ștefan cel Mare 32, Chișinău, Moldova, Republic of</div>
-        </AccordionSummary>
-        <AccordionDetails>
-            <FormRow>
-                <FormGroup label="Location name" width="half" />
-                <FormGroup label="Website domain"  width="half" />
-            </FormRow>
-            <h5 className='title-partner'>Physical site location</h5>
-            <FormRow>
-                <FormGroup label="Country" width="quarter" />
-                <FormGroup label="Region" width="quarter" />
-                <FormGroup label="City"  width="quarter" />
-                <FormGroup label="Postal code" width="quarter" />
-            </FormRow>
-            <FormRow>
-                <FormGroup label="Adress line #1" width="half" />
-                <FormGroup label="Adress line #2" placeholder="Street, building, appartment"  width="half" />
-            </FormRow>
-            <h5 className='title-partner'>Associated external IPs</h5>
-            <FormRow>
-                <FormGroup label="ssociated external IP #1" width="quarter" />
-                <FormGroup label="ssociated external IP #2"  width="quarter" />
-                <FormGroup label="ssociated external IP #3"  width="quarter" />
-                <FormGroup label="ssociated external IP $4"  width="quarter" />
-            </FormRow>
-            <FormRow >
-              <Button 
-                type={"succes"}
-                size="medium"
-                position={"left"}
-                style={{marginRight:10}}
-                // onClick={handleClose}
-                // style={confirmButton}
-                icons={<img style={{marginRight:"5px"}} src={checkIcon} alt="check" />}
-              >
-                Update
-              </Button>
-              <Button 
-                // onClick={routeChange(step.testNavigation)}
-                type={"discard"}
-                size="medium"
-                position={"left"}
-                icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
-              >
-                Discard
-              </Button>
-            </FormRow>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <div className='span-acordeon'>Third site location</div>
-          <div className='htitle'>Bvd. Dacia 40, Chișinău, Moldova, Republic of</div>
-        </AccordionSummary>
-        <AccordionDetails>
-            <FormRow>
-                <FormGroup label="Location name" width="half" />
-                <FormGroup label="Website domain"  width="half" />
-            </FormRow>
-            <h5 className='title-partner'>Physical site location</h5>
-            <FormRow>
-                <FormGroup label="Country" width="quarter" />
-                <FormGroup label="Region" width="quarter" />
-                <FormGroup label="City"  width="quarter" />
-                <FormGroup label="Postal code" width="quarter" />
-            </FormRow>
-            <FormRow>
-                <FormGroup label="Adress line #1" width="half" />
-                <FormGroup label="Adress line #2" placeholder="Street, building, appartment"  width="half" />
-            </FormRow>
-            <h5 className='title-partner'>Associated external IPs</h5>
-            <FormRow>
-                <FormGroup label="ssociated external IP #1" width="quarter" />
-                <FormGroup label="ssociated external IP #2"  width="quarter" />
-                <FormGroup label="ssociated external IP #3"  width="quarter" />
-                <FormGroup label="ssociated external IP $4"  width="quarter" />
-            </FormRow>
-            <FormRow >
-              <Button 
-                type={"succes"}
-                size="medium"
-                position={"left"}
-                style={{marginRight:10}}
-                // onClick={handleClose}
-                // style={confirmButton}
-                icons={<img style={{marginRight:"5px"}} src={checkIcon} alt="check" />}
-              >
-                Update
-              </Button>
-              <Button 
-                // onClick={routeChange(step.testNavigation)}
-                type={"discard"}
-                size="medium"
-                position={"left"}
-                icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
-              >
-                Discard
-              </Button>
-            </FormRow>
-        </AccordionDetails>
-      </Accordion> */}
-      
     </div>
   );
 }

@@ -13,7 +13,7 @@ import InventoryList from "./routes/inventoryList/inventoryList.component";
 import DetailedScanReport from "./routes/detalledScanReport/detailedScanReport.component";
 import EmailScan from "./routes/emailScan/emailScan.component";
 import PartnerAccountIndex from "./routes/partnerAccount/partnerAccount.component";
-import ClientAccountIndex from "./routes/clientAccount/partnerAccount.component";
+import ClientAccountIndex from "./routes/clientAccount/clientAccount.component";
 import AddPartnerAccount from "./pageUsers/PartnerAccouts/PartenrAccountsTest.component";
 import AddClientAccount from "./pageUsers/clientsAccounts/ClientsAccounts";
 // import Onboarding from "./routes/onboarding/Onboarding";

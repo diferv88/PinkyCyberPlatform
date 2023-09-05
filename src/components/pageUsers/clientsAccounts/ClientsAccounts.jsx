@@ -13,6 +13,37 @@ const AddClientsAccount = () => {
 
   const { id } = useParams();
 
+  const dataClient = {
+    CompanyN: 'Pinky Cyber Security LTD',
+    CompanyI: '1002003004005',
+    BusinessE: 'hello@pinky.com',
+    BusinessP: '+373 XX XXX XXX',
+    Country: 'Moldova, Republic of',
+    Region : 'Mun. Chișinău',
+    City: 'Chișinău',
+    PostalC: 'MD-0001',
+    Address1: 'Bvd. Stefan cel Mare și Sfânt',
+    Address2: 'Street, building, appartment',
+    ContractN: '20220808',
+    TypeC: 'Dedicated',
+    ConnectionD: '-',
+    LicenseD: '-',
+    Currency: 'EUR Euro',
+    Monthly: '1.000.00',
+    First: 'Sherlock',
+    MiddleN: 'William Scott ',
+    LastN: 'Holmes',
+    IDNP: '1002003004005',
+    Email: 'sherlock.holmes@pinky.ai',
+    PhoneN: '+373 79 384',
+    First2: 'Margarethe',
+    MiddleN2: 'William Scott ',
+    LastN2: 'Holmes',
+    IDNP2: '1002003004005',
+    Email2: 'margarethe.holmes@pinky.ai',
+    PhoneN2: '+373 23 456 789',
+  }
+
   return (
     <>
       <HeaderComponent links={{"":"Pinky.ai", "./Client-Account":"Clients accounts", "./add-client-account/":"Add client account"}}>Add {id} accounts</HeaderComponent>
@@ -21,11 +52,11 @@ const AddClientsAccount = () => {
         {/* Company information section */}
         <Title title="Company information" />
         <FormRow>
-          <FormGroup label="Company name" width="half" />
-          <FormGroup label="Company IDNO"  width="quarter" />
+          <FormGroup label="Company name" width="half" value={dataClient.CompanyN}/>
+          <FormGroup label="Company IDNO"  width="quarter" value={dataClient.CompanyI}/>
         </FormRow>
         <FormRow>
-          <FormGroup label="Business email"  width="half" />
+          <FormGroup label="Business email"  width="half" value={dataClient.BusinessE}/>
           <FormGroup label="Business phone number" placeholder="+373 XX XXX XXX" width="quarter" />
         </FormRow>
 
@@ -33,13 +64,13 @@ const AddClientsAccount = () => {
         {/* Company adress section */}
         <Title title="Company adress" />
         <FormRow>
-          <FormGroup label="Country" width="quarter" />
-          <FormGroup label="Region" width="quarter" />
-          <FormGroup label="City"  width="quarter" />
-          <FormGroup label="Postal code" width="quarter" />
+          <FormGroup label="Country" width="quarter" value={dataClient.Country}/>
+          <FormGroup label="Region" width="quarter" value={dataClient.Region}/>
+          <FormGroup label="City"  width="quarter" value={dataClient.City}/>
+          <FormGroup label="Postal code" width="quarter" value={dataClient.PostalC}/>
         </FormRow>
         <FormRow>
-          <FormGroup label="Adress line #1" width="half" />
+          <FormGroup label="Adress line #1" width="half" value={dataClient.Address1}/>
           <FormGroup label="Adress line #2" placeholder="Street, building, appartment"  width="half" />
         </FormRow>
 
@@ -55,48 +86,48 @@ const AddClientsAccount = () => {
         {/* Contract details section*/}
         <Title title="Contract details" />
         <FormRow>
-          <FormGroup label="Contract number"  width="quarter" />
-          <FormGroup label="Type of client"  width="quarter" />
-          <FormGroup label="Connection date"  width="quarter" />
-          <FormGroup label="License expiration date"  width="quarter" />
+          <FormGroup label="Contract number"  width="quarter" value={dataClient.ContractN}/>
+          <FormGroup label="Type of client"  width="quarter" value={dataClient.TypeC}/>
+          <FormGroup label="Connection date"  width="quarter" value={dataClient.ConnectionD}/>
+          <FormGroup label="License expiration date"  width="quarter" value={dataClient.LicenseD}/>
         </FormRow>
         <FormRow>
-          <FormGroup label="Currency"  width="quarter" />
-          <FormGroup label="Monthly fee" width="quarter" />
+          <FormGroup label="Currency"  width="quarter" value={dataClient.Currency}/>
+          <FormGroup label="Monthly fee" width="quarter" value={dataClient.Monthly}/>
         </FormRow>
 
 
         {/* Contract primary contact section*/}
         <Title title="Contract primary contact" />
         <FormRow>
-          <FormGroup label="First name"  width="quarter" />
-          <FormGroup label="Middle name"  width="quarter" />
-          <FormGroup label="Last name" width="quarter" />
-          <FormGroup label="IDNP" width="quarter" />
+          <FormGroup label="First name"  width="quarter" value={dataClient.First} />
+          <FormGroup label="Middle name"  width="quarter" value={dataClient.MiddleN}/>
+          <FormGroup label="Last name" width="quarter" value={dataClient.LastN}/>
+          <FormGroup label="IDNP" width="quarter" value={dataClient.IDNP}/>
         </FormRow>
         <FormRow>
-          <FormGroup label="Email" width="half" />
-          <FormGroup label="Phone number" width="quarter" />
+          <FormGroup label="Email" width="half" value={dataClient.Email} />
+          <FormGroup label="Phone number" width="quarter" value={dataClient.PhoneN}/>
         </FormRow>
 
 
         {/* Contract secondary contact section*/}
         <Title title="Contract secondary contact" />
         <FormRow>
-          <FormGroup label="First name"  width="quarter" />
-          <FormGroup label="Middle name"  width="quarter" />
-          <FormGroup label="Last name" width="quarter" />
-          <FormGroup label="IDNP" width="quarter" />
+          <FormGroup label="First name"  width="quarter" value={dataClient.First2} />
+          <FormGroup label="Middle name"  width="quarter" value={dataClient.MiddleN2}/>
+          <FormGroup label="Last name" width="quarter" value={dataClient.LastN2}/>
+          <FormGroup label="IDNP" width="quarter" value={dataClient.IDNP2}/>
         </FormRow>
         <FormRow>
-          <FormGroup label="Email" width="half" />
-          <FormGroup label="Phone number" width="quarter" />
+          <FormGroup label="Email" width="half" value={dataClient.Email2}/>
+          <FormGroup label="Phone number" width="quarter" value={dataClient.PhoneN2}/>
         </FormRow>
 
 
         {/* Name and locations of company sites /Acordeon */}
         <Title title="Name and locations of company sites" />
-        <CustomizedAccordions userRolAccount={"Client"}/>
+        <CustomizedAccordions userRolAccount={"Client"} typeLocation="First site location" title="Str. 31 August 24, Chișinău, Moldova, Republic of" />
         <FormRow>
             <a style={{textDecoration: 'revert', color:'blue', marginBottom:'1rem', marginTop:'1rem'}} href="#">
               Add another location

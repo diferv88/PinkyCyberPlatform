@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./BoxBorderColour.styles.scss";
 
 const BoxBorderColour = ({ label }) => {

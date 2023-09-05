@@ -30,6 +30,7 @@ import {
 } from "@mui/material";
 import "./TablePartnersAccounts.styles.scss"
 import { useEffect } from "react";
+import { useState } from "react";
 
 const myModal = {
   position: 'absolute',
@@ -176,24 +177,26 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
   
   const TablePartnerAccount = () => {
 
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
-    const [selected, setSelected] = React.useState([]);
-    const [page, setPage] = React.useState(0);
-    const [dense, setDense] = React.useState(true);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
-    const [open, setOpen] = React.useState(false);
-    const [modalInfo, setModalInfo] = React.useState([])
-    const [openList, setOpenList] = React.useState(false);
-    const [dataTableFillter, setDataTableFillter] = React.useState([])
-    const [dataTable, setDataTable] = React.useState(rows)
-    const [severityFilter, setSeverityFilter] = React.useState({
+    const [order, setOrder] = useState('asc');
+    const [orderBy, setOrderBy] = useState('calories');
+    const [selected, setSelected] = useState([]);
+    const [page, setPage] = useState(0);
+    const [dense, setDense] = useState(true);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [modalInfo, setModalInfo] = useState([])
+    const [openList, setOpenList] = useState(false);
+    const [dataTableFillter, setDataTableFillter] = useState([])
+    const [dataTable, setDataTable] = useState(rows)
+    const [severityFilter, setSeverityFilter] = useState({
       Critical: false,
       High: false,
       Medium: false,
       Low: false,
       Information: false,
     })
+    const [open, setOpen] = React.useState(false);
+    // const [selectedRow, setSelectedRow] = useState({});
+
 
     const handleOpenList = () => {
       setOpenList(!openList);

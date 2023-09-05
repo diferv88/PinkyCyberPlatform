@@ -27,8 +27,18 @@ import BoxBorderColour from "../../BoxBorderColour/BoxBorderColour";
 import BoxFullColour from "../../BoxFullColour/BoxFullColour";
 import CheckBoxFilter from "./../CheckBoxFilter/CheckBoxFilter";
 import HeaderTable from "./../HeaderTable/HeaderTable";
+import MenuItem from '@mui/material/MenuItem';
 import "../TableUserAccounts/TableUserAccounts.styles.scss";
 import { useState } from "react";
+import Button from "../../button/button.component";
+import { FormLabel, Modal, SvgIcon } from "@mui/material";
+import checkIcon from "../../../assets/Icons/Check-Icon.svg";
+import clouseIcon from "../../../assets/Icons/Clouse-Icon.svg";
+import Dropdown from '@mui/joy/Dropdown';
+import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
+import { RadioGroup, FormControl } from "@mui/joy";
+import RadioButton from "../../RadioButton/RadioButton";
 
 function createData(
   partner,
@@ -74,16 +84,16 @@ const rows = [
     "Offline",
     "-",
     "Red",
-    "2023-04-15 13:30:14",
-    "25%",
+    "-",
+    "100%",
     "Not active"
   ),
   createData(
     "partner.name.004",
     "Offline",
     "384",
-    "Green",
-    "2023-02-11 20:30:14",
+    "Red",
+    "-",
     "100%",
     "Not active"
   ),
@@ -93,16 +103,16 @@ const rows = [
     "-",
     "Green",
     "2023-03-10 14:30:14",
-    "20%",
+    "25%",
     "Active"
   ),
   createData(
     "long.partner.name.006",
     "Offline",
     "-",
-    "Red",
+    "Green",
     "2023-03-5 14:18:14",
-    "10%",
+    "25%",
     "Active"
   ),
   createData(
@@ -111,16 +121,16 @@ const rows = [
     "-",
     "Green",
     "2023-04-15 13:30:14",
-    "65%",
+    "25%",
     "Active"
   ),
   createData(
     "partner.name.008",
     "Online",
     "192",
-    "Yellow",
+    "Green",
     "2023-02-11 20:30:14",
-    "98%",
+    "25%",
     "Active"
   ),
 ];
@@ -198,28 +208,103 @@ const headCells = [
   },
 ];
 
+const myModal = {
+  position: 'absolute',
+  fontFamily: "Sora",
+  width: "784px",
+  height: "554px",
+  backgroundColor: 'white',
+  borderRadius: "16px",
+  border: '1px solid #E1E4E7',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%,-50%)!important',
+};
+
+const titleModal = {
+  position: "absolute",
+  fontFamily: "Sora",
+  top: "48px",
+  left: "136px",
+  fontWeight:"700",
+  fontSize: "24px"
+}; 
+
+const paragraphModal ={
+  fontFamily: "Sora",
+  width: "528px",
+  height: "48px",
+  position: "absolute",
+  top: "121px",
+  left: "136px",
+  fontWeight: "400",
+  color: "#3E4852",
+  fontSize: "16px",
+};
+const paragraphModalP ={
+  fontFamily: "Sora",
+  width: "528px",
+  height: "48px",
+  position: "absolute",
+  top: "193px",
+  left: "136px",
+  fontWeight: "400",
+  color: "#3E4852",
+  fontSize: "16px",
+};
+
+const discardButton = {
+  position:"absolute",
+  top: "458px",
+  left:"285px",
+  borderRadius: "8px",
+}
+const confirmButton = {
+  position:"absolute",
+  top: "458px",
+  left:"136px",
+  borderRadius: "8px",
+}
+
+
 function EnhancedTableHead(props) {
+  const {userRoll} = props
   return (
     <TableHead>
       <TableRow>
         <TableCell padding="checkbox"></TableCell>
         {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align="left"
-            size="medium"
-            padding={headCell.disablePadding ? "none" : "normal"}
-          >
-            <TableSortLabel className="tableSortLabel">
-              {headCell.label}
-            </TableSortLabel>
-          </TableCell>
+          <>
+            {userRoll == "Client accounts" && headCell.label !== "SaaS Clients" ? (
+            <TableCell
+              key={headCell.id}
+              align="left"
+              size="medium"
+              padding={headCell.disablePadding ? "none" : "normal"}
+            >
+              <TableSortLabel className="tableSortLabel">
+                {headCell.label}
+              </TableSortLabel>
+            </TableCell>
+            ) 
+            : userRoll !== "Client accounts" ? (
+              <TableCell
+                key={headCell.id}
+                align="left"
+                size="medium"
+                padding={headCell.disablePadding ? "none" : "normal"}
+              >
+                <TableSortLabel className="tableSortLabel">
+                  {headCell.label}
+                </TableSortLabel>
+              </TableCell>
+              ) : null}
+          </>
         ))}
       </TableRow>
     </TableHead>
   );
 }
-
 function EnhancedTableToolbar(props) {
   const { numSelected, handleChange, buttondAddUser } = props;
   return (
@@ -334,7 +419,7 @@ function EnhancedTableToolbar(props) {
 }
 
 const TablePartnerAccount = (props) => {
-  const { buttondAddUser } = props;
+  const { buttondAddUser, userRoll, sendButtonIcon } = props;
 
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
@@ -354,6 +439,29 @@ const TablePartnerAccount = (props) => {
     Suspended: false,
     Deleted: false,
   });
+  const [open, setOpen] = React.useState(false);
+  const [rowSelected, setRowSelected] = useState(null)
+  const [rowModal, setRowModal] = useState(null)
+
+  const handleClose = () => setOpen(false);
+
+  const handleClickColor = (rowId) => {
+    if (rowSelected == rowId) {
+      setRowSelected(null)
+    }else{
+      setRowSelected(rowId)
+    }
+  }
+
+  const handleOpenModalClic = (row) => {
+    setRowModal(row);
+    setOpen(true);
+  }
+
+  const handleClouseModalClic = () => {
+    setRowModal(null);
+    setOpen(false);
+  }
 
   const handleChangeCheckBoxFilter = (e) => {
     setSeverityFilter({
@@ -423,14 +531,51 @@ const TablePartnerAccount = (props) => {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const visibleRows = React.useMemo(
-    () =>
-      stableSort(rows, getComparator(order, orderBy)).slice(
-        page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage
-      ),
-    [order, orderBy, page, rowsPerPage]
-  );
+  const bodyModal = (
+    <Box sx={myModal}>
+    <br />
+    <h2 style={titleModal}>Reset passWord</h2>
+    <p style={paragraphModal}>After confirming client identity details via email select an option for generating and sending a single use password.</p>
+    <br />
+    <p style={paragraphModalP}>Select method:</p>
+    <div style={{top:"225px", left:"136px", position:"absolute"}}>
+      <FormControl>
+        {/* <FormLabel></FormLabel> */}
+        <RadioGroup defaultValue="sms" name="radio-buttons-grup">
+          <RadioButton title="Send password via SMS" subtitle="+373 12 345 123"  />
+          <RadioButton title="Send password via Email" subtitle="john.doe@pinky.com"  />
+        </RadioGroup>
+      </FormControl>
+    </div>
+      {/* <Link to={title === "Assets discovery / inventory" ? "/Assets-Discovery" : "/Vulnerability-Assessment"}> */}
+        <Button 
+          type={"succes"}
+          size="medium"
+          position={"left"}
+          onClick={handleClose}
+          style={confirmButton}
+          icons={<SvgIcon>
+            <svg style={{fill:"none"}} width="24" height="24" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.39969 6.31991L15.8897 3.48991C19.6997 2.21991 21.7697 4.29991 20.5097 8.10991L17.6797 16.5999C15.7797 22.3099 12.6597 22.3099 10.7597 16.5999L9.91969 14.0799L7.39969 13.2399C1.68969 11.3399 1.68969 8.22991 7.39969 6.31991Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M10.1104 13.6501L13.6904 10.0601" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </SvgIcon>}
+        >
+          Send
+        </Button>
+      {/* </Link> */}
+      <Button 
+        onClick={handleClose}
+        type={"discard"}
+        size="medium"
+        position={"left"}
+        style={discardButton}
+        icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
+      >
+        Discard
+      </Button>
+  </Box>
+  )
 
   return (
     <>
@@ -439,6 +584,7 @@ const TablePartnerAccount = (props) => {
           <EnhancedTableToolbar
             handleChange={handleChangeCheckBoxFilter}
             buttondAddUser={buttondAddUser}
+            userRoll={userRoll}
           />
           <TableContainer>
             <Table
@@ -446,31 +592,54 @@ const TablePartnerAccount = (props) => {
               aria-labelledby="tableTitle"
               size={dense ? "small" : "medium"}
             >
-              <EnhancedTableHead />
+              <EnhancedTableHead userRoll={userRoll}/>
               <TableBody>
                 {dataTableFillter.map((row, index) => {
                   const isItemSelected = isSelected(row.name);
                   const labelId = `enhanced-table-checkbox-${index}`;
-
                   return (
                     <TableRow
-                      hover
                       onClick={(event) => handleClick(event, row.name)}
+                      id={index}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.name}
-                      selected={isItemSelected}
-                      sx={{ cursor: "pointer" }}
+                      sx={ row.status == "Suspended" 
+                        ? {cursor: "pointer", borderLeft: '5px solid rgba(234, 56, 41, 1)'} 
+                        : {cursor: "pointer",} 
+                      }
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            "aria-labelledby": labelId,
-                          }}
-                        />
+                      <TableCell >
+                        <div >
+                          <Dropdown>
+                            <MenuButton 
+                              variant="plain"
+                              slots={{ root: IconButton }}
+                              sx={{width:"50px", height:"50px"}}
+                              onClick={()=>handleClickColor(index)}
+                            >
+                              <SvgIcon id={index} sx={{width:25, height: 25}}>
+                                <svg id={index} width="30" height="30" viewBox="0 0 24 24" style={{fill:"#fff"}} xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke={rowSelected !== index || rowModal !== null ? "#A4AEB8" : "#3E4852"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                  <path d="M15.9965 12H16.0054" stroke={rowSelected !== index || rowModal !== null ? "#A4AEB8" : "#3E4852"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                  <path d="M11.9955 12H12.0045" stroke={rowSelected !== index || rowModal !== null ? "#A4AEB8" : "#3E4852"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                  <path d="M7.99451 12H8.00349" stroke={rowSelected !== index || rowModal !== null ? "#A4AEB8" : "#3E4852"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              </SvgIcon>
+                            </MenuButton>
+                            <Menu>
+                              <MenuItem size="md" id="1" value="">View details.</MenuItem>
+                              <MenuItem size="md" id="2" value="">Edit details.</MenuItem>
+                              {userRoll == "Client accounts" ? (
+                                <>
+                                  <MenuItem size="md" id="3" value="" onClick={() => handleOpenModalClic(row)}> Reset password</MenuItem>
+                                  <MenuItem size="md" id="4" value="">Delete</MenuItem>
+                                </>
+                              ) : null}
+                            </Menu>
+                          </Dropdown>
+                        </div>  
                       </TableCell>
                       <TableCell align="left">
                         <span className="span-link">{row.partner}</span>
@@ -479,7 +648,9 @@ const TablePartnerAccount = (props) => {
                         <DotStatus status={row.connectivity}></DotStatus>
                         {row.connectivity}
                       </TableCell>
-                      <TableCell align="left">{row.saasc}</TableCell>
+                      {userRoll == "Client accounts" ? null : (
+                        <TableCell align="left">{row.saasc}</TableCell>
+                      )}
                       <TableCell align="left">
                         <BoxBorderColour
                           label={row.netStatus}
@@ -495,11 +666,14 @@ const TablePartnerAccount = (props) => {
                         </div>
                       </TableCell>
                       <TableCell align="left">
-                        <BoxBorderColour label={row.status}></BoxBorderColour>
+                        <BoxBorderColour  label={row.status}></BoxBorderColour>
                       </TableCell>
                     </TableRow>
                   );
                 })}
+                <Modal  open={open} onClose={handleClouseModalClic}>
+                  {bodyModal}
+                </Modal>
                 {emptyRows > 0 && (
                   <TableRow
                     style={{

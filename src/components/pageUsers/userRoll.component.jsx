@@ -55,7 +55,7 @@ const cards = [
 const UserRoll =  (props) => {
   
 
-  const {rollUser, userAccount, subtitle, terminateUrl,  buttondAddUser="Add partner account"} = props;
+  const {rollUser, userAccount, subtitle, terminateUrl,  buttondAddUser="Add partner account", iconSelectMenu} = props;
 
   return<>
 
@@ -83,7 +83,7 @@ const UserRoll =  (props) => {
       {/* Table Partner accounts management seccion */}
       <section>
         <Title title={subtitle} />
-        <TablePartnerAccounts buttondAddUser={buttondAddUser}/>
+        <TablePartnerAccounts buttondAddUser={buttondAddUser} userRoll={rollUser} iconSelectMenu={iconSelectMenu}/>
       </section>
 
       {/* Table user accounts management secction*/}
