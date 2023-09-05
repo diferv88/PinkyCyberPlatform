@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 // import SearchBar from "material-ui-search-bar";
 import Paper from '@mui/material/Paper';
 import './TableUserAccounts.styles.scss'
@@ -98,28 +100,39 @@ function createData(devices, ipaddress, macaddress, status, issue, detectiondate
       </>
     );
   };
-const ProblemDevices = (props) => {
-  const [search, setSearch] = React.useState("");
-  const [filtro, setFiltro] = React.useState(rows);
-
-  const handleFilter = () => {
-    const filteredData = rows.filter((dato) => {
-      const matchSearch =
-        search === "" ? true : dato.devices.toLowerCase().includes(search.toLowerCase());
-      return matchSearch;
-    });
-
-    setFiltro(filteredData);
+  const ProblemDevices = () => {
+    const [search, setSearch] = React.useState("");
+    const [filtro, setFiltro] = React.useState([]);
+  
+    const handleFilter = () => {
+      const filteredData = rows.filter((dato) => {
+        const matchSearch =
+          search === "" ? true : dato.devices.toLowerCase().includes(search.toLowerCase());
+        return matchSearch;
+      });
+  
+      setFiltro(filteredData);
+    };
+  
+    React.useEffect(() => {
+      handleFilter();
+    }, [search]);
+  
+    // Renderizar el componente TableUserAccounts con los datos filtrados
+    return (
+      <>
+        <div className="div-add">
+          <div className="search-bar">
+            <button className="gear-button">
+              <FontAwesomeIcon icon={faCog} />
+            </button>
+            <input type="text" className="input-search" placeholder="Search..." onChange={(event) => { setSearch(event.target.value); } } />
+          </div>
+        </div>
+        <TableUserAccounts filtro={filtro} />
+      </>
+    );
   };
-
-  React.useEffect(() => {
-    handleFilter();
-  }, [search]);
-
-  // Renderizar el componente TableUserAccounts con los datos filtrados
-  return (
-    <TableUserAccounts filtro={filtro} />
-  );
-};
+  
 
 export default ProblemDevices;
