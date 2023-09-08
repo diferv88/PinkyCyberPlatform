@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import "./../userRoll.styles.scss";
 import ShowPasswordIcon from '../../../assets/images/showPasswordIcon.svg'
 import { useState } from 'react';
-const FormGroup = ({ label, placeholder, width, type, value, onChange, login, inputClassName  }) => {
+const FormGroup = ({ label, placeholder, width, type, value, onChange, login, inputClassName,isDisabled  }) => {
   const [inputType, setInputType] = useState(type);
 
   const handleButtonClick = (event) => {
@@ -20,7 +21,7 @@ const FormGroup = ({ label, placeholder, width, type, value, onChange, login, in
           </button>
         </div>
       ) : (
-        <input type={type} placeholder={placeholder} value={value} onChange={onChange} className={`${inputClassName}`} />
+        <input disabled={isDisabled} type={type} placeholder={placeholder} value={value} onChange={onChange} className={`${inputClassName}`} />
       )}
     </div>
   );

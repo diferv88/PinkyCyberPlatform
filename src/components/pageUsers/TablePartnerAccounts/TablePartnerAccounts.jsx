@@ -37,10 +37,14 @@ import clouseIcon from "../../../assets/Icons/Clouse-Icon.svg";
 import Dropdown from '@mui/joy/Dropdown';
 import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
-import { RadioGroup, FormControl } from "@mui/joy";
+import { RadioGroup, FormControl, } from "@mui/joy";
+import { Title } from "../title/Title";
+import FormRow from "../formRow/FormRow";
+import FormGroup from "../formGroup/FormGroup";
 import RadioButton from "../../RadioButton/RadioButton";
 
 function createData(
+  id,
   partner,
   connectivity,
   saasc,
@@ -50,6 +54,7 @@ function createData(
   status
 ) {
   return {
+    id,
     partner,
     connectivity,
     saasc,
@@ -62,6 +67,7 @@ function createData(
 
 const rows = [
   createData(
+    0,
     "partner.name.001",
     "Online",
     "-",
@@ -71,6 +77,7 @@ const rows = [
     "Suspended"
   ),
   createData(
+    1,
     "long.partner.name.002",
     "Online",
     "128",
@@ -80,6 +87,7 @@ const rows = [
     "Suspended"
   ),
   createData(
+    2,
     "very.long.partner.name.003",
     "Offline",
     "-",
@@ -89,6 +97,7 @@ const rows = [
     "Not active"
   ),
   createData(
+    3,
     "partner.name.004",
     "Offline",
     "384",
@@ -98,6 +107,7 @@ const rows = [
     "Not active"
   ),
   createData(
+    4,
     "partner.name.005",
     "Online",
     "-",
@@ -107,6 +117,7 @@ const rows = [
     "Active"
   ),
   createData(
+    5,
     "long.partner.name.006",
     "Offline",
     "-",
@@ -116,6 +127,7 @@ const rows = [
     "Active"
   ),
   createData(
+    6,
     "very.long.partner.name.007",
     "Offline",
     "-",
@@ -125,6 +137,7 @@ const rows = [
     "Active"
   ),
   createData(
+    7,
     "partner.name.008",
     "Online",
     "192",
@@ -134,6 +147,37 @@ const rows = [
     "Active"
   ),
 ];
+
+const dataClient = {
+  CompanyN: 'Pinky Cyber Security LTD',
+  CompanyI: '1002003004005',
+  BusinessE: 'hello@pinky.com',
+  BusinessP: '+373 XX XXX XXX',
+  Country: 'Moldova, Republic of',
+  Region : 'Mun. Chișinău',
+  City: 'Chișinău',
+  PostalC: 'MD-0001',
+  Address1: 'Bvd. Stefan cel Mare și Sfânt',
+  Address2: 'Street, building, appartment',
+  ContractN: '20220808',
+  TypeC: 'Dedicated',
+  ConnectionD: '-',
+  LicenseD: '-',
+  Currency: 'EUR Euro',
+  Monthly: '1.000.00',
+  First: 'Sherlock',
+  MiddleN: 'William Scott ',
+  LastN: 'Holmes',
+  IDNP: '1002003004005',
+  Email: 'sherlock.holmes@pinky.ai',
+  PhoneN: '+373 79 384',
+  First2: 'Margarethe',
+  MiddleN2: 'William Scott ',
+  LastN2: 'Holmes',
+  IDNP2: '1002003004005',
+  Email2: 'margarethe.holmes@pinky.ai',
+  PhoneN2: '+373 23 456 789',
+}
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -254,16 +298,32 @@ const paragraphModalP ={
 };
 
 const discardButton = {
+  // position:"absolute",
+  top: "458px",
+  left:"285px",
+  borderRadius: "8px",
+}
+const discardButton1 = {
   position:"absolute",
   top: "458px",
   left:"285px",
   borderRadius: "8px",
 }
 const confirmButton = {
+  // position:"absolute",
+  top: "458px",
+  left:"136px",
+  borderRadius: "8px",
+  marginLeft: "10px",
+  marginRight: "10px"
+}
+const confirmButton1 = {
   position:"absolute",
   top: "458px",
   left:"136px",
   borderRadius: "8px",
+  marginLeft: "10px",
+  marginRight: "10px"
 }
 
 
@@ -440,12 +500,16 @@ const TablePartnerAccount = (props) => {
     Deleted: false,
   });
   const [open, setOpen] = React.useState(false);
+  const [openModalVE, setOpenModalVE] = React.useState(false);
   const [rowSelected, setRowSelected] = useState(null)
   const [rowModal, setRowModal] = useState(null)
+  const [rowModalVE, setRowModalVE] = useState(null)
+  const [typeModal, setTypeModal] = useState('')
 
   const handleClose = () => setOpen(false);
+  const handleCloseModalVE = () => setOpenModalVE(false);
 
-  const handleClickColor = (rowId) => {
+  const handleClickColor = (rowId, event) => {
     if (rowSelected == rowId) {
       setRowSelected(null)
     }else{
@@ -456,6 +520,15 @@ const TablePartnerAccount = (props) => {
   const handleOpenModalClic = (row) => {
     setRowModal(row);
     setOpen(true);
+  }
+
+  const handleOpenModalClick = (row,tipe) => {
+    console.log('row ==== ',row);
+    console.log('tipe ===== ',tipe);
+
+    setRowModalVE(row);
+    setTypeModal(tipe);
+    setOpenModalVE(true);
   }
 
   const handleClouseModalClic = () => {
@@ -525,6 +598,11 @@ const TablePartnerAccount = (props) => {
     setDense(event.target.checked);
   };
 
+  const handleClickDelete = (rowId) => {
+    const updateRowsDelete = dataTableFillter.filter((row) => row.id !== rowId);
+    setDataTableFillter(updateRowsDelete)
+  }
+
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -542,8 +620,8 @@ const TablePartnerAccount = (props) => {
       <FormControl>
         {/* <FormLabel></FormLabel> */}
         <RadioGroup defaultValue="sms" name="radio-buttons-grup">
-          <RadioButton title="Send password via SMS" subtitle="+373 12 345 123"  />
-          <RadioButton title="Send password via Email" subtitle="john.doe@pinky.com"  />
+          <RadioButton id="1"  title="Send password via SMS" subtitle="+373 12 345 123"  />
+          {/* <RadioButton id="2" active={false} title="Send password via Email" subtitle="john.doe@pinky.com"  /> */}
         </RadioGroup>
       </FormControl>
     </div>
@@ -553,7 +631,7 @@ const TablePartnerAccount = (props) => {
           size="medium"
           position={"left"}
           onClick={handleClose}
-          style={confirmButton}
+          style={confirmButton1}
           icons={<SvgIcon>
             <svg style={{fill:"none"}} width="24" height="24" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg">
               <path d="M7.39969 6.31991L15.8897 3.48991C19.6997 2.21991 21.7697 4.29991 20.5097 8.10991L17.6797 16.5999C15.7797 22.3099 12.6597 22.3099 10.7597 16.5999L9.91969 14.0799L7.39969 13.2399C1.68969 11.3399 1.68969 8.22991 7.39969 6.31991Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -569,13 +647,78 @@ const TablePartnerAccount = (props) => {
         type={"discard"}
         size="medium"
         position={"left"}
-        style={discardButton}
+        style={discardButton1}
         icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
       >
         Discard
       </Button>
   </Box>
   )
+
+  const bodyModalVE = (type) => (
+    <Box sx={myModal}>
+      <form className="form-content-modal" style={{overflow:'scroll', height:'100%', display:'block'}}>
+        <Title styled={{marginLeft: "20px",}} title={type == "view" ? "View details" : "Edit details"} />
+        <FormRow styled={{marginLeft: "25px",}}>
+          <FormGroup isDisabled={true} label="Company name" width="half" value={dataClient.CompanyN}/>
+        </FormRow>
+        <FormRow styled={{marginLeft: "25px",}}>
+        <FormGroup isDisabled={true} label="Business email"  width="half" value={dataClient.BusinessE}/>
+        </FormRow>
+        <FormRow styled={{marginLeft: "25px",}}>
+          <FormGroup isDisabled={true} label="Business phone number" placeholder="+373 XX XXX XXX" width="quarter" />
+        </FormRow>
+        <FormRow styled={{marginLeft: "25px",}}>
+        <FormGroup isDisabled={true} label="Country" width="quarter" value={dataClient.Country}/>
+          <FormGroup isDisabled={true} label="Region" width="quarter" value={dataClient.Region}/>
+          <FormGroup isDisabled={true} label="City"  width="quarter" value={dataClient.City}/>
+        </FormRow>
+        <FormRow styled={{marginLeft: "25px",}}>
+        <FormGroup isDisabled={true} label="Adress line #1" width="half" value={dataClient.Address1}/>
+          <FormGroup isDisabled={true} label="Adress line #2" placeholder="Street, building, appartment"  width="half" />
+        </FormRow>
+        <Title styled={{marginLeft: "20px",}} title="Contract details" />
+        <FormRow styled={{marginLeft: "25px",}}>
+          <FormGroup isDisabled={true} label="Contract number"  width="quarter" value={dataClient.ContractN}/>
+          <FormGroup isDisabled={true} label="Type of client"  width="quarter" value={dataClient.TypeC}/>
+          <FormGroup isDisabled={true} label="Connection date"  width="quarter" value={dataClient.ConnectionD}/>
+          <FormGroup isDisabled={true} label="License expiration date"  width="quarter" value={dataClient.LicenseD}/>
+        </FormRow>
+        <FormRow styled={{marginLeft: "25px",}}>
+          <FormGroup isDisabled={true} label="Currency"  width="quarter" value={dataClient.Currency}/>
+          <FormGroup isDisabled={true} label="Monthly fee" width="quarter" value={dataClient.Monthly}/>
+        </FormRow>
+        <FormRow>
+          <Button 
+            type={"succes"}
+            size="medium"
+            position={"left"}
+            onClick={handleCloseModalVE}
+            style={confirmButton}
+            icons={<SvgIcon>
+              <svg style={{fill:"none"}} width="24" height="24" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.39969 6.31991L15.8897 3.48991C19.6997 2.21991 21.7697 4.29991 20.5097 8.10991L17.6797 16.5999C15.7797 22.3099 12.6597 22.3099 10.7597 16.5999L9.91969 14.0799L7.39969 13.2399C1.68969 11.3399 1.68969 8.22991 7.39969 6.31991Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M10.1104 13.6501L13.6904 10.0601" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </SvgIcon>}
+          >
+            Send
+          </Button>
+          <Button 
+            onClick={handleCloseModalVE}
+            type={"discard"}
+            size="medium"
+            position={"left"}
+            style={discardButton}
+            icons={<img style={{marginRight:"5px"}} src={clouseIcon} alt="clouse" />}
+          >
+            Discard
+          </Button>
+        </FormRow>
+      </form>
+  </Box>
+  )
+
 
   return (
     <>
@@ -596,9 +739,9 @@ const TablePartnerAccount = (props) => {
               <TableBody>
                 {dataTableFillter.map((row, index) => {
                   const isItemSelected = isSelected(row.name);
-                  const labelId = `enhanced-table-checkbox-${index}`;
                   return (
                     <TableRow
+
                       onClick={(event) => handleClick(event, row.name)}
                       id={index}
                       role="checkbox"
@@ -617,24 +760,25 @@ const TablePartnerAccount = (props) => {
                               variant="plain"
                               slots={{ root: IconButton }}
                               sx={{width:"50px", height:"50px"}}
-                              onClick={()=>handleClickColor(index)}
+                              onClick={(event)=>handleClickColor(index, event)}
+                              
                             >
                               <SvgIcon id={index} sx={{width:25, height: 25}}>
                                 <svg id={index} width="30" height="30" viewBox="0 0 24 24" style={{fill:"#fff"}} xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke={rowSelected !== index || rowModal !== null ? "#A4AEB8" : "#3E4852"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                  <path d="M15.9965 12H16.0054" stroke={rowSelected !== index || rowModal !== null ? "#A4AEB8" : "#3E4852"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                  <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke={(rowSelected !== index || rowModal !== null ? "#A4AEB8" : "#3E4852")} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                  <path d="M15.9965 12H16.0054" stroke={(rowSelected !== index || rowModal !== null ? "#A4AEB8" : "#3E4852")} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                   <path d="M11.9955 12H12.0045" stroke={rowSelected !== index || rowModal !== null ? "#A4AEB8" : "#3E4852"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                   <path d="M7.99451 12H8.00349" stroke={rowSelected !== index || rowModal !== null ? "#A4AEB8" : "#3E4852"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                               </SvgIcon>
                             </MenuButton>
                             <Menu>
-                              <MenuItem size="md" id="1" value="">View details.</MenuItem>
-                              <MenuItem size="md" id="2" value="">Edit details.</MenuItem>
+                              <MenuItem size="md" id="1" value="" onClick={() => handleOpenModalClick(row, "view")}>View details.</MenuItem>
+                              <MenuItem size="md" id="2" value="" onClick={() => handleOpenModalClick(row, "edit")}>Edit details.</MenuItem>
                               {userRoll == "Client accounts" ? (
                                 <>
                                   <MenuItem size="md" id="3" value="" onClick={() => handleOpenModalClic(row)}> Reset password</MenuItem>
-                                  <MenuItem size="md" id="4" value="">Delete</MenuItem>
+                                  <MenuItem size="md" id="4" value="" onClick={()=> handleClickDelete(row.id)}>Delete</MenuItem>
                                 </>
                               ) : null}
                             </Menu>
@@ -673,6 +817,9 @@ const TablePartnerAccount = (props) => {
                 })}
                 <Modal  open={open} onClose={handleClouseModalClic}>
                   {bodyModal}
+                </Modal>
+                <Modal  open={openModalVE} onClose={handleClouseModalClic}>
+                  {bodyModalVE(typeModal == "view" ? "view" : "edit")}
                 </Modal>
                 {emptyRows > 0 && (
                   <TableRow
