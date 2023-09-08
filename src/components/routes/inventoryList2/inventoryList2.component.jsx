@@ -272,6 +272,12 @@ const InventoryList2 = () =>{
     const [startScan, setStartScan] = useState(false);
     const handleStartScan = () => {
         setStartScan(true);
+        window.localStorage.setItem("MEmailScan", JSON.stringify(true));
+        window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
+        window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));
+        window.localStorage.setItem("MitigateYourRisk", JSON.stringify(true));
+        window.localStorage.setItem("LearnMore", JSON.stringify(true));
+        window.localStorage.setItem("activeStep", JSON.stringify(""));
     }
 
     return(

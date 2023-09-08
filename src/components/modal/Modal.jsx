@@ -201,16 +201,16 @@ const Modal = ({ title , buttonText, secondInputLabel, secondInputTipe, secondIn
         }
       } else {
         // El correo electrónico no existe en la "base de datos"
-        handleAccountNotFound();
+        handleAccountNotFound(formState);
       }
     } else {
       handleResetClick(); // Restablecimiento de contraseña
     }
   };
   
-  const handleAccountNotFound = (eve) =>{
+  const handleAccountNotFound = (event) =>{
     setFormState({
-      ...formState, emailValue: event.target.value, showInformationBox: true, InformationBoxValue: "Invalid email address, please check and try again.", informationColour: 'red'
+      ...formState, emailValue: event.emailValue, showInformationBox: true, InformationBoxValue: "Invalid email address or password, please check and try again.", informationColour: 'red'
 
     })
   }
