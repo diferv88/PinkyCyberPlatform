@@ -1,3 +1,4 @@
-export const Title = ({title}) => <> <h4 className="title-partner">{title}</h4></>;
+/* eslint-disable react/prop-types */
+export const Title = ({title, styled}) => <> <h4 style={styled} className="title-partner">{title}</h4></>;
 
 
