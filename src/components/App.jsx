@@ -26,32 +26,31 @@ import InventoryList2 from "./routes/inventoryList2/inventoryList2.component";
 function App() {
   return (
     <Routes>
-      <Route element={<Navigation />}>
-        <Route index element={<Home />}/>
-        <Route path="add-partner-account/:id" element={<AddPartnerAccount />} />
-        <Route path="add-client-account/:id" element={<AddClientAccount />} />
-        <Route path="Assets-Discovery" element={<AssetsDiscovery />} />
-        <Route path="Inventory" element={<InventoryList />} />
-        <Route path="InventoryList" element={<InventoryList2/>}/>
-        <Route path="DetailedScanReport" element={<DetailedScanReport />} />
-        <Route path="Partner-Account" element={<PartnerAccountIndex />} />
-        <Route path="Client-Account" element={<ClientAccountIndex />} />
-        <Route path="Proceed-Scan" element={<DashBoard />}/>
-        <Route path="/Onboarding" element={<Onboarding />} />
-        <Route path="Onboarding-Contact" element={<OnboardingContact />} />
-        <Route path="Onboarding-Complete" element={<OnboardingComplete />} />
-        <Route path="Scheduled-Scans" element={<ScheduledScansIndex />} />
-        <Route path="Schedule-Scan-Assets" element={<ScheduleScanAssetsDiscovery />} />
-        <Route path="Schedule-Scan-Vulnerability" element={<ScheduleScanVulnerability />} />
-        <Route path="Vulnerability-Assessment" element={<VulnerabilityAssesment />} />
-        <Route path="Email-Scan" element={<EmailScan />} />
-        <Route path="Email-Scan-Vulnerability" element={<EmailScanVulnerability />} />
+        
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />}/>
+          <Route path="add-partner-account/:id" element={<AddPartnerAccount />} />
+          <Route path="add-client-account/:id" element={<AddClientAccount />} />
+          <Route path="Assets-Discovery" element={<AssetsDiscovery />} />
+          <Route path="Inventory" element={<InventoryList />} />
+          <Route path="InventoryList" element={<InventoryList2/>}/>
+          <Route path="DetailedScanReport" element={<DetailedScanReport />} />
+          <Route path="Partner-Account" element={<PartnerAccountIndex />} />
+          <Route path="Client-Account" element={<ClientAccountIndex />} />
+          <Route path="Proceed-Scan" element={<DashBoard />}/>
+          <Route path="Onboarding" element={<Onboarding />} />
+          <Route path="Onboarding-Contact" element={<OnboardingContact />} />
+          <Route path="Onboarding-Complete" element={<OnboardingComplete />} />
+          <Route path="Scheduled-Scans" element={<ScheduledScansIndex />} />
+          <Route path="Schedule-Scan-Assets" element={<ScheduleScanAssetsDiscovery />} />
+          <Route path="Schedule-Scan-Vulnerability" element={<ScheduleScanVulnerability />} />
+          <Route path="Vulnerability-Assessment" element={<VulnerabilityAssesment />} />
+          <Route path="Email-Scan" element={<EmailScan />} />
+          <Route path="Email-Scan-Vulnerability" element={<EmailScanVulnerability />} />
+        </Route>
         {/* <Route path="onboarding" element={<Onboarding/>}/> */}
-      </Route>
-      <Route>
-        <Route path="login" element={<Login/>}/>
-        <Route path="recovery-password" element={<RecoveryPasswordLogin/>}/>
-      </Route>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/recovery-password" element={<RecoveryPasswordLogin/>}/>
     </Routes>
   );
 }
