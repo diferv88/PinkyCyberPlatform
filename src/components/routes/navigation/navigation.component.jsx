@@ -76,13 +76,12 @@ const Navigation = () => {
               <img src={dataSVG} alt="Network image" />
             </NavLink>
             <NavLink
-              // to="/issues"
               to="/onboarding"
               title="Link to go to the Issues Management page"
             >
               <img src={taskSVG} alt="Issues Management image" />
             </NavLink>
-            <NavLink to="/wiki" title="Link to go to the Wiki Management page">
+            <NavLink to="/Client-Account" title="Link to go to the Client account Management page">
               <svg
                 width="24"
                 height="24"
@@ -98,10 +97,10 @@ const Navigation = () => {
                 />
               </svg>
             </NavLink>
-            <NavLink to="/payment" title="Link to go to the Payment page">
+            <NavLink to="/py" title="Link to go to the Payment page">
               <img src={cardSVG} alt="Payment image" />
             </NavLink>
-            <NavLink to="/settings" title="Link to go to the Settings page">
+            <NavLink to="/set" title="Link to go to the Settings page">
               <img src={settingSVG} alt="Setting image" />
             </NavLink>
             <NavLink
