@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route,   createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Navigation from "./routes/navigation/navigation.component";
 import DashBoard from "./routes/dashBoard/dashBoard.component";
 import Home from "./routes/home/home.component";
@@ -22,10 +22,11 @@ import { RecoveryPasswordLogin } from "./routes/RecoveryPasswordLogin/RecoveryPa
 import EmailScanVulnerability from "./routes/emailScanVulnerability/emailScanVulnerability.component";
 import ScheduledScansIndex from "./routes/scheduledscans/scheduledScans.component";
 import InventoryList2 from "./routes/inventoryList2/inventoryList2.component";
+
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigation />} >
+      <Route path="/" element={<Navigation />}>
         <Route index element={<Home />}/>
         <Route path="add-partner-account/:id" element={<AddPartnerAccount />} />
         <Route path="add-client-account/:id" element={<AddClientAccount />} />
@@ -43,12 +44,10 @@ function App() {
         <Route path="Schedule-Scan-Assets" element={<ScheduleScanAssetsDiscovery />} />
         <Route path="Schedule-Scan-Vulnerability" element={<ScheduleScanVulnerability />} />
         <Route path="Vulnerability-Assessment" element={<VulnerabilityAssesment />} />
+        <Route path="Email-Scan" element={<EmailScan />} />
+        <Route path="Email-Scan-Vulnerability" element={<EmailScanVulnerability />} />
+        {/* <Route path="onboarding" element={<Onboarding/>}/> */}
       </Route>
-      <Route path="Email-Scan" element={<EmailScan />} />
-      <Route path="Email-Scan-Vulnerability" element={<EmailScanVulnerability />} />
-      {/* <Route path="onboarding" element={<Onboarding/>}/> */}
-      <Route path="login" element={<Login/>}/>
-      <Route path="recovery-password" element={<RecoveryPasswordLogin/>}/>
     </Routes>
   );
 }
