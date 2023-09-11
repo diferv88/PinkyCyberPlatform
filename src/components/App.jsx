@@ -26,7 +26,7 @@ import InventoryList2 from "./routes/inventoryList2/inventoryList2.component";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigation />}>
+      <Route element={<Navigation />}>
         <Route index element={<Home />}/>
         <Route path="add-partner-account/:id" element={<AddPartnerAccount />} />
         <Route path="add-client-account/:id" element={<AddClientAccount />} />
@@ -37,7 +37,7 @@ function App() {
         <Route path="Partner-Account" element={<PartnerAccountIndex />} />
         <Route path="Client-Account" element={<ClientAccountIndex />} />
         <Route path="Proceed-Scan" element={<DashBoard />}/>
-        <Route path="Onboarding" element={<Onboarding />} />
+        <Route path="/Onboarding" element={<Onboarding />} />
         <Route path="Onboarding-Contact" element={<OnboardingContact />} />
         <Route path="Onboarding-Complete" element={<OnboardingComplete />} />
         <Route path="Scheduled-Scans" element={<ScheduledScansIndex />} />
@@ -47,6 +47,10 @@ function App() {
         <Route path="Email-Scan" element={<EmailScan />} />
         <Route path="Email-Scan-Vulnerability" element={<EmailScanVulnerability />} />
         {/* <Route path="onboarding" element={<Onboarding/>}/> */}
+      </Route>
+      <Route>
+        <Route path="login" element={<Login/>}/>
+        <Route path="recovery-password" element={<RecoveryPasswordLogin/>}/>
       </Route>
     </Routes>
   );
