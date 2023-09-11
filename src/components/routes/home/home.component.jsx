@@ -216,7 +216,7 @@ const Home = () => {
       timeout: null
     });
   }, [displayNotification]);
-
+  let progress = (activeStepPKE?2:0) + (activeStepCYA?2:0) + (activeStepKYV?2:0) + (activeStepMYR?2:0) + (activeStepLMI?2:0);
   const handleNext = () => {
     const index = steps.findIndex(x => x.key === activeStep.key);
     setSteps(prevStep => prevStep.map(x => {
@@ -236,7 +236,7 @@ const Home = () => {
       </section>
       <section className="steps1">
         <Stack sx={{ width: '100%' }} spacing={4}>
-          <Stepper alternativeLabel activeStep={4} connector={<QontoConnector />}>
+          <Stepper alternativeLabel activeStep={progress} connector={<QontoConnector />}>
             {stepsLabel.map((label, index) => {
               
               return (
