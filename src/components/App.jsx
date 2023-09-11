@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { BrowserRouter as Router, Routes, Route,   createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Navigation from "./routes/navigation/navigation.component";
 import DashBoard from "./routes/dashBoard/dashBoard.component";

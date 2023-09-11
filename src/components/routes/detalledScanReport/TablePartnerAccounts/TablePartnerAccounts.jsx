@@ -353,9 +353,9 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
       </>
     )
 
-    const bodyModal = (row) => (
+    const bodyModal = (
       <Box sx={myModal} >
-        <h2 style={titleModal}>{row.vulnerability}</h2>
+        <h2 style={titleModal}>Possible Cross-site Request Forgery</h2>
         <div style={bodyModalStyle}>
           <p style={{fontSize: '14px', fontWeight: 400,}}>Pinky.ai detected errors during parsing of Strict-Transport-Security header.</p>
           <p><strong>Impact</strong></p>
@@ -464,9 +464,6 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
                           {row.vulnerability}
                         </span>
                       </div>
-                      <Modal  open={open} onClose={(event) => handleClose(event,row)}>
-                        {bodyModal(row)}
-                      </Modal>   
                     </TableCell>
                     <TableCell align="left">
                     <Button variant="outlined" style={{border: "1px solid #3E4852", color:"black"}} size="small">
@@ -543,9 +540,6 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
                           {row.vulnerability}
                         </span>
                       </div>
-                      <Modal  open={open} onClose={(event) => handleClose(event,row)}>
-                        {bodyModal(row)}
-                      </Modal>   
                     </TableCell>
                     <TableCell align="left">
                     <Button variant="outlined" style={{border: "1px solid #3E4852", color:"black"}} size="small">
@@ -569,7 +563,10 @@ function createData(confirmed, vulnerability, Host, Protocol, port,severety) {
                   </TableRow>
                 );
               })
-            } 
+              }
+              <Modal  open={open} onClose={(event) => handleClose(event)}>
+                {bodyModal}
+              </Modal>    
               {emptyRows > 0 && (
                 <TableRow
                   style={{
