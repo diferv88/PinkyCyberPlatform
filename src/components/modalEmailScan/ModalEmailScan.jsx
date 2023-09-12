@@ -39,17 +39,17 @@ const ModalEmailScan = ({ title, bodyText, buttonText }) => {
     if(window.localStorage.getItem("activeStep") == JSON.stringify("secondStep")){
       window.localStorage.setItem("MEmailScan", JSON.stringify(true));
       window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
-      window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));
+      window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(false));
       window.localStorage.setItem("activeStep", JSON.stringify("thirdStep"));
     }else if (title === "Inventory scan completed!") {
       window.localStorage.setItem("MEmailScan", JSON.stringify(true));
-      window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
+      window.localStorage.setItem("ClassifyYAssest", JSON.stringify(false));
       window.localStorage.setItem("activeStep", JSON.stringify("secondStep"));     
     }else{
       window.localStorage.setItem("MEmailScan", JSON.stringify(true));
       window.localStorage.setItem("ClassifyYAssest", JSON.stringify(true));
       window.localStorage.setItem("KnowYourVulnerabilities", JSON.stringify(true));
-      window.localStorage.setItem("MitigateYourRisk", JSON.stringify(true));
+      window.localStorage.setItem("MitigateYourRisk", JSON.stringify(false));
       window.localStorage.setItem("activeStep", JSON.stringify("finalStep"));         
     }
   }
